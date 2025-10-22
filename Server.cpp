@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/10/15 16:16:59 by doferet          ###   ########.fr       */
+/*   Updated: 2025/10/22 15:01:57 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,11 @@ void Server::initServer(int port, std::string password)
 
 void Server::serverSignal(int signum)
 {
-    
+    Server::server_signal = false;
+
+    (void)signum;
+    std::cout << "signal received" << std::endl;
+    Server::server_signal = true;
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:54:08 by doferet           #+#    #+#             */
-/*   Updated: 2025/10/01 15:57:51 by doferet          ###   ########.fr       */
+/*   Updated: 2025/10/21 09:48:59 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 class Client{
 
 public:
+	join;
+	kick;
+	invite;
+	topic;
+	mode;
 
 private:
 	std::string _username;

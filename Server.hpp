@@ -6,13 +6,14 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:54:14 by doferet           #+#    #+#             */
-/*   Updated: 2025/10/15 16:16:24 by doferet          ###   ########.fr       */
+/*   Updated: 2025/10/22 14:57:08 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERVER_HPP
 # define SERVER_HPP
 
+#define FD_MAX 1024
 #include <map>
 #include <iostream>
 #include <string>
@@ -34,6 +35,7 @@ class Server
 
 	private:
 		std::map <int, Client> _clients;
+		 bool server_signal;
 };
 
 #endif
