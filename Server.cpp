@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:34 by doferet           #+#    #+#             */
-/*   Updated: 2025/10/22 15:01:57 by doferet          ###   ########.fr       */
+/*   Updated: 2025/11/03 11:07:57 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void Server::initServer(int port, std::string password)
 {
 	int sockfd, connfd;
     socklen_t len;
-    struct sockaddr_in servaddr, cli;
+    struct sockaddr_in servaddr;
 	(void)port;
 	(void)password;
 
@@ -51,8 +51,9 @@ void Server::initServer(int port, std::string password)
     {
         throw std::runtime_error("listen error");
     }
-    len = sizeof(cli);
-    connfd = accept(sockfd, (struct sockaddr *)&cli, &len);
+    //len = sizeof(cli);
+    select + FD_ZERO etc...
+    //connfd = accept(sockfd, (struct sockaddr *)&cli, &len);
     if (connfd == -1) {
         throw std::runtime_error("server accept failed...");
     } 

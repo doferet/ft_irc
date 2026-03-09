@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:54:14 by doferet           #+#    #+#             */
-/*   Updated: 2025/10/22 14:57:08 by doferet          ###   ########.fr       */
+/*   Updated: 2025/10/29 17:23:02 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <cstring>
 #include <unistd.h>  
 #include <sys/socket.h> 
+#include <sys/select.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <stdlib.h>

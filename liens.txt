@@ -1,0 +1,15 @@
+https://webusers.i3s.unice.fr/~tettaman/Classes/L2I/ProgSys/11_IntroSockets.pdf
+
+http://manpagesfr.free.fr/man/man2/select.2.html
+
+https://www.geeksforgeeks.org/cpp/socket-programming-in-cpp/
+
+https://modern.ircdocs.horse/#errneedmoreparams-461
+
+https://medium.com/@afatir.ahmedfatir/small-irc-server-ft-irc-42-network-7cee848de6f9#:~:text=Part%202%3A%20Create%20a%20socket%20and%20handle%20the%20server%20signals.
+
+https://pubs.opengroup.org/onlinepubs/7908799/xsh/select.html
+
+https://github.com/mharriso/school21-checklists/tree/master
+
+https://rncp.hacku.org/rncp
