@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:11 by doferet           #+#    #+#             */
-/*   Updated: 2026/03/09 19:38:39 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/06 22:22:23 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 #include <cstdlib>
 # include <errno.h>
 # include "Client.hpp"
-# include "ACommand.hpp"
-# include "CommandFactory.hpp"
+# include "Command/ACommand.hpp"
+# include "Command/CommandFactory.hpp"
 # include "Channel.hpp"
 
 

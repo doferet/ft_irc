@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:05:12 by doferet           #+#    #+#             */
-/*   Updated: 2026/03/09 19:33:58 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/07 18:33:59 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,17 @@ ACommand* CommandFactory::create(const std::string &name)
         return it->second(_channels, _cli, _serverPassword);
     return NULL;
 }
+
+//commande a implementer au minimum
+// PING
+// PASS
+// NICK
+// USER
+// JOIN
+// PRIVMSG
+// KICK
+// INVITE
+// TOPIC
+// MODE
+// PART
+// QUIT

@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:58 by doferet           #+#    #+#             */
-/*   Updated: 2026/03/08 21:17:21 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/06 22:32:36 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 Client::Client()
 {
     _fd = -1;
+    _disconnected = false;
 }
 Client::~Client()
 {
@@ -64,3 +65,51 @@ std::string Client::getOutputLine()
     _input.erase(_input.begin(), it + 1);
     return line;    
 }
+
+bool Client::getDisconnected()
+{
+    return _disconnected;
+}
+
+void Client::setDisconnected(bool status)
+{
+    _disconnected = status;
+}
+
+void Client::setHasValidPassword(bool status)
+{
+    _hasValidPassword = status;
+}
+
+bool Client::getHasValidPassword()
+{
+    return _hasValidPassword;
+}
+
+void Client::setHasValidNickname(bool nickname)
+{
+    _hasValidNickname = nickname;
+}
+
+bool Client::getHasValidNickname()
+{
+    return _hasValidNickname;
+}
+
+void Client::setHasValidUsername(bool Username)
+{
+    _hasValidUsername = Username;
+}
+
+bool Client::getHasValidUsername()
+{
+    return _hasValidUsername;
+}
+
+
+bool Client::isAuthenticated()
+{
+    return (_hasValidPassword && _hasValidNickname && _hasValidUsername);
+}
+
+	

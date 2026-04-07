@@ -7,9 +7,10 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp \
 	Server.cpp \
 	Client.cpp \
-	CommandFactory.cpp \
 	Channel.cpp \
-	ACommand.cpp 
+	Command/ACommand.cpp \
+	Command/CommandFactory.cpp \
+	Command/Pass.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/03/09 19:46:37 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/06 22:34:52 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,12 @@ Server::Server(int port, std::string &password): _port(port), _password(password
     if (listen(_socket, 10)) {
         throw IRCServException(std::string("listen failure ") + strerror(errno));
     }
-    _timeout.tv_sec = 0;
-    _timeout.tv_usec = 100000;
     std::cout<<"successfully connected to port : "<<_port<<std::endl;
     signal(SIGPIPE, SIG_IGN);
 }
 
 // Server::Server(const Server &copy)
 // {
-    
 // }
 // Server &Server::operator=(const Server &copy)
 // {
@@ -86,12 +83,10 @@ int Server::clientSocketOperation(int index)
         std::cout<<"recv size : "<<recvSize<<std::endl;
         if (recvSize <= 0)
         {
-            //0 cient s'est deco 
-            //-1 erreur sur le socket
-            //dans tout les cas quitter les channels et degager le client
-            close(fd);
-            _clients.erase(_clients.begin() + index);
-            return index - 1;
+        //0 cient s'est deco 
+        //-1 erreur sur le socket
+        //dans tout les cas quitter les channels et degager le client
+            _clients[index].setDisconnected(true);
         }
         else 
         {
@@ -109,6 +104,10 @@ int Server::clientSocketOperation(int index)
     if (FD_ISSET(fd, &_error))
     {
         //degager le client du vector le destructeur fermera le fd le virer de tout ses channels
+        _clients[index].setDisconnected(true);
+    }
+    if (_clients[index].getDisconnected() == true)
+    {
         close(fd);
         _clients.erase(_clients.begin() + index);
         return index - 1;
@@ -123,6 +122,8 @@ void Server::run()
     {
         initSets();
         int nfds = getnfds();
+        _timeout.tv_sec = 0;
+        _timeout.tv_usec = 100000;
         if (select(nfds, &_read, &_write, &_error, &_timeout) == -1)
         {
             throw IRCServException(std::string("unexpected select error : ") + strerror(errno));
@@ -158,14 +159,14 @@ void Server::run()
                 ACommand *command = _factory.create(commandName);
                 if (command != NULL)
                 {
-                    command->execute();//lui donner _client et _channels
+                    command->execute(*cIt, str);
                     delete command;
                     //attention si quit l'utilisateur est retire de la liste des clients et l'iterateur invalide
                 }
                 else
                 {
                     std::cout<<"unknow command : "<<commandName<<std::endl;
-                    //envoyer un message bien formate au client qui envoi n'importe quoi
+                    //envoyer un message bien formate au client pour lu dire que la commande n'est pas trouvee
                 }
             }
         }

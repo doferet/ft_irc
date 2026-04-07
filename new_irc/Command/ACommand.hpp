@@ -6,15 +6,15 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:37:14 by doferet           #+#    #+#             */
-/*   Updated: 2026/03/09 19:33:51 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/06 22:35:51 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ACOMMAND_HPP
 # define ACOMMAND_HPP
 
-# include "Client.hpp"
-# include "Channel.hpp"
+# include "../Client.hpp"
+# include "../Channel.hpp"
 # include <iostream>
 # include <string.h>
 # include <sys/types.h>
@@ -37,7 +37,7 @@ class ACommand{
         ACommand(std::map<std::string, Channel> &channels, std::vector<Client> &cli, std::string &ServerPassword);
         virtual ~ACommand();
         
-        virtual void execute() = 0;
+        virtual void execute(Client &client, std::string &input) = 0;
 };
 
 #endif
