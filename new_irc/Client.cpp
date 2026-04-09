@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:58 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/06 22:32:36 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/09 13:56:32 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ std::string Client::getInputLine()
 std::string Client::getOutputLine()
 {
     std::string line;
-    std::vector<char>::iterator it = std::find(_input.begin(), _input.end(), '\n');
-    if (it == _input.end())
+    std::vector<char>::iterator it = std::find(_output.begin(), _output.end(), '\n');
+    if (it == _output.end())
         return "";
-    line.insert(line.end(), _input.begin(), it);
-    _input.erase(_input.begin(), it + 1);
+    line.insert(line.end(), _output.begin(), it);
+    _output.erase(_output.begin(), it + 1);
     return line;    
 }
 
