@@ -106,6 +106,17 @@ bool Client::getHasValidUsername()
     return _hasValidUsername;
 }
 
+void Client::setNickname(std::string name)
+{
+    _nickname = name;
+}
+
+std::string Client::getNickname() const { return _nickname; }
+
+void Client::setUsername(std::string name)
+{
+    _username = name;
+}
 
 bool Client::isAuthenticated()
 {

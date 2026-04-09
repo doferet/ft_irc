@@ -39,6 +39,9 @@ public:
 	bool getHasValidNickname();
 	void setHasValidUsername(bool Username);
 	bool getHasValidUsername();
+	void setNickname(std::string name);
+	std::string getNickname() const;
+	void setUsername(std::string name);
 	bool isAuthenticated();
 	
 private:
