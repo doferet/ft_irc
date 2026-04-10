@@ -1,8 +1,6 @@
 #include "User.hpp"
 #include <sstream>
 
-User::User(std::map<std::string, Channel> &channels, std::vector<Client> &cli, std::string &serverPassword) 
-    : ACommand(channels, cli, serverPassword) {}
 
 void User::execute(Client &client, std::string &input) {
     if (client.isAuthenticated()) return;

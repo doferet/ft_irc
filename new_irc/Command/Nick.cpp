@@ -1,8 +1,5 @@
 #include "Nick.hpp"
 
-Nick::Nick(std::map<std::string, Channel> &channels, std::vector<Client> &cli, std::string &serverPassword)
-    : ACommand(channels, cli, serverPassword)
-{}
 
 void Nick::execute(Client &client, std::string &input)
 {

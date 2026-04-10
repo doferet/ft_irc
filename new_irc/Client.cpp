@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:58 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 13:56:32 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/10 16:28:41 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ void Client::setNickname(std::string name)
 }
 
 std::string Client::getNickname() const { return _nickname; }
+
+std::string Client::getUsername() const { return _username; }
+
 
 void Client::setUsername(std::string name)
 {
