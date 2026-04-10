@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CommandFactory.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:47:47 by doferet           #+#    #+#             */
-/*   Updated: 2026/03/09 19:40:11 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/09 21:09:33 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@
 #include <string>
 #include "ACommand.hpp"
 #include "Pass.hpp"
+#include "Join.hpp"
+#include "Nick.hpp"
+#include "User.hpp"
 
 class Channel;
 class Client;
 
-typedef ACommand* (*CreateFn)(std::map<std::string, Channel> &, std::vector<Client> &, std::string &);
+typedef ACommand* (*CreateFn)(std::map<std::string, Channel*> &, std::vector<Client> &, std::string &);
 
 class CommandFactory {
 private:
-    std::map<std::string, Channel> & _channels;
+    std::map<std::string, Channel*> & _channels;
     std::vector<Client> & _cli;
     std::string &_serverPassword;
    // std::map<std::string, CreateFn> creators;
@@ -34,7 +37,7 @@ private:
    
 public:
     // CommandFactory();
-    CommandFactory(std::map<std::string, Channel> &cha, std::vector<Client> &cli, std::string &pass);
+    CommandFactory(std::map<std::string, Channel*> &cha, std::vector<Client> &cli, std::string &pass);
 
     ACommand* create(const std::string& name);
 };

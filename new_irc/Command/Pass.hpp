@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Pass.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:54:48 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/06 22:35:42 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:11:03 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,14 @@
 //     virtual void execute(){}
 // };
 
+class Channel;
+class Client;
+
+
 class Pass : public ACommand {
 public:
-    Pass(std::map<std::string, Channel> &channels, std::vector<Client> &cli, std::string &serverPassword): ACommand(channels, cli, serverPassword){};
-    static ACommand* create(std::map<std::string, Channel> &channels, std::vector<Client> &cli, std::string &serverPassword) {
+    Pass(std::map<std::string, Channel*> &channels, std::vector<Client> &cli, std::string &serverPassword): ACommand(channels, cli, serverPassword){};
+    static ACommand* create(std::map<std::string, Channel*> &channels, std::vector<Client> &cli, std::string &serverPassword) {
         return new Pass(channels, cli, serverPassword);
     }
     virtual void execute(Client &client, std::string &input);
