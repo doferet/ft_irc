@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:11 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/06 22:22:23 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/09 19:04:21 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class Server{
     fd_set _read;
     fd_set _error;
     std::vector<Client> _clients;
-    std::map<std::string, Channel> _channels;
+    std::map<std::string, Channel*> _channels;
     CommandFactory _factory;
         
     Server();

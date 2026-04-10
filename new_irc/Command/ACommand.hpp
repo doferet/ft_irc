@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ACommand.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:37:14 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/06 22:35:51 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/09 18:39:02 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@
 
 class ACommand{
     protected:
-        std::map<std::string, Channel> &_channels;
+        std::map<std::string, Channel*> &_channels;
         std::vector<Client> &_cli;
         std::string _serverPassword;
         // ACommand();
     public:
-        ACommand(std::map<std::string, Channel> &channels, std::vector<Client> &cli, std::string &ServerPassword);
+        ACommand(std::map<std::string, Channel*> &channels, std::vector<Client> &cli, std::string &ServerPassword);
         virtual ~ACommand();
         
         virtual void execute(Client &client, std::string &input) = 0;
