@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:58 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/10 16:28:41 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/10 20:18:56 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ std::string Client::getOutputLine()
     std::vector<char>::iterator it = std::find(_output.begin(), _output.end(), '\n');
     if (it == _output.end())
         return "";
-    line.insert(line.end(), _output.begin(), it);
+    line.insert(line.end(), _output.begin(), it + 1);
     _output.erase(_output.begin(), it + 1);
     return line;    
 }
