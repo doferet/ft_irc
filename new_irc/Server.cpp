@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 14:51:46 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/10 19:56:43 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int Server::clientSocketOperation(int index)
             //-1 erreur sur le socket
             // dans tout les cas quitter les channels et degager le client
             _clients[index].setDisconnected(true);
+            // std::cout << "Client is deconnected\n";
         }
         else
         {
@@ -100,6 +101,16 @@ int Server::clientSocketOperation(int index)
     }
     if (FD_ISSET(fd, &_write))
     {
+        std::string buf = _clients[index].getOutputLine();
+
+        if (!buf.empty())
+        {
+            ssize_t n = send(fd, buf.c_str(), buf.size(), 0);
+            std::cout << "send fd :" << fd << std::endl;
+            std::cout << "send return : " << n << std::endl;
+            std::cout << "buf du send : " << buf << std::endl;
+        }
+
         // si le res de cIt->getOutput n'est pas vide l'ecrire avec send();
         //  send(fd, "coucou le client ici le serveru", strlen("coucou le client ici le serveru"), 0);
     }
@@ -163,6 +174,10 @@ void Server::run()
                 {
                     cIt->addToOutput(":server CAP * LS :\r\n");
                     continue;
+                }
+                if (commandName == "JOIN")
+                {
+                    std::cout << "Le client a envoyé JOIN au server\n";
                 }
 
                 std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
