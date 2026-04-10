@@ -11,13 +11,13 @@ void Nick::execute(Client &client, std::string &input)
     
     // Check if the nickname is already taken by iterating through the client vector
     for (size_t i = 0; i < _cli.size(); ++i) {
-        if (_cli[i].getNickname() == input) { //needed add
+        if (_cli[i].getNickname() == input) {
             // Error: Nickname already in use (ERR_NICKNAMEINUSE 433)
             return;
         }
     }
 
-    client.setNickname(input); // needed add
+    client.setNickname(input);
     client.setHasValidNickname(true);
     std::cout << "Nickname set to: " << input << std::endl;
 }
