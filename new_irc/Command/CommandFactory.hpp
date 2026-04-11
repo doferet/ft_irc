@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:47:47 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 21:09:33 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/11 18:06:46 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "Join.hpp"
 #include "Nick.hpp"
 #include "User.hpp"
+#include "Privmsg.hpp"
 
 class Channel;
 class Client;

@@ -13,7 +13,8 @@ SRC = main.cpp \
 	Command/Pass.cpp \
 	Command/Join.cpp \
 	Command/Nick.cpp \
-	Command/User.cpp
+	Command/User.cpp \
+	Command/Privmsg.cpp
 
 OBJ_DIR = obj
 

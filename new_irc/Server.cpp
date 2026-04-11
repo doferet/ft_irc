@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/10 19:56:43 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/11 20:56:23 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,17 +175,17 @@ void Server::run()
                     cIt->addToOutput(":server CAP * LS :\r\n");
                     continue;
                 }
-                if (commandName == "JOIN")
-                {
-                    std::cout << "Le client a envoyé JOIN au server\n";
-                }
 
                 std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
                 // il faut identifier la commande new ACommand avc le bon type et appeller command->execute
                 ACommand *command = _factory.create(commandName);
+                std::cout << "CommandName recu : " << commandName << std::endl;
                 if (command != NULL)
                 {
+                    std::cout << "Avant Execution de la commande : " << commandName << std::endl;
                     command->execute(*cIt, str);
+                    std::cout << "Apres Execution de la commande : " << commandName << std::endl;
+
                     delete command;
                     // attention si quit l'utilisateur est retire de la liste des clients et l'iterateur invalide
                 }

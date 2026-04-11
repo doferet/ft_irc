@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:05:12 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 21:07:55 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/11 21:01:38 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ CommandFactory::CommandFactory(std::map<std::string, Channel*> &cha, std::vector
     creators["JOIN"] = &Join::create;
     creators["NICK"] = &Nick::create;
     creators["USER"] = &User::create;
+    creators["PRIVMSG"] = &Privmsg::create;
 
 }
 

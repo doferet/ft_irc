@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 19:26:06 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/11 20:16:23 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,24 @@ int Channel::getLimitNbr()
 void Channel::addClient(Client &client)
 {
 	bool isOp = false;
-	
+
 	if (_clients.empty())
 		isOp = true;
-		
+
 	std::pair<Client &, bool> next_pair(client, isOp);
 	std::pair<std::string, std::pair<Client &, bool> > p(client.getUsername(), next_pair);
-	
+
 	_clients.insert(p);
 }
+
+void Channel::sendMsgChannelMember(std::string msg)
+{
+	std::map<std::string, std::pair<Client &, bool> >::iterator it = _clients.begin();
+	while (it != _clients.end())
+	{
+		send(it->second.first.getFd(),  msg.c_str(), msg.size(), 0);
+	}
+}
+
+// faire un sendMsgChannel() qui enverra à tous ses membres le meme msg
+// si le dernier client quitte le channel, le channel se ferme
