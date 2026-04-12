@@ -6,7 +6,7 @@
 #    By: asritz <asritz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 13:45:32 by tronguye          #+#    #+#              #
-#    Updated: 2026/04/12 15:12:23 by asritz           ###   ########.fr        #
+#    Updated: 2026/04/12 16:13:34 by asritz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ SRC = main.cpp \
 	Command/Privmsg.cpp
 
 BOT_SRC = Bot.cpp \
-	Command/Privmsg.cpp
 
 OBJ_DIR = obj
 
