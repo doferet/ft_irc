@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Invite.hpp                                         :+:      :+:    :+:   */
+/*   Quit.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 19:08:12 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 20:56:08 by doferet          ###   ########.fr       */
+/*   Created: 2026/04/12 20:35:14 by doferet           #+#    #+#             */
+/*   Updated: 2026/04/12 20:37:20 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INVITE_HPP
-# define INVITE_HPP
+#ifndef QUIT_HPP
+# define QUIT_HPP
 
 #include "ACommand.hpp"
 
-class Invite : public ACommand
+class Quit : public ACommand
 {
 public:
-    Invite(std::map<std::string, Channel *> &channels, std::vector<Client> &cli, std::string &serverPassword): ACommand(channels, cli, serverPassword) {};
+    Quit(std::map<std::string, Channel *> &channels, std::vector<Client> &cli, std::string &serverPassword): ACommand(channels, cli, serverPassword) {};
 
     static ACommand *create(std::map<std::string, Channel *> &channels, std::vector<Client> &cli, std::string &serverPassword)
     {
-        return new Invite(channels, cli, serverPassword);
+        return new Quit(channels, cli, serverPassword);
     }
 
     virtual void execute(Client &client, std::string &input);

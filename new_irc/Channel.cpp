@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 19:13:22 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/12 20:53:08 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,16 @@ int Channel::getLimitNbr()
 void Channel::addClient(Client &client,  bool op)
 {
 	bool isOp = op;
-		
+	
 	std::pair<Client &, bool> next_pair(client, isOp);
 	std::pair<std::string, std::pair<Client &, bool> > p(client.getUsername(), next_pair);
-
+	
 	_clients.insert(p);
+}
+
+void Channel::removeClient(std::string nickname)
+{
+	_clients.erase(nickname);
 }
 
 void Channel::setLimit(int limit)
@@ -107,14 +112,20 @@ void Channel::changeInvitStatus(bool status)
 	_invitStatus = status;
 }
 
+void Channel::changeTopicStatus(bool status)
+{
+	_topicStatus = status;
+}
+
 void Channel::sendMsgChannelMember(std::string msg)
 {
 	std::map<std::string, std::pair<Client &, bool> >::iterator it = _clients.begin();
 	while (it != _clients.end())
 	{
-		send(it->second.first.getFd(),  msg.c_str(), msg.size(), 0);
+		it->second.first.addToOutput(msg);
 	}
 }
+
 
 // faire un sendMsgChannel() qui enverra à tous ses membres le meme msg
 // si le dernier client quitte le channel, le channel se ferme

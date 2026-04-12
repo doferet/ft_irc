@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ACommand.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:37:14 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 18:39:02 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/12 19:46:12 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <vector>
 # include <string>
 # include <cctype>
+# include <stdlib.h>
+# include <sstream>
 
 class ACommand{
     protected:

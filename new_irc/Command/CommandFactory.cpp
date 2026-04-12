@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:05:12 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 19:10:48 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/12 21:54:39 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ CommandFactory::CommandFactory(std::map<std::string, Channel*> &cha, std::vector
     creators["USER"] = &User::create;
     creators["PRIVMSG"] = &Privmsg::create;
     creators["PING"] = &Ping::create;
-    //creators["MODE"] = &Mode::create;
+    creators["MODE"] = &Mode::create;
+    creators["PART"] = &Part::create;
+    creators["QUIT"] = &Quit::create;
 }
 
 ACommand* CommandFactory::create(const std::string &name)

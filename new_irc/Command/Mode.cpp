@@ -6,58 +6,95 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 19:25:47 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 19:02:51 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/12 21:23:54 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Mode.hpp"
 
-void option_l(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel)
+int checkLimit(std::string param)
+{
+    char *ptr;
+    long res = strtol(param.c_str(), &ptr, 10);
+    
+    if (*ptr != 0 || ptr - param.c_str() > 8)
+        return -1;
+    return res;
+}
+
+void option_l(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
 {
     if (isPlus == false)
     {
-        channel->removeLimit();
+        channel->second->removeLimit();
+        channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -l " + "\r\n");
         return ;
     }
-    int limit;
-    ss >> limit;
-    if (ss.fail() || limit <= 0)
+    std::string param;
+    ss >> param;
+    int limit = checkLimit(param);
+    if (param.empty())
     {
-        //ERR_INVALIDMODEPARAM :server 696 nick #channel l -5 :Invalid mode parameter
+        client.addToOutput(":ircserv 461 " + client.getNickname() + " MODE :Not enough parameters\r\n");
+        return;
+    }
+    if (limit <= 0)
+    {
+        client.addToOutput(":ircserv 696 " + client.getNickname() + " " + channel->first + " l " + param + " :Invalid mode parameter\r\n");
         return ;
     }
-    channel->setLimit(limit);
+    channel->second->setLimit(limit);
+    channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +l " + param + "\r\n");
 }
 
-void option_o(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel)
+void option_o(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
 {
     std::string param;
     ss >> param;
-    if (channel->isUserInChannel(param) == false)
+    if (param.empty())
     {
-        //442     ERR_NOTONCHANNEL "<channel> :param not on that channel"
+        client.addToOutput(":ircserv 461 " + client.getNickname() + " MODE :Not enough parameters\r\n");
+        return;
+    }
+    if (channel->second->isUserInChannel(param) == false)
+    {
+        client.addToOutput(":ircserv 442 " + client.getNickname() + " " + channel->first + " :They aren't on that channel\r\n");
         return;
     }
     if (isPlus == false)
     {
-        channel->removeOperator(param);
+        channel->second->removeOperator(param);
+        channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -o " + param + "\r\n");
         return;
     }
-    channel->setOperator(param);
+    channel->second->setOperator(param);
+    channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +o " + param + "\r\n");
 }
     
-void option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel)
+void option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
 {
     std::string param;
-    std::string passwordChannel = channel.getPwd();
+    std::string passwordChannel = channel->second->getPwd();
     ss >> param;
     if (isPlus == false)
     {
         if (passwordChannel.empty() || passwordChannel == param)
-            channel->setPassword("");
+            channel->second->setPassword("");
+        channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -k " + param + "\r\n");
         return;
     }
-    channel->setPassword(param);
+    if (param.empty())
+    {
+        client.addToOutput(":ircserv 461 " + client.getNickname() + " MODE :Not enough parameters\r\n");
+        return;
+    }
+    if (!passwordChannel.empty())
+    {
+        client.addToOutput(":ircserv 467 " + client.getNickname() + " " + channel->first + " :Channel key already set\r\n");
+        return;
+    }
+    channel->second->setPassword(param);
+    channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +k " + param + "\r\n");
 }
 
 void Mode::execute(Client &client, std::string &input)
@@ -65,72 +102,58 @@ void Mode::execute(Client &client, std::string &input)
     std::stringstream ss(input);
     std::string chanName;
     std::string option;
-    std:string param;
+    std::string param;
     bool isPlus = false;
     ss >> chanName >> option;
     
+    if (chanName[0] == '#' || chanName[0] == '&')
+    {
+        chanName.erase(0, 1);
+    }
     std::map<std::string, Channel*>::iterator channel = _channels.find(chanName);
-    if (channel == _channels.end()){return;}
-        // 403     ERR_NOSUCHCHANNEL "<channel name> :No such channel"
-    if (channel->isUserInChannel(client.getName()) == false){return;}
-        // 442     ERR_NOTONCHANNEL "<channel> :You're not on that channel"
-    if (channel->isUserOperator(client.getName()) == false){return;}
-        //502     ERR_USERSDONTMATCH ":Cant change mode for other users"
-    if (option.size() != 2 || (option[0] != '+' && option[0] != '-')){return;}
-        // 472     ERR_UNKNOWNMODE  "<char> :is unknown mode char to me"
+    if (channel == _channels.end())
+    {
+        client.addToOutput(":ircserv 403 " + client.getNickname() + " " + chanName + " :No such channel\r\n");
+        return;
+    }
+    if (channel->second->isUserInChannel(client.getNickname()) == false)
+    {
+        client.addToOutput(":ircserv 442 " + client.getNickname() + " " + chanName + " :You're not on that channel\r\n");
+        return;
+    }
+    if (channel->second->isUserOperator(client.getNickname()) == false)
+    {
+        client.addToOutput(":ircserv 482 " + client.getNickname() + " " + chanName + " :You're not channel operator\r\n");
+        return;
+    }
+    if (option.size() != 2 || (option[0] != '+' && option[0] != '-'))
+    { 
+        client.addToOutput(":ircserv 472 " + client.getNickname() + " " + option + " :is unknown mode char to me\r\n");
+        return;
+    }
     if (option[0] == '+')
         isPlus = true;
     switch(option[1])
     {
         case 'i':
-            channel->changeInvitStatus(isPlus);
+            channel->second->changeInvitStatus(isPlus);
+            channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n");
             break;
         case 't':
-            channel->changeTopicStatus(isPlus);
+            channel->second->changeTopicStatus(isPlus);
+            channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n");
             break;
         case 'o':
-            option_o(ss, isPlus, channel);
+            option_o(ss, isPlus, channel, client);
             break;
         case 'l':
-            option_l(ss, isPlus, channel);
+            option_l(ss, isPlus, channel, client);
             break;
         case 'k':
-            option_k(ss, isPlus, channel);
+            option_k(ss, isPlus, channel, client);
             break;
         default:
-        //472     ERR_UNKNOWNMODE  "<char> :is unknown mode char to me"
+            client.addToOutput(":ircserv 472 " + client.getNickname() + " " + std::string(1, option[1]) + " :is unknown mode char to me\r\n");
+            return;
     }
-    //MODE channel option parametres
-    
-    //-i Set/remove Invite-only channel
-    //=>verifier si + ou -
-    //=>verifier que le user est dans le channel
-    //=>verifier que le user est op
-    //pas de param
-    
-    //-t Set/remove the restrictions of the TOPIC command to channel operators
-    //=>verifier si + ou -
-    //=>verifier que le user est dans le channel 
-    //=>si +t, seul les op peuvent changer le topic si -t tout le monde peut
-    //pas de param
-    
-    //-o Give/take channel operator privilege
-    //=> on doit deja etre op
-    //=>verifier si + ou -
-    //=>verifier que le user est dans le channel 
-    //=>parametre = nom
-    
-    //-l Set/remove the user limit to channel
-    //=>verifier qu'on est op
-    //=>verifier si + ou -
-    //=>verifier que le user est dans le channel 
-    //=>limite valide que des chiffres
-    //=>parametre = limite
-
-    
-    //-k Set/remove the channel key (password)
-    //=>verifier si + ou -
-    //=>verifier que le user est dans le channel
-    //=>split les espaces, pas de caracteres speciaux
-    //param = password
 }
