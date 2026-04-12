@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 19:24:41 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 14:32:47 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/12 15:11:05 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ public:
 
     static ACommand *create(std::map<std::string, Channel *> &channels, std::vector<Client> &cli, std::string &serverPassword)
     {
-        return new 
-    Mode(channels, cli, serverPassword);
+        return new Mode(channels, cli, serverPassword);
     }
 
     virtual void execute(Client &client, std::string &input);

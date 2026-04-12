@@ -31,7 +31,7 @@ In short, an IRC server is a real-time communication system that connects users,
     - USER your_username
     - JOIN #channel_name
     - PRIVMSG #chat :Hello/ PRIVMSG nickname :Hello
-    - 
+    - MODE with options -/+ o, l, k, t, i
 
 ## Resources
 

@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 14:34:50 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/12 16:20:14 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,14 @@ void Channel::setOperator(std::string nickname)
 bool Channel::isUserInChannel(std::string nickname)
 {
 	if (_clients.find(nickname) == _clients.end())
+		return false;
+	return true;
+}
+
+bool Channel::isUserOperator(std::string nickname)
+{
+	std::map<std::string, std::pair<Client& , bool> >::iterator it = _clients.find(nickname);
+	if (it != _clients.end() && it->second.second == true)
 		return true;
 	return false;
 }
@@ -90,7 +98,8 @@ void Channel::removeLimit()
 void Channel::removeOperator(std::string nickname)
 {
 	std::map<std::string, std::pair<Client& , bool> >::iterator it = _clients.find(nickname);
-	it->second.second = false;
+	if (it != _clients.end())
+		it->second.second = false;
 }
 
 void Channel::changeInvitStatus(bool status)
