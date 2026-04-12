@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:22:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 19:13:26 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/12 14:35:16 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 class Channel{
     public:
-        Channel() {};
+        Channel();
         Channel(const std::string &name) : _name(name) {};
         ~Channel() {};
 
@@ -29,7 +29,17 @@ class Channel{
         bool isLimited();
         int getLimitNbr();
 
-        void addClient(Client &client);
+        void addClient(Client &client, bool isOp);
+        
+        void setLimit(int limit);
+        void setTopic(std::string topic);
+        void setPassword(std::string password);
+        void setOperator(std::string nickname);
+        bool isUserInChannel(std::string nickname);
+        
+        void removeLimit();
+        void removeOperator(std::string nickname);
+        void changeInvitStatus(bool status);
         
 
     private:
@@ -38,6 +48,7 @@ class Channel{
         std::string _pwdChannel; // -k
         bool _isLimited; // -l
         int _limitNbr; // pour -l
+        bool _invitStatus; //pour -i
         
         std::map<std::string, std::pair<Client& , bool> > _clients; //client username en cle , une ref vers le client et le role de ce client dnas la pair
         std::vector<std::string> invited; //ref vers le nickname des client invites pour conserve la bonne invit en cas de changeent de nickname

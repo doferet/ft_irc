@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CommandFactory.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:47:47 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 21:09:33 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/11 17:27:50 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "Join.hpp"
 #include "Nick.hpp"
 #include "User.hpp"
+#include "Ping.hpp"
 
 class Channel;
 class Client;

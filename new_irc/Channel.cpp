@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 19:26:06 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/12 14:34:50 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Channel.hpp"
+
+Channel::Channel()
+{
+	_isLimited = false;
+	_limitNbr = 0;
+	_invitStatus = false;
+}
 
 std::string Channel::getName()
 {
@@ -36,15 +43,57 @@ int Channel::getLimitNbr()
 	return (_limitNbr);
 }
 
-void Channel::addClient(Client &client)
+void Channel::addClient(Client &client,  bool op)
 {
-	bool isOp = false;
-	
-	if (_clients.empty())
-		isOp = true;
+	bool isOp = op;
 		
 	std::pair<Client &, bool> next_pair(client, isOp);
 	std::pair<std::string, std::pair<Client &, bool> > p(client.getUsername(), next_pair);
 	
 	_clients.insert(p);
+}
+
+void Channel::setLimit(int limit)
+{
+	_isLimited = true;
+	_limitNbr = limit;
+}
+
+void Channel::setTopic(std::string topic)
+{
+	_topic = topic;
+}
+
+void Channel::setPassword(std::string password)
+{
+	_pwdChannel = password;
+}
+
+void Channel::setOperator(std::string nickname)
+{
+	std::map<std::string, std::pair<Client& , bool> >::iterator it = _clients.find(nickname);
+	it->second.second = true;
+}
+
+bool Channel::isUserInChannel(std::string nickname)
+{
+	if (_clients.find(nickname) == _clients.end())
+		return true;
+	return false;
+}
+        
+void Channel::removeLimit()
+{
+	_isLimited = false;
+}
+
+void Channel::removeOperator(std::string nickname)
+{
+	std::map<std::string, std::pair<Client& , bool> >::iterator it = _clients.find(nickname);
+	it->second.second = false;
+}
+
+void Channel::changeInvitStatus(bool status)
+{
+	_invitStatus = status;
 }

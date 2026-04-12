@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Nick.hpp                                           :+:      :+:    :+:   */
+/*   Ping.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 17:29:27 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/11 18:29:14 by doferet          ###   ########.fr       */
+/*   Created: 2026/04/11 17:27:57 by doferet           #+#    #+#             */
+/*   Updated: 2026/04/11 18:30:11 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NICK_HPP
-#define NICK_HPP
+#ifndef PING_HPP
+# define PING_HPP
 
-#include "ACommand.hpp"
+# include "ACommand.hpp"
 
-class Nick : public ACommand
+class Ping : public ACommand
 {
 public:
-    Nick(std::map<std::string, Channel *> &channels, std::vector<Client> &cli, std::string &serverPassword): ACommand(channels, cli, serverPassword) {};
+    Ping(std::map<std::string, Channel *> &channels, std::vector<Client> &cli, std::string &serverPassword): ACommand(channels, cli, serverPassword) {};
 
     static ACommand *create(std::map<std::string, Channel *> &channels, std::vector<Client> &cli, std::string &serverPassword)
     {
-        return new Nick(channels, cli, serverPassword);
+        return new Ping(channels, cli, serverPassword);
     }
 
     virtual void execute(Client &client, std::string &input);
