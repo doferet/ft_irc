@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 18:04:12 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/12 15:02:04 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/12 16:22:19 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void Privmsg::execute(Client &client, std::string &input)
 			if (it->first == dest.substr(1, (dest.size() - 1)))
 			{
 				found_channel = true;
-				// A décommenter lorsque la fonction Channel.isUserInChannel() sera faite
-				// if (it->second.isUserInChannel())
-				// {
-				// 	it->second->sendMsgChannelMember(msg);
-				// }
-				// else
-				// 	client.addToOutput("442 " + client.getNickname() + " " + dest.substr(1, (dest.size() - 1)) + " :You're not on that channel\r\n");
+				//A décommenter lorsque la fonction Channel.isUserInChannel() sera faite
+				if (it->second->isUserInChannel(client.getNickname()))
+				{
+					it->second->sendMsgChannelMember(msg);
+				}
+				else
+					client.addToOutput("442 " + client.getNickname() + " " + dest.substr(1, (dest.size() - 1)) + " :You're not on that channel\r\n");
 			}
 		}
 		if (!found_channel)
