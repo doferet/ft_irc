@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by doferet*
+*This project has been created as part of the 42 curriculum by doferet, asritz, tronguye*
 
 # Ft_IRC, Internet Relay Chat
 
