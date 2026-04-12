@@ -1,0 +1,14 @@
+# dossier objets
+new_irc/obj/
+
+# fichiers objets .o
+new_irc/*.o
+new_irc/Command/*.o
+
+# executable
+new_irc/ircserv
+
+# fichiers temporaires
+new_irc/*.swp
+new_irc/*.tmp
+new_irc/*.out
