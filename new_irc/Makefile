@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tronguye <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: asritz <asritz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 13:45:32 by tronguye          #+#    #+#              #
-#    Updated: 2026/04/12 13:45:39 by tronguye         ###   ########.fr        #
+#    Updated: 2026/04/12 15:12:23 by asritz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,10 @@ SRC = main.cpp \
 	Command/User.cpp \
 	Command/Ping.cpp \
 	Command/Mode.cpp \
+	Command/Privmsg.cpp
 
-BOT_SRC = Bot.cpp
+BOT_SRC = Bot.cpp \
+	Command/Privmsg.cpp
 
 OBJ_DIR = obj
 

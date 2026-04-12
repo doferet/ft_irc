@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CommandFactory.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:05:12 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 14:32:27 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/12 15:20:33 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ CommandFactory::CommandFactory(std::map<std::string, Channel*> &cha, std::vector
     creators["JOIN"] = &Join::create;
     creators["NICK"] = &Nick::create;
     creators["USER"] = &User::create;
+    creators["PRIVMSG"] = &Privmsg::create;
     creators["PING"] = &Ping::create;
     //creators["MODE"] = &Mode::create;
 }
