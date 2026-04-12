@@ -6,7 +6,7 @@
 #    By: asritz <asritz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 13:45:32 by tronguye          #+#    #+#              #
-#    Updated: 2026/04/12 16:13:34 by asritz           ###   ########.fr        #
+#    Updated: 2026/04/12 21:46:27 by asritz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ BOT_NAME = ircbot
 
 CC = clang++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 SRC = main.cpp \
 	Server.cpp \
@@ -51,7 +51,7 @@ $(BOT_NAME) : $(BOT_OBJ)
 
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -g -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)

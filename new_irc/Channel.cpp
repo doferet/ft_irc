@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 15:16:57 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/12 21:15:38 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,48 @@ int Channel::getLimitNbr()
 	return (_limitNbr);
 }
 
-void Channel::addClient(Client &client,  bool op)
+bool Channel::getInvitStatus()
+{
+	return (_invitStatus);
+}
+
+std::vector<std::string> Channel::getInvited()
+{
+	return (invited);
+}
+
+size_t Channel::getSizeClients()
+{
+	return (_clients.size());
+}
+
+std::map<std::string, std::pair<Client &, bool> > Channel::getClients()
+{
+	return (_clients);
+}
+
+std::vector<std::string> Channel::getNickClients()
+{
+	std::vector<std::string> nickList;
+	std::map<std::string, std::pair<Client &, bool> >::iterator it = _clients.begin();
+	while (it != _clients.end())
+	{
+		std::pair<Client &, bool> p = it->second;
+		Client & cli = p.first;
+		std::string op;
+		if (p.second == true)
+			op = "@";
+		else
+			op = "";
+		nickList.push_back(op + cli.getNickname());
+	}
+	return (nickList);
+}
+
+void Channel::addClient(Client &client, bool op)
 {
 	bool isOp = op;
-		
+
 	std::pair<Client &, bool> next_pair(client, isOp);
 	std::pair<std::string, std::pair<Client &, bool> > p(client.getUsername(), next_pair);
 
@@ -71,7 +109,7 @@ void Channel::setPassword(std::string password)
 
 void Channel::setOperator(std::string nickname)
 {
-	std::map<std::string, std::pair<Client& , bool> >::iterator it = _clients.find(nickname);
+	std::map<std::string, std::pair<Client &, bool> >::iterator it = _clients.find(nickname);
 	it->second.second = true;
 }
 
@@ -81,7 +119,7 @@ bool Channel::isUserInChannel(std::string nickname)
 		return true;
 	return false;
 }
-        
+
 void Channel::removeLimit()
 {
 	_isLimited = false;
@@ -89,7 +127,7 @@ void Channel::removeLimit()
 
 void Channel::removeOperator(std::string nickname)
 {
-	std::map<std::string, std::pair<Client& , bool> >::iterator it = _clients.find(nickname);
+	std::map<std::string, std::pair<Client &, bool> >::iterator it = _clients.find(nickname);
 	it->second.second = false;
 }
 
@@ -103,7 +141,7 @@ void Channel::sendMsgChannelMember(std::string msg)
 	std::map<std::string, std::pair<Client &, bool> >::iterator it = _clients.begin();
 	while (it != _clients.end())
 	{
-		send(it->second.first.getFd(),  msg.c_str(), msg.size(), 0);
+		send(it->second.first.getFd(), msg.c_str(), msg.size(), 0);
 	}
 }
 
