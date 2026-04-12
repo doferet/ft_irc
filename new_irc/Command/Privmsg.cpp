@@ -6,13 +6,23 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 18:04:12 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/11 21:22:42 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/12 15:02:04 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Privmsg.hpp"
+/*
+	Commandes à rentrer dans Irssi
 
-// /msg <dest_nick> <message>
+	Pour envoyer un msg privé a qqn:
+	/msg <dest_nick> <message>
+
+	Pour vérifier les fenêtres d'ouvertes (et voir si on a reçu un msg)
+	/windows list
+	/window X (X = le numéro de la window)
+
+*/
+
+#include "Privmsg.hpp"
 
 std::string get_dest(std::string input)
 {
@@ -52,8 +62,14 @@ void Privmsg::execute(Client &client, std::string &input)
 		{
 			if (it->first == dest.substr(1, (dest.size() - 1)))
 			{
-				it->second->sendMsgChannelMember(msg);
 				found_channel = true;
+				// A décommenter lorsque la fonction Channel.isUserInChannel() sera faite
+				// if (it->second.isUserInChannel())
+				// {
+				// 	it->second->sendMsgChannelMember(msg);
+				// }
+				// else
+				// 	client.addToOutput("442 " + client.getNickname() + " " + dest.substr(1, (dest.size() - 1)) + " :You're not on that channel\r\n");
 			}
 		}
 		if (!found_channel)
@@ -74,9 +90,8 @@ void Privmsg::execute(Client &client, std::string &input)
 		{
 			if (_cli[i].getNickname() == dest)
 			{
-				// send(_cli[i].getFd(), msg.c_str(), msg.size(), 0);
 				//_cli[i].addToOutput(":" + client.getNickname() + " PRIVMSG " + _cli[i].getNickname() + " :" + msg + "\r\n");
-				_cli[i].addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@127.0.0.1 PRIVMSG " + _cli[i].getNickname() + " :" + msg + "\r\n");
+				_cli[i].addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost PRIVMSG " + _cli[i].getNickname() + " :" + msg + "\r\n");
 				found_dest = true;
 			}
 		}
