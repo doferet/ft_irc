@@ -6,7 +6,7 @@
 #    By: doferet <doferet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 13:45:32 by tronguye          #+#    #+#              #
-#    Updated: 2026/04/12 19:06:03 by doferet          ###   ########.fr        #
+#    Updated: 2026/04/12 19:13:43 by doferet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,9 @@ SRC = main.cpp \
 	Command/User.cpp \
 	Command/Ping.cpp \
 	Command/Mode.cpp \
+	Command/Privmsg.cpp
 
-BOT_SRC = Bot.cpp
+BOT_SRC = Bot.cpp \
 
 OBJ_DIR = obj
 
