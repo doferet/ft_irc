@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:22:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 21:15:05 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 15:34:07 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Channel
 {
 public:
     Channel();
-    Channel(const std::string &name) : _name(name) {};
+    Channel(const std::string &name);
     ~Channel() {};
 
     std::string getName();

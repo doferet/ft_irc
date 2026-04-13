@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 21:15:38 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 16:42:45 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 Channel::Channel()
 {
+	_isLimited = false;
+	_limitNbr = 0;
+	_invitStatus = false;
+}
+
+Channel::Channel(const std::string &name)
+{
+	_name = name;
 	_isLimited = false;
 	_limitNbr = 0;
 	_invitStatus = false;
@@ -70,13 +78,14 @@ std::vector<std::string> Channel::getNickClients()
 	while (it != _clients.end())
 	{
 		std::pair<Client &, bool> p = it->second;
-		Client & cli = p.first;
+		Client &cli = p.first;
 		std::string op;
 		if (p.second == true)
 			op = "@";
 		else
 			op = "";
 		nickList.push_back(op + cli.getNickname());
+		it++;
 	}
 	return (nickList);
 }
