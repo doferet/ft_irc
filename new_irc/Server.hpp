@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:11 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/09 19:04:21 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 12:45:26 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include "Command/ACommand.hpp"
 # include "Command/CommandFactory.hpp"
 # include "Channel.hpp"
+#include <csignal>
+
 
 
 class Server{

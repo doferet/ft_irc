@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/11 20:56:23 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 12:50:32 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,19 @@ int Server::clientSocketOperation(int index)
     return index;
 }
 
+extern bool g_stop;
+bool g_stop = false;
+void handleSignal(int)
+{
+    g_stop = true;
+}
 void Server::run()
 {
     unsigned int len = sizeof(cli);
-    while (1)
+    while (!g_stop)
     {
+        signal(SIGINT, handleSignal);
+        signal(SIGTERM, handleSignal);
         initSets();
         int nfds = getnfds();
         _timeout.tv_sec = 0;
