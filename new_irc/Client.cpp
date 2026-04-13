@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:58 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 21:40:42 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 23:02:09 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,20 @@ Client::Client()
 {
     _fd = -1;
     _disconnected = false;
-    _hasValidNickname = false;
+    _id = -1;
     _hasValidPassword = false;
+    _hasValidNickname = false;
     _hasValidUsername = false;
+}
+
+Client::Client(int id)
+{
+    _fd = -1;
+    _disconnected = false;
+    _id = id;
+    _hasValidPassword = false;
+	_hasValidNickname = false;
+	_hasValidUsername = false;
 }
 Client::~Client()
 {
@@ -109,12 +120,17 @@ bool Client::getHasValidUsername()
     return _hasValidUsername;
 }
 
+int Client::getId()
+{
+	return (_id);
+}
+
 void Client::setNickname(std::string name)
 {
     _nickname = name;
 }
 
-std::string Client::getNickname() const { return _nickname; }
+const std::string &Client::getNickname() const { return _nickname; }
 
 std::string Client::getUsername() const { return _username; }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Kick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tronguye <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:10:24 by tronguye          #+#    #+#             */
-/*   Updated: 2026/04/13 13:10:26 by tronguye         ###   ########.fr       */
+/*   Updated: 2026/04/13 22:15:04 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void Kick::execute(Client &client, std::string &input)
     Channel *chan = chanIt->second;
 
     // 2. Check if the sender is an operator
-    if (!chan->isUserOperator(client.getNickname())) {
+    if (!chan->isUserOperator(client.getId())) {
         client.addToOutput(":ircserv 482 " + client.getNickname() + " " + channelName + " :You're not channel operator\r\n");
         return;
     }
 
     // 3. Check if the target is in the channel
-    if (!chan->isUserInChannel(targetNick)) {
+    if (!chan->isUserInChannel(getIdByNick((targetNick)))) {
         client.addToOutput(":ircserv 441 " + client.getNickname() + " " + targetNick + " " + channelName + " :They aren't on that channel\r\n");
         return;
     }
@@ -51,7 +51,7 @@ void Kick::execute(Client &client, std::string &input)
     // Format: :Sender!User@Host KICK #channel Target :Reason
     std::string kickNotice = ":" + client.getNickname() + "!" + client.getUsername() + "@localhost KICK " 
                             + channelName + " " + targetNick + " :" + reason + "\r\n";
-    chan->sendMsgChannelMember(kickNotice);
+    chan->sendMsgChannelMember(client, kickNotice);
 
-    chan->removeClient(targetNick);
+    chan->removeClient(getIdByNick(targetNick));
 }

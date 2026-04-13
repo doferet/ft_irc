@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:35 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/13 17:59:02 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 23:19:32 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ std::string getChannelName(std::string input)
 std::string getChannelMember(Channel *channel)
 {
 	std::string nickList;
-	for (size_t i = 0; i < channel->getNickClients().size(); i++)
-		nickList += channel->getNickClients()[i] + " ";
+	std::vector<std::string> cli = channel->getNickClients();
+	for (size_t i = 0; i < cli.size(); i++)
+		nickList += cli[i] + " ";
 	return (nickList);
 }
 
@@ -72,7 +73,7 @@ void Join::execute(Client &client, std::string &input)
 		newChannel->addClient(client, true);
 		std::pair<std::string, Channel *> p(channelName, newChannel);
 		_channels.insert(p);
-		client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN " + channelName + "\r\n" + ": 353 " + client.getNickname() + " = " + channelName + " :@" + client.getNickname() + "\r\n" + ": 366 " + client.getNickname() + " " + channelName + " :End of NAMES list\r\n");
+		client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + channelName + "\r\n" + ": 353 " + client.getNickname() + " = #" + channelName + " :@" + client.getNickname() + "\r\n" + ": 366 " + client.getNickname() + " #" + channelName + " :End of NAMES list\r\n");
 	}
 	else // si il existe
 	{
@@ -87,7 +88,7 @@ void Join::execute(Client &client, std::string &input)
 			else
 			{
 				// error channel plein
-				client.addToOutput(": 471 " + client.getNickname() + " " + found_channel->getName() + " :Cannot join channel (+l)\r\n");
+				client.addToOutput(": 471 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+l)\r\n");
 				return;
 			}
 		}
@@ -96,10 +97,10 @@ void Join::execute(Client &client, std::string &input)
 
 		if (found_channel->getInvitStatus()) // si le channel a configuré des invits (+i)
 		{
-			std::vector<std::string> invited_list = found_channel->getInvited();
+			std::vector<int> invited_list = found_channel->getInvited();
 			for (size_t i = 0; i < invited_list.size(); i++)
 			{
-				if (invited_list[i] == client.getNickname()) // si le client fait parti des invités
+				if (invited_list[i] == client.getId()) // si le client fait parti des invités
 				{
 					verif_invit = true;
 				}
@@ -107,7 +108,7 @@ void Join::execute(Client &client, std::string &input)
 			if (!verif_invit)
 			{
 				// error client non invité
-				client.addToOutput(": 473 " + client.getNickname() + " " + found_channel->getName() + " :Cannot join channel (+i)\r\n");
+				client.addToOutput(": 473 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+i)\r\n");
 				return;
 			}
 		}
@@ -125,17 +126,17 @@ void Join::execute(Client &client, std::string &input)
 			else
 			{
 				// error mdp mauvais
-				client.addToOutput(": 475 " + client.getNickname() + " " + found_channel->getName() + " :Cannot join channel (+k)\r\n");
+				client.addToOutput(": 475 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+k)\r\n");
 				return;
 			}
 		}
-
+//chzck si client esst dedqns qvqnt de lajouter
 		// check si toutes les verifs sont bonnes
 		if (verif_limit && verif_invit && verif_pwd)
 		{
 			found_channel->addClient(client, false);
 			// msg pour dire que le client a été add au channel (afficher nombre d'Op + list membre)
-			client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN " + found_channel->getName() + "\r\n" + ": 353 " + client.getNickname() + " = " + found_channel->getName() + " :" + getChannelMember(found_channel) + "\r\n" + ": 366 " + client.getNickname() + " " + found_channel->getName() + " :End of NAMES list\r\n");
+			client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + found_channel->getName() + "\r\n" + ": 353 " + client.getNickname() + " = #" + found_channel->getName() + " :" + getChannelMember(found_channel) + "\r\n" + ": 366 " + client.getNickname() + " #" + found_channel->getName() + " :End of NAMES list\r\n");
 		}
 		// else
 		// {

@@ -1,0 +1,614 @@
+successfully connected to port : 8081
+action sur read
+le fd du mouveau client est : 4
+liste des fds clients
+fd[0]=4
+recv size : 61
+Le client du fd : 4 a envoyé : PASS mdp
+NICK asritz
+USER asritz asritz localhost :Ashley
+ (taille : 61)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : mdp
+CommandName recu : PASS
+Avant Execution de la commande : PASS
+dans pass ligne a traiter : |mdp|
+dans pass le password attendu est : |mdp|
+super dans pass le mdp est correct
+Apres Execution de la commande : PASS
+on avait un  dans l'entree
+ligne a traiter pour client 4 : asritz
+CommandName recu : NICK
+Avant Execution de la commande : NICK
+Nickname set to: asritz
+Apres Execution de la commande : NICK
+send fd :4
+send return : 27
+buf du send : :!@localhost NICK :asritz
+
+on avait un  dans l'entree
+ligne a traiter pour client 4 : asritz asritz localhost :Ashley
+CommandName recu : USER
+Avant Execution de la commande : USER
+Registration complete!
+Apres Execution de la commande : USER
+send fd :4
+send return : 86
+buf du send : :localhost 001 asritz :Welcome to the Internet Relay Network asritz!asritz@localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : MODE asritz +i
+ (taille : 16)
+send fd :4
+send return : 68
+buf du send : :localhost 002 asritz :Your host is localhost, running version 1.0
+
+on avait un  dans l'entree
+ligne a traiter pour client 4 : asritz +i
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+Apres Execution de la commande : MODE
+send fd :4
+send return : 54
+buf du send : :localhost 003 asritz :This server was created today
+
+send fd :4
+send return : 45
+buf du send : :localhost 004 asritz localhost 1.0 o itkol
+
+send fd :4
+send return : 45
+buf du send : :localhost 422 asritz :MOTD File is missing
+
+send fd :4
+send return : 45
+buf du send : :ircserv 403 asritz asritz :No such channel
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : JOIN #Channel1
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1
+CommandName recu : JOIN
+Avant Execution de la commande : JOIN
+JOIN ligne a traiter : |#Channel1|
+JOIN Nom du Channel : |Channel1|
+JOIN pwd : ||
+adresse du client dans addClient():0x4e2d5d0
+adresse du next_pair dans addClient():0x4e2d5d0
+addClient key = |asritz|
+nickname = |asritz|
+Apres Execution de la commande : JOIN
+send fd :4
+send return : 41
+buf du send : :asritz!asritz@localhost JOIN #Channel1
+
+send fd :4
+send return : 35
+buf du send : : 353 asritz = #Channel1 :@asritz
+
+send fd :4
+send return : 43
+buf du send : : 366 asritz #Channel1 :End of NAMES list
+
+recv size : 23
+Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :dd
+ (taille : 23)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1 :dd
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel1 :dd|
+dans PRIVMSG, destinataire: |#Channel1|
+dans PRIVMSG, message à envoyer: |dd|
+IsUserInChannel() id: 0
+IsUserInChannel() nick de _clients: asritz
+Apres Execution de la commande : PRIVMSG
+send fd :4
+send return : 45
+buf du send : :asritz!asritz@localhost PRIVMSG asritz :dd
+
+recv size : 16
+Le client du fd : 4 a envoyé : MODE #Channel1
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 0
+IsUserInChannel() nick de _clients: asritz
+Apres Execution de la commande : MODE
+send fd :4
+send return : 50
+buf du send : :ircserv 472 asritz  :is unknown mode char to me
+
+action sur read
+le fd du mouveau client est : 5
+liste des fds clients
+fd[0]=4
+fd[1]=5
+recv size : 61
+Le client du fd : 5 a envoyé : PASS mdp
+NICK asritz
+USER asritz asritz localhost :Ashley
+ (taille : 61)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : mdp
+CommandName recu : PASS
+Avant Execution de la commande : PASS
+dans pass ligne a traiter : |mdp|
+dans pass le password attendu est : |mdp|
+super dans pass le mdp est correct
+Apres Execution de la commande : PASS
+on avait un  dans l'entree
+ligne a traiter pour client 5 : asritz
+CommandName recu : NICK
+Avant Execution de la commande : NICK
+Apres Execution de la commande : NICK
+on avait un  dans l'entree
+ligne a traiter pour client 5 : asritz asritz localhost :Ashley
+CommandName recu : USER
+Avant Execution de la commande : USER
+Apres Execution de la commande : USER
+recv size : 10
+Le client du fd : 4 a envoyé : NICK Ash
+ (taille : 10)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : Ash
+CommandName recu : NICK
+Avant Execution de la commande : NICK
+Nickname set to: Ash
+Apres Execution de la commande : NICK
+send fd :4
+send return : 36
+buf du send : :asritz!asritz@localhost NICK :Ash
+
+recv size : 0
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+action sur read
+le fd du mouveau client est : 5
+liste des fds clients
+fd[0]=4
+fd[1]=5
+recv size : 61
+Le client du fd : 5 a envoyé : PASS mdp
+NICK asritz
+USER asritz asritz localhost :Ashley
+ (taille : 61)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : mdp
+CommandName recu : PASS
+Avant Execution de la commande : PASS
+dans pass ligne a traiter : |mdp|
+dans pass le password attendu est : |mdp|
+super dans pass le mdp est correct
+Apres Execution de la commande : PASS
+on avait un  dans l'entree
+ligne a traiter pour client 5 : asritz
+CommandName recu : NICK
+Avant Execution de la commande : NICK
+Nickname set to: asritz
+Apres Execution de la commande : NICK
+send fd :5
+send return : 27
+buf du send : :!@localhost NICK :asritz
+
+on avait un  dans l'entree
+ligne a traiter pour client 5 : asritz asritz localhost :Ashley
+CommandName recu : USER
+Avant Execution de la commande : USER
+Registration complete!
+Apres Execution de la commande : USER
+send fd :5
+send return : 86
+buf du send : :localhost 001 asritz :Welcome to the Internet Relay Network asritz!asritz@localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : MODE asritz +i
+ (taille : 16)
+send fd :5
+send return : 68
+buf du send : :localhost 002 asritz :Your host is localhost, running version 1.0
+
+on avait un  dans l'entree
+ligne a traiter pour client 5 : asritz +i
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+Apres Execution de la commande : MODE
+send fd :5
+send return : 54
+buf du send : :localhost 003 asritz :This server was created today
+
+send fd :5
+send return : 45
+buf du send : :localhost 004 asritz localhost 1.0 o itkol
+
+send fd :5
+send return : 45
+buf du send : :localhost 422 asritz :MOTD File is missing
+
+send fd :5
+send return : 45
+buf du send : :ircserv 403 asritz asritz :No such channel
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : JOIN #Channel1
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1
+CommandName recu : JOIN
+Avant Execution de la commande : JOIN
+JOIN ligne a traiter : |#Channel1|
+JOIN Nom du Channel : |Channel1|
+JOIN pwd : ||
+adresse du client dans addClient():0x4e30bb8
+adresse du next_pair dans addClient():0x4e30bb8
+addClient key = |asritz|
+nickname = |asritz|
+Apres Execution de la commande : JOIN
+send fd :5
+send return : 41
+buf du send : :asritz!asritz@localhost JOIN #Channel1
+
+send fd :5
+send return : 43
+buf du send : : 353 asritz = #Channel1 :@asritz asritz 
+
+send fd :5
+send return : 43
+buf du send : : 366 asritz #Channel1 :End of NAMES list
+
+recv size : 16
+Le client du fd : 5 a envoyé : MODE #Channel1
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 2
+IsUserInChannel() nick de _clients: asritz
+IsUserInChannel() nick de _clients: asritz
+Apres Execution de la commande : MODE
+send fd :5
+send return : 59
+buf du send : :ircserv 482 asritz Channel1 :You're not channel operator
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : MODE #Channel1
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 0
+IsUserInChannel() nick de _clients: asritz
+IsUserInChannel() nick de _clients: asritz
+Apres Execution de la commande : MODE
+send fd :4
+send return : 47
+buf du send : :ircserv 472 Ash  :is unknown mode char to me
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : MODE #Channel1
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 2
+IsUserInChannel() nick de _clients: asritz
+IsUserInChannel() nick de _clients: asritz
+Apres Execution de la commande : MODE
+send fd :5
+send return : 59
+buf du send : :ircserv 482 asritz Channel1 :You're not channel operator
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 15
+Le client du fd : 4 a envoyé : WHO #Channel1
+ (taille : 15)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1
+CommandName recu : WHO
+unknow command : WHO
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 15
+Le client du fd : 5 a envoyé : WHO #Channel1
+ (taille : 15)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1
+CommandName recu : WHO
+unknow command : WHO
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 15
+Le client du fd : 4 a envoyé : WHO #Channel1
+ (taille : 15)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1
+CommandName recu : WHO
+unknow command : WHO
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 15
+Le client du fd : 5 a envoyé : WHO #Channel1
+ (taille : 15)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1
+CommandName recu : WHO
+unknow command : WHO
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 18
+Le client du fd : 4 a envoyé : MODE #Channel1 b
+ (taille : 18)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1 b
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 0
+IsUserInChannel() nick de _clients: asritz
+IsUserInChannel() nick de _clients: asritz
+Apres Execution de la commande : MODE
+send fd :4
+send return : 48
+buf du send : :ircserv 472 Ash b :is unknown mode char to me
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 18
+Le client du fd : 5 a envoyé : MODE #Channel1 b
+ (taille : 18)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1 b
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 2
+IsUserInChannel() nick de _clients: asritz
+IsUserInChannel() nick de _clients: asritz
+Apres Execution de la commande : MODE
+send fd :5
+send return : 59
+buf du send : :ircserv 482 asritz Channel1 :You're not channel operator
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+

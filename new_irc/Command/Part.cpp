@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Part.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 20:35:53 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 21:36:37 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/13 22:37:48 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ void Part::execute(Client &client, std::string &input)
         client.addToOutput(":ircserv 403 " + client.getNickname() + " " + input + " :No such channel\r\n");
         return;
     }
-    if (channel->second->isUserInChannel(client.getNickname()) == false)
+    if (channel->second->isUserInChannel(client.getId()) == false)
     {
         client.addToOutput(":ircserv 442 " + client.getNickname() + " " + input + " :You're not on that channel\r\n");
         return;
     }
-    channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost PART " + channel->second->getName() + "\r\n");
-    channel->second->removeClient(client.getNickname());
+    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost PART " + channel->second->getName() + "\r\n");
+    channel->second->removeClient(client.getId());
+    if (channel->second->isEmpty())
+        _channels.erase(channel);
 }

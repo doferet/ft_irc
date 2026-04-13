@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Mode.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 19:25:47 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 21:23:54 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/13 22:24:16 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int checkLimit(std::string param)
     return res;
 }
 
-void option_l(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
+void Mode::option_l(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
 {
     if (isPlus == false)
     {
         channel->second->removeLimit();
-        channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -l " + "\r\n");
+        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -l " + "\r\n");
         return ;
     }
     std::string param;
@@ -44,10 +44,10 @@ void option_l(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*
         return ;
     }
     channel->second->setLimit(limit);
-    channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +l " + param + "\r\n");
+    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +l " + param + "\r\n");
 }
 
-void option_o(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
+void Mode::option_o(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
 {
     std::string param;
     ss >> param;
@@ -56,22 +56,22 @@ void option_o(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*
         client.addToOutput(":ircserv 461 " + client.getNickname() + " MODE :Not enough parameters\r\n");
         return;
     }
-    if (channel->second->isUserInChannel(param) == false)
+    if (channel->second->isUserInChannel(getIdByNick(param)) == false)
     {
         client.addToOutput(":ircserv 442 " + client.getNickname() + " " + channel->first + " :They aren't on that channel\r\n");
         return;
     }
     if (isPlus == false)
     {
-        channel->second->removeOperator(param);
-        channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -o " + param + "\r\n");
+        channel->second->removeOperator(getIdByNick(param));
+        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -o " + param + "\r\n");
         return;
     }
-    channel->second->setOperator(param);
-    channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +o " + param + "\r\n");
+    channel->second->setOperator(getIdByNick(param));
+    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +o " + param + "\r\n");
 }
     
-void option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
+void Mode::option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
 {
     std::string param;
     std::string passwordChannel = channel->second->getPwd();
@@ -80,7 +80,7 @@ void option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*
     {
         if (passwordChannel.empty() || passwordChannel == param)
             channel->second->setPassword("");
-        channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -k " + param + "\r\n");
+        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -k " + param + "\r\n");
         return;
     }
     if (param.empty())
@@ -94,7 +94,7 @@ void option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*
         return;
     }
     channel->second->setPassword(param);
-    channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +k " + param + "\r\n");
+    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +k " + param + "\r\n");
 }
 
 void Mode::execute(Client &client, std::string &input)
@@ -116,12 +116,12 @@ void Mode::execute(Client &client, std::string &input)
         client.addToOutput(":ircserv 403 " + client.getNickname() + " " + chanName + " :No such channel\r\n");
         return;
     }
-    if (channel->second->isUserInChannel(client.getNickname()) == false)
+    if (channel->second->isUserInChannel(client.getId()) == false)
     {
         client.addToOutput(":ircserv 442 " + client.getNickname() + " " + chanName + " :You're not on that channel\r\n");
         return;
     }
-    if (channel->second->isUserOperator(client.getNickname()) == false)
+    if (channel->second->isUserOperator(client.getId()) == false)
     {
         client.addToOutput(":ircserv 482 " + client.getNickname() + " " + chanName + " :You're not channel operator\r\n");
         return;
@@ -137,11 +137,11 @@ void Mode::execute(Client &client, std::string &input)
     {
         case 'i':
             channel->second->changeInvitStatus(isPlus);
-            channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n");
+            channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n");
             break;
         case 't':
             channel->second->changeTopicStatus(isPlus);
-            channel->second->sendMsgChannelMember(":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n");
+            channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n");
             break;
         case 'o':
             option_o(ss, isPlus, channel, client);

@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:22:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/13 18:34:33 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 22:35:05 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,39 @@ public:
     Channel(const std::string &name);
     ~Channel() {};
 
-        std::string getName();
-        std::string getTopic();
-        std::string getPwd();
-        
-        bool isLimited();
-        bool getTopicStatus();
-        int getLimitNbr();
+    std::string getName();
+    std::string getTopic();
+    std::string getPwd();
+
+    bool isLimited();
+    bool getTopicStatus();
+    int getLimitNbr();
     bool getInvitStatus();
-    std::vector<std::string> getInvited();
+    std::vector<int> getInvited();
     size_t getSizeClients();
-    std::map<std::string, std::pair<Client &, bool> > getClients();
+    std::map<int, std::pair<Client &, bool> > getClients();
     std::vector<std::string> getNickClients();
 
     void addClient(Client &client, bool isOp);
-        void removeClient(std::string nickname);
+    void removeClient(int id);
 
     void setLimit(int limit);
     void setTopic(std::string topic);
     void setPassword(std::string password);
-    void setOperator(std::string nickname);
-        
-    bool isUserInChannel(std::string nickname);
-        bool isUserOperator(std::string nickname);
+    void setOperator(int id);
+    bool isEmpty();
+    bool isUserInChannel(int id);
+    //bool isUserInChannel(Client &client);
+
+        bool isUserOperator(int id);
 
     void removeLimit();
-    void removeOperator(std::string nickname);
-        
+    void removeOperator(int id);
+
     void changeInvitStatus(bool status);
-        void changeTopicStatus(bool status);
+    void changeTopicStatus(bool status);
 
-        void sendMsgChannelMember(std::string msg);
-
+    void sendMsgChannelMember(Client &client, std::string msg);
 
 private:
     std::string _name;
@@ -65,10 +66,10 @@ private:
     bool _isLimited;         // -l
     int _limitNbr;           // pour -l
     bool _invitStatus;       // pour -i
-        bool _topicStatus;
+    bool _topicStatus;
 
-    std::map<std::string, std::pair<Client &, bool> > _clients; // client username en cle , une ref vers le client et le role de ce client dnas la pair
-    std::vector<std::string> invited;                          // ref vers le nickname des client invites pour conserve la bonne invit en cas de changeent de nickname
+    std::map<int, std::pair<Client &, bool> > _clients; // id du client en cle , une ref vers le client et le role de ce client dnas la pair
+    std::vector<int> invited;                    // vers l'id des client invites pour conserve la bonne invit en cas de changeent de nickname
 
     // fct pour envoyer message a tout les clients sauf l'emetteur privmsg (client.addToOutput)
 };

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/13 12:50:32 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/13 23:27:51 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ Server::Server(int port, std::string &password) : _port(port), _password(passwor
     }
     std::cout << "successfully connected to port : " << _port << std::endl;
     signal(SIGPIPE, SIG_IGN);
+    _id = 0;
 }
 
 // Server::Server(const Server &copy)
@@ -121,6 +122,7 @@ int Server::clientSocketOperation(int index)
     }
     if (_clients[index].getDisconnected() == true)
     {
+        // verifier si le client est dans un channel avant de close le fd (en gros le QUIT)
         close(fd);
         _clients.erase(_clients.begin() + index);
         return index - 1;
@@ -151,7 +153,7 @@ void Server::run()
         }
         if (FD_ISSET(_socket, &_read))
         {
-            Client newClient;
+            Client newClient(_id++);
             std::cout << "action sur read" << std::endl;
             int clientFd = accept(_socket, &cli, &len);
             _clients.push_back(newClient);

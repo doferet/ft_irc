@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:54:08 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/10 16:28:08 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 22:49:44 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class Client{
 
 public:
 	Client();
+	Client(int id);
 	~Client();
 	void setFd(int fd);
 	int getFd() const;
@@ -39,13 +40,15 @@ public:
 	bool getHasValidNickname();
 	void setHasValidUsername(bool Username);
 	bool getHasValidUsername();
+    int getId();
 	void setNickname(std::string name);
-	std::string getNickname() const;
+	const std::string &getNickname() const;
 	std::string getUsername() const;
 	void setUsername(std::string name);
 	bool isAuthenticated();
 	
 private:
+	int _id;
 	std::string _username;
 	std::string _nickname;
 	int			_fd;

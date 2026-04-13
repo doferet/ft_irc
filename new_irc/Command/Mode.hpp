@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Mode.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 19:24:41 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 15:11:05 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/13 22:24:48 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ public:
         return new Mode(channels, cli, serverPassword);
     }
 
+    void option_o(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client);
+    void option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client);
+    void option_l(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client);
     virtual void execute(Client &client, std::string &input);
 };
 

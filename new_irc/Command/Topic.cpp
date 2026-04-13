@@ -18,7 +18,7 @@ void Topic::execute(Client &client, std::string &input) {
     Channel *chan = it->second;
 
     // 2. Check if the user is in the channel
-    if (!chan->isUserInChannel(client.getNickname()))
+    if (!chan->isUserInChannel(client.getId()))
     {
         client.addToOutput(":ircserv 442 " + client.getNickname() + " " + channelName + " :You're not on that channel\r\n");
         return;
@@ -39,7 +39,7 @@ void Topic::execute(Client &client, std::string &input) {
     if (!newTopic.empty() && newTopic[0] == ':') newTopic.erase(0, 1);
 
     // Check +t mode (Consistent with your Mode.cpp logic)
-    if (chan->getTopicStatus() == true && !chan->isUserOperator(client.getNickname())) {
+    if (chan->getTopicStatus() == true && !chan->isUserOperator(client.getId())) {
         client.addToOutput(":ircserv 482 " + client.getNickname() + " " + channelName + " :You're not channel operator\r\n");
         return;
     }
@@ -49,5 +49,5 @@ void Topic::execute(Client &client, std::string &input) {
     // 3. BROADCAST
     // Format: :Nick!User@localhost TOPIC #channel :topic
     std::string topicMsg = ":" + client.getNickname() + "!" + client.getUsername() + "@localhost TOPIC " + channelName + " :" + newTopic + "\r\n";
-    chan->sendMsgChannelMember(topicMsg);
+    chan->sendMsgChannelMember(client, topicMsg);
 }

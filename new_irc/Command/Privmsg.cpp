@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 18:04:12 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/12 16:22:19 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 22:27:21 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,32 @@ void Privmsg::execute(Client &client, std::string &input)
 			if (it->first == dest.substr(1, (dest.size() - 1)))
 			{
 				found_channel = true;
-				//A décommenter lorsque la fonction Channel.isUserInChannel() sera faite
-				if (it->second->isUserInChannel(client.getNickname()))
+				//if (it->second->isUserInChannel(client.getNickname()))
+				if (it->second->isUserInChannel(client.getId()))
 				{
-					it->second->sendMsgChannelMember(msg);
+					it->second->sendMsgChannelMember(client, msg);
 				}
 				else
-					client.addToOutput("442 " + client.getNickname() + " " + dest.substr(1, (dest.size() - 1)) + " :You're not on that channel\r\n");
+				{
+					client.addToOutput("442 " + client.getNickname() + " #" + dest.substr(1, (dest.size() - 1)) + " :You're not on that channel\r\n");
+					return;
+				}
 			}
+			it++;
 		}
 		if (!found_channel)
 		{
-			client.addToOutput("403 " + dest.substr(1, (dest.size() - 1)) + " :No such channel\r\n");
+			client.addToOutput("403 #" + dest.substr(1, (dest.size() - 1)) + " :No such channel\r\n");
+			return;
 		}
 
-		_channels.find(dest.substr(1, (dest.size() - 1)));
+		//_channels.find(dest.substr(1, (dest.size() - 1)));
 	}
 	else if (dest.empty())
 	{
+		std::cout << "rentre dans la condition pour envoyer a un channel\n";
 		client.addToOutput("401 " + client.getNickname() + " :No such nick\r\n");
+		return;
 	}
 	else // pour envoyer a qqn
 	{
@@ -97,9 +104,10 @@ void Privmsg::execute(Client &client, std::string &input)
 		}
 		if (!found_dest)
 		{
+			std::cout << "Rentre dans condition pour envoyer a qqn\n";
 			client.addToOutput("401 " + client.getNickname() + " :No such nick\r\n");
+			return;
 		}
 	}
-
 	// client.addToOutput(":server NOTICE * :PRIVMSG not implemented yet\r\n");
 }
