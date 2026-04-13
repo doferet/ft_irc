@@ -29,6 +29,7 @@ class Channel{
         std::string getPwd();
         
         bool isLimited();
+        bool getTopicStatus();
         int getLimitNbr();
 
         void addClient(Client &client, bool isOp);
@@ -48,7 +49,7 @@ class Channel{
         void changeInvitStatus(bool status);
         void changeTopicStatus(bool status);
         
-         void sendMsgChannelMember(std::string msg);
+        void sendMsgChannelMember(std::string msg);
 
 
     private:

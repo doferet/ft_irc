@@ -43,6 +43,11 @@ int Channel::getLimitNbr()
 	return (_limitNbr);
 }
 
+bool Channel::getTopicStatus()
+{
+	return (_topicStatus);
+}
+
 void Channel::addClient(Client &client,  bool op)
 {
 	bool isOp = op;
