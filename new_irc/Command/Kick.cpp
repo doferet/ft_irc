@@ -25,20 +25,20 @@ void Kick::execute(Client &client, std::string &input)
     // 1. Find the channel in the server's map
     std::map<std::string, Channel*>::iterator chanIt = _channels.find(channelName);
     if (chanIt == _channels.end()) {
-        client.addToOutput(":localhost 403 " + client.getNickname() + " " + channelName + " :No such channel\r\n");
+        client.addToOutput(":ircserv 403 " + client.getNickname() + " " + channelName + " :No such channel\r\n");
         return;
     }
     Channel *chan = chanIt->second;
 
     // 2. Check if the sender is an operator
     if (!chan->isUserOperator(client.getNickname())) {
-        client.addToOutput(":localhost 482 " + client.getNickname() + " " + channelName + " :You're not channel operator\r\n");
+        client.addToOutput(":ircserv 482 " + client.getNickname() + " " + channelName + " :You're not channel operator\r\n");
         return;
     }
 
     // 3. Check if the target is in the channel
     if (!chan->isUserInChannel(targetNick)) {
-        client.addToOutput(":localhost 441 " + client.getNickname() + " " + targetNick + " " + channelName + " :They aren't on that channel\r\n");
+        client.addToOutput(":ircserv 441 " + client.getNickname() + " " + targetNick + " " + channelName + " :They aren't on that channel\r\n");
         return;
     }
 
