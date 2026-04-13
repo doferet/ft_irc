@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:35 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/12 21:53:09 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/13 17:59:02 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ void Join::execute(Client &client, std::string &input)
 		client.addToOutput(":server 451 * :You have not registered\r\n");
 		return;
 	}
-
+	if (channelName.empty())
+	{
+		client.addToOutput(":server 461 " + client.getNickname() + " :Not enough parameters\r\n");
+		return;
+	}
 	std::map<std::string, Channel *>::iterator it_found_channel = _channels.find(channelName);
-	Channel *found_channel = it_found_channel->second;
 
 	bool verif_limit = false;
 	bool verif_invit = false;
@@ -65,20 +68,16 @@ void Join::execute(Client &client, std::string &input)
 
 	if (it_found_channel == _channels.end()) // si le channel existe pas
 	{
-		
 		Channel *newChannel = new Channel(channelName);
-		std::cout << "adress du newChannel: " << newChannel << std::endl;
 		newChannel->addClient(client, true);
 		std::pair<std::string, Channel *> p(channelName, newChannel);
 		_channels.insert(p);
-		client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN " + channelName + "\r\n"
-		 + ": 353 " + client.getNickname() + " = " + channelName + " :@" + client.getNickname() + "\r\n"
-		  + ": 366 " + client.getNickname() + " " + channelName + " :End of NAMES list\r\n");
+		client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN " + channelName + "\r\n" + ": 353 " + client.getNickname() + " = " + channelName + " :@" + client.getNickname() + "\r\n" + ": 366 " + client.getNickname() + " " + channelName + " :End of NAMES list\r\n");
 	}
 	else // si il existe
 	{
-		std::cout << "adress du found_channel: " << found_channel << std::endl;
-		if (found_channel->isLimited()) // si le channel est limité en nombre
+		Channel *found_channel = it_found_channel->second;
+		if (found_channel->isLimited()) // si le channel est limité en nombre (+l)
 		{
 			size_t limit_nbr = found_channel->getLimitNbr();
 			if (limit_nbr > found_channel->getSizeClients())
@@ -88,13 +87,14 @@ void Join::execute(Client &client, std::string &input)
 			else
 			{
 				// error channel plein
-				client.addToOutput(": XXX * :Channel plein\r\n");
+				client.addToOutput(": 471 " + client.getNickname() + " " + found_channel->getName() + " :Cannot join channel (+l)\r\n");
+				return;
 			}
 		}
 		else
 			verif_limit = true;
 
-		if (found_channel->getInvitStatus()) // si le channel a configuré des invits
+		if (found_channel->getInvitStatus()) // si le channel a configuré des invits (+i)
 		{
 			std::vector<std::string> invited_list = found_channel->getInvited();
 			for (size_t i = 0; i < invited_list.size(); i++)
@@ -107,7 +107,8 @@ void Join::execute(Client &client, std::string &input)
 			if (!verif_invit)
 			{
 				// error client non invité
-				client.addToOutput(": XXX * :Client non invité\r\n");
+				client.addToOutput(": 473 " + client.getNickname() + " " + found_channel->getName() + " :Cannot join channel (+i)\r\n");
+				return;
 			}
 		}
 		else
@@ -117,14 +118,15 @@ void Join::execute(Client &client, std::string &input)
 		{
 			verif_pwd = true;
 		}
-		else // si channel a un pwd
+		else // si channel a un pwd (+k)
 		{
 			if (found_channel->getPwd() == pwd)
 				verif_pwd = true;
 			else
 			{
 				// error mdp mauvais
-				client.addToOutput(": XXX * :Mauvais mdp\r\n");
+				client.addToOutput(": 475 " + client.getNickname() + " " + found_channel->getName() + " :Cannot join channel (+k)\r\n");
+				return;
 			}
 		}
 
@@ -135,11 +137,11 @@ void Join::execute(Client &client, std::string &input)
 			// msg pour dire que le client a été add au channel (afficher nombre d'Op + list membre)
 			client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN " + found_channel->getName() + "\r\n" + ": 353 " + client.getNickname() + " = " + found_channel->getName() + " :" + getChannelMember(found_channel) + "\r\n" + ": 366 " + client.getNickname() + " " + found_channel->getName() + " :End of NAMES list\r\n");
 		}
-		else
-		{
-			// error une verif au moins n'a pas abouti
-			client.addToOutput(": XXX * :Au moins une verif a été mauvaise\r\n");
-		}
+		// else
+		// {
+		// 	// error une verif au moins n'a pas abouti
+		// 	client.addToOutput(": XXX " + client.getNickname() + " :Au moins une verif a été mauvaise\r\n");
+		// }
 	}
 }
 
