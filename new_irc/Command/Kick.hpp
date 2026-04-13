@@ -1,0 +1,19 @@
+#ifndef KICK_HPP
+#define KICK_HPP
+
+#include "ACommand.hpp"
+
+class Kick : public ACommand
+{
+public:
+    Kick(std::map<std::string, Channel *> &channels, std::vector<Client> &cli, std::string &serverPassword): ACommand(channels, cli, serverPassword) {};
+
+    static ACommand *create(std::map<std::string, Channel *> &channels, std::vector<Client> &cli, std::string &serverPassword)
+    {
+        return new Kick(channels, cli, serverPassword);
+    }
+
+    virtual void execute(Client &client, std::string &input);
+};
+
+#endif
