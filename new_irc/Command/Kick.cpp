@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Kick.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tronguye <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/13 13:10:24 by tronguye          #+#    #+#             */
+/*   Updated: 2026/04/13 13:10:26 by tronguye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Kick.hpp"
 
 
@@ -18,7 +30,7 @@ void Kick::execute(Client &client, std::string &input)
     }
     Channel *chan = chanIt->second;
 
-    // 2. Check if the sender is an operator (Using your Channel.cpp logic)
+    // 2. Check if the sender is an operator
     if (!chan->isUserOperator(client.getNickname())) {
         client.addToOutput(":localhost 482 " + client.getNickname() + " " + channelName + " :You're not channel operator\r\n");
         return;
