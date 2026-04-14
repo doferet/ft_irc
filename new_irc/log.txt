@@ -867,3 +867,1386 @@ send fd :6
 send return : 59
 buf du send : :ircserv 482 asritz Channel1 :You're not channel operator
 
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 15
+Le client du fd : 4 a envoyé : WHO #Channel1
+ (taille : 15)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1
+CommandName recu : WHO
+unknow command : WHO
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 15
+Le client du fd : 5 a envoyé : WHO #Channel1
+ (taille : 15)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1
+CommandName recu : WHO
+unknow command : WHO
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 15
+Le client du fd : 6 a envoyé : MODE #Channel
+ (taille : 15)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 3
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : MODE
+send fd :6
+send return : 50
+buf du send : :ircserv 472 asritz  :is unknown mode char to me
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 18
+Le client du fd : 4 a envoyé : MODE #Channel1 b
+ (taille : 18)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1 b
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 0
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : MODE
+send fd :4
+send return : 48
+buf du send : :ircserv 472 Ash b :is unknown mode char to me
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 18
+Le client du fd : 5 a envoyé : MODE #Channel1 b
+ (taille : 18)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1 b
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 1
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : MODE
+send fd :5
+send return : 58
+buf du send : :ircserv 482 Pilou Channel1 :You're not channel operator
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 14
+Le client du fd : 6 a envoyé : WHO #Channel
+ (taille : 14)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel
+CommandName recu : WHO
+unknow command : WHO
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 15
+Le client du fd : 6 a envoyé : WHO #Channel1
+ (taille : 15)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel1
+CommandName recu : WHO
+unknow command : WHO
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 14
+Le client du fd : 6 a envoyé : WHO #Channel
+ (taille : 14)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel
+CommandName recu : WHO
+unknow command : WHO
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 17
+Le client du fd : 6 a envoyé : MODE #Channel b
+ (taille : 17)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel b
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 3
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : MODE
+send fd :6
+send return : 51
+buf du send : :ircserv 472 asritz b :is unknown mode char to me
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 18
+Le client du fd : 6 a envoyé : MODE #Channel1 b
+ (taille : 18)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel1 b
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 3
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : MODE
+send fd :6
+send return : 59
+buf du send : :ircserv 482 asritz Channel1 :You're not channel operator
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 5 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :5
+send return : 16
+buf du send : PONG localhost
+

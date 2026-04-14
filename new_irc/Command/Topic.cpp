@@ -49,5 +49,5 @@ void Topic::execute(Client &client, std::string &input) {
     // 3. BROADCAST
     // Format: :Nick!User@localhost TOPIC #channel :topic
     std::string topicMsg = ":" + client.getNickname() + "!" + client.getUsername() + "@localhost TOPIC " + channelName + " :" + newTopic + "\r\n";
-    chan->sendMsgChannelMember(client, topicMsg);
+    chan->sendMsgChannelMember(client, topicMsg, _cli);
 }

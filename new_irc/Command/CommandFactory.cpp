@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CommandFactory.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:05:12 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 21:54:39 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/14 18:20:27 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ CommandFactory::CommandFactory(std::map<std::string, Channel*> &cha, std::vector
     creators["MODE"] = &Mode::create;
     creators["PART"] = &Part::create;
     creators["QUIT"] = &Quit::create;
+    creators["TOPIC"] = &Topic::create;
 }
 
 ACommand* CommandFactory::create(const std::string &name)

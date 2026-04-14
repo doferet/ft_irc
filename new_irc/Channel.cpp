@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 18:04:39 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 18:17:01 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ Channel::Channel()
 	_isLimited = false;
 	_limitNbr = 0;
 	_invitStatus = false;
+    _topicStatus = false;
 }
 
 Channel::Channel(const std::string &name)
@@ -25,6 +26,7 @@ Channel::Channel(const std::string &name)
 	_isLimited = false;
 	_limitNbr = 0;
 	_invitStatus = false;
+    _topicStatus = false;
 }
 
 std::string Channel::getName()

@@ -6,7 +6,7 @@
 #    By: asritz <asritz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 13:45:32 by tronguye          #+#    #+#              #
-#    Updated: 2026/04/13 18:30:56 by asritz           ###   ########.fr        #
+#    Updated: 2026/04/14 18:22:29 by asritz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC = main.cpp \
 	Command/Privmsg.cpp \
 	Command/Part.cpp \
 	Command/Quit.cpp \
+	Command/Topic.cpp
 
 BOT_SRC = Bot.cpp \
 
