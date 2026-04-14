@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 18:04:12 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/14 17:32:21 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 20:57:32 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void Privmsg::execute(Client &client, std::string &input)
 				//if (it->second->isUserInChannel(client.getNickname()))
 				if (it->second->isUserInChannel(client.getId()))
 				{
-					it->second->sendMsgChannelMember(client, msg, _cli);
+					it->second->sendMsgChannelMember(client, msg, _cli, 0);
 				}
 				else
 				{

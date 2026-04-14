@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Kick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:10:24 by tronguye          #+#    #+#             */
-/*   Updated: 2026/04/14 20:18:48 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/14 23:23:39 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void Kick::execute(Client &client, std::string &input)
     if (reason.empty()) reason = "Kicked by " + client.getNickname();
     std::string kickNotice = ":" + client.getNickname() + "!" + client.getUsername() + "@localhost KICK " 
                             + channelName + " " + targetNick + " :" + reason + "\r\n";
-    chan->sendMsgChannelMember(client, kickNotice, _cli);
+    chan->sendMsgChannelMember(client, kickNotice, _cli, 0);
+
     chan->removeClient(getIdByNick(targetNick));
 }

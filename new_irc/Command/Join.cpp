@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:35 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/14 19:35:58 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 21:20:14 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void Join::execute(Client &client, std::string &input)
 		newChannel->addClient(client, true);
 		std::pair<std::string, Channel *> p(channelName, newChannel);
 		_channels.insert(p);
-		client.addToOutput(":ircserver" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + channelName + "\r\n" + ":ircserver 353 " + client.getNickname() + " = #" + channelName + " :@" + client.getNickname() + "\r\n" + ":ircserver 366 " + client.getNickname() + " #" + channelName + " :End of NAMES list\r\n");
+		client.addToOutput(":ircserver " + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + channelName + "\r\n" + ":ircserver 353 " + client.getNickname() + " = #" + channelName + " :@" + client.getNickname() + "\r\n" + ":ircserver 366 " + client.getNickname() + " #" + channelName + " :End of NAMES list\r\n");
 	}
 	else // si il existe
 	{
@@ -136,9 +136,8 @@ void Join::execute(Client &client, std::string &input)
 				return;
 			}
 		}
-//chzck si client esst dedqns qvqnt de lajouter
-		// check si toutes les verifs sont bonnes
-		if (verif_limit && verif_invit && verif_pwd)
+		
+		if (verif_limit && verif_invit && verif_pwd) // check si toutes les verifs sont bonnes
 		{
 			found_channel->addClient(client, false);
 			// msg pour dire que le client a été add au channel (afficher nombre d'Op + list membre)

@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:22:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 17:14:16 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 21:50:27 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,16 @@ public:
     void setOperator(int id);
     bool isEmpty();
     bool isUserInChannel(int id);
-    // bool isUserInChannel(Client &client);
 
     bool isUserOperator(int id);
 
     void removeLimit();
-    void removeOperator(int id);
+    void removeOperator(int id);    
 
     void changeInvitStatus(bool status);
     void changeTopicStatus(bool status);
 
-    void sendMsgChannelMember(Client &client, std::string msg, std::vector<Client> &server_clients);
+    void sendMsgChannelMember(Client &client, std::string msg, std::vector<Client> &server_clients, int msg_type);
 
 private:
     std::string _name;
