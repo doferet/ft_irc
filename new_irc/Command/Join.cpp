@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:35 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/14 17:27:23 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 19:35:58 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void Join::execute(Client &client, std::string &input)
 	if (!client.isAuthenticated())
 	{
 		std::cout << "client non authentifie, output : 451\n";
-		client.addToOutput(":server 451 * :You have not registered\r\n");
+		client.addToOutput(":ircserver 451 * :You have not registered\r\n");
 		return;
 	}
 	if (channelName.empty())
 	{
-		client.addToOutput(":server 461 " + client.getNickname() + " :Not enough parameters\r\n");
+		client.addToOutput(":ircserver 461 " + client.getNickname() + " :Not enough parameters\r\n");
 		return;
 	}
 	std::map<std::string, Channel *>::iterator it_found_channel = _channels.find(channelName);
@@ -73,14 +73,14 @@ void Join::execute(Client &client, std::string &input)
 		newChannel->addClient(client, true);
 		std::pair<std::string, Channel *> p(channelName, newChannel);
 		_channels.insert(p);
-		client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + channelName + "\r\n" + ": 353 " + client.getNickname() + " = #" + channelName + " :@" + client.getNickname() + "\r\n" + ": 366 " + client.getNickname() + " #" + channelName + " :End of NAMES list\r\n");
+		client.addToOutput(":ircserver" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + channelName + "\r\n" + ":ircserver 353 " + client.getNickname() + " = #" + channelName + " :@" + client.getNickname() + "\r\n" + ":ircserver 366 " + client.getNickname() + " #" + channelName + " :End of NAMES list\r\n");
 	}
 	else // si il existe
 	{
 		Channel *found_channel = it_found_channel->second;
 		if (found_channel->isUserInChannel(client.getId())) // si le client est déjà dans le channel
 		{
-			client.addToOutput(": 443 " + client.getNickname() + " #" + found_channel->getName() + " :is already on channel\r\n");
+			client.addToOutput(":ircserver 443 " + client.getNickname() + " #" + found_channel->getName() + " :is already on channel\r\n");
 			return;
 		}
 		
@@ -94,7 +94,7 @@ void Join::execute(Client &client, std::string &input)
 			else
 			{
 				// error channel plein
-				client.addToOutput(": 471 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+l)\r\n");
+				client.addToOutput(":ircserver 471 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+l)\r\n");
 				return;
 			}
 		}
@@ -114,7 +114,7 @@ void Join::execute(Client &client, std::string &input)
 			if (!verif_invit)
 			{
 				// error client non invité
-				client.addToOutput(": 473 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+i)\r\n");
+				client.addToOutput(":ircserver 473 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+i)\r\n");
 				return;
 			}
 		}
@@ -132,7 +132,7 @@ void Join::execute(Client &client, std::string &input)
 			else
 			{
 				// error mdp mauvais
-				client.addToOutput(": 475 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+k)\r\n");
+				client.addToOutput(":ircserver 475 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+k)\r\n");
 				return;
 			}
 		}
@@ -142,13 +142,8 @@ void Join::execute(Client &client, std::string &input)
 		{
 			found_channel->addClient(client, false);
 			// msg pour dire que le client a été add au channel (afficher nombre d'Op + list membre)
-			client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + found_channel->getName() + "\r\n" + ": 353 " + client.getNickname() + " = #" + found_channel->getName() + " :" + getChannelMember(found_channel) + "\r\n" + ": 366 " + client.getNickname() + " #" + found_channel->getName() + " :End of NAMES list\r\n");
+			client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + found_channel->getName() + "\r\n" + ":ircserver 353 " + client.getNickname() + " = #" + found_channel->getName() + " :" + getChannelMember(found_channel) + "\r\n" + ":ircserver 366 " + client.getNickname() + " #" + found_channel->getName() + " :End of NAMES list\r\n");
 		}
-		// else
-		// {
-		// 	// error une verif au moins n'a pas abouti
-		// 	client.addToOutput(": XXX " + client.getNickname() + " :Au moins une verif a été mauvaise\r\n");
-		// }
 	}
 }
 
