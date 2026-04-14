@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 20:34:46 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/13 22:43:48 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 17:33:11 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void Quit::execute(Client &client, std::string &input)
     }
     for (channel = _channels.begin(); channel != _channels.end(); ++channel)
     {
-        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost QUIT :" + input + "\r\n");
+        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost QUIT :" + input + "\r\n", _cli);
         channel->second->removeClient(client.getId());
         if (channel->second->isEmpty() == true)
         {

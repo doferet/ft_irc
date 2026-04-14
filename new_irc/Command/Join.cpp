@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:35 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/13 23:19:32 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 17:27:23 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ std::string getChannelName(std::string input)
 	return (name);
 }
 
-std::string getChannelMember(Channel *channel)
+std::string Join::getChannelMember(Channel *channel)
 {
 	std::string nickList;
-	std::vector<std::string> cli = channel->getNickClients();
+	std::vector<std::string> cli = channel->getNickClients(_cli);
 	for (size_t i = 0; i < cli.size(); i++)
 		nickList += cli[i] + " ";
 	return (nickList);
@@ -78,6 +78,12 @@ void Join::execute(Client &client, std::string &input)
 	else // si il existe
 	{
 		Channel *found_channel = it_found_channel->second;
+		if (found_channel->isUserInChannel(client.getId())) // si le client est déjà dans le channel
+		{
+			client.addToOutput(": 443 " + client.getNickname() + " #" + found_channel->getName() + " :is already on channel\r\n");
+			return;
+		}
+		
 		if (found_channel->isLimited()) // si le channel est limité en nombre (+l)
 		{
 			size_t limit_nbr = found_channel->getLimitNbr();

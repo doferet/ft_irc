@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 20:35:53 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/13 22:37:48 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 17:32:46 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void Part::execute(Client &client, std::string &input)
         client.addToOutput(":ircserv 442 " + client.getNickname() + " " + input + " :You're not on that channel\r\n");
         return;
     }
-    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost PART " + channel->second->getName() + "\r\n");
+    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost PART " + channel->second->getName() + "\r\n", _cli);
     channel->second->removeClient(client.getId());
     if (channel->second->isEmpty())
         _channels.erase(channel);

@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 19:25:47 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/13 22:24:16 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 17:31:40 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void Mode::option_l(std::stringstream &ss, bool isPlus, std::map<std::string, Ch
     if (isPlus == false)
     {
         channel->second->removeLimit();
-        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -l " + "\r\n");
+        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -l " + "\r\n", _cli);
         return ;
     }
     std::string param;
@@ -44,7 +44,7 @@ void Mode::option_l(std::stringstream &ss, bool isPlus, std::map<std::string, Ch
         return ;
     }
     channel->second->setLimit(limit);
-    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +l " + param + "\r\n");
+    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +l " + param + "\r\n", _cli);
 }
 
 void Mode::option_o(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
@@ -64,11 +64,11 @@ void Mode::option_o(std::stringstream &ss, bool isPlus, std::map<std::string, Ch
     if (isPlus == false)
     {
         channel->second->removeOperator(getIdByNick(param));
-        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -o " + param + "\r\n");
+        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -o " + param + "\r\n", _cli);
         return;
     }
     channel->second->setOperator(getIdByNick(param));
-    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +o " + param + "\r\n");
+    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +o " + param + "\r\n", _cli);
 }
     
 void Mode::option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Channel*>::iterator channel, Client &client)
@@ -80,7 +80,7 @@ void Mode::option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Ch
     {
         if (passwordChannel.empty() || passwordChannel == param)
             channel->second->setPassword("");
-        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -k " + param + "\r\n");
+        channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " -k " + param + "\r\n", _cli);
         return;
     }
     if (param.empty())
@@ -94,7 +94,7 @@ void Mode::option_k(std::stringstream &ss, bool isPlus, std::map<std::string, Ch
         return;
     }
     channel->second->setPassword(param);
-    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +k " + param + "\r\n");
+    channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + channel->second->getName() + " +k " + param + "\r\n", _cli);
 }
 
 void Mode::execute(Client &client, std::string &input)
@@ -137,11 +137,11 @@ void Mode::execute(Client &client, std::string &input)
     {
         case 'i':
             channel->second->changeInvitStatus(isPlus);
-            channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n");
+            channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n", _cli);
             break;
         case 't':
             channel->second->changeTopicStatus(isPlus);
-            channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n");
+            channel->second->sendMsgChannelMember(client, ":" + client.getNickname() + "!" + client.getUsername() + "@localhost MODE " + chanName + option + param + "\r\n", _cli);
             break;
         case 'o':
             option_o(ss, isPlus, channel, client);

@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/13 22:37:10 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 17:25:04 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,25 +71,35 @@ size_t Channel::getSizeClients()
 	return (_clients.size());
 }
 
-std::map<int, std::pair<Client &, bool> > Channel::getClients()
+std::map<int, bool> Channel::getClients()
 {
 	return (_clients);
 }
 
-std::vector<std::string> Channel::getNickClients()
+Client *Channel::findClientById(std::vector<Client> &server_clients, int id)
+{
+	for (size_t i = 0; i < server_clients.size(); i++)
+	{
+		if (server_clients[i].getId() == id)
+			return (&server_clients[i]);
+	}
+	return (NULL);
+}
+
+std::vector<std::string> Channel::getNickClients(std::vector<Client> &server_clients)
 {
 	std::vector<std::string> nickList;
-	std::map<int, std::pair<Client &, bool> >::iterator it = _clients.begin();
+	std::map<int, bool>::iterator it = _clients.begin();
 	while (it != _clients.end())
 	{
-		std::pair<Client &, bool> p = it->second;
-		Client &cli = p.first;
-		std::string op;
-		if (p.second == true)
-			op = "@";
-		else
-			op = "";
-		nickList.push_back(op + cli.getNickname());
+		Client *client_found = findClientById(server_clients, it->first);
+		if (client_found != NULL)
+		{
+			if (it->second == true)
+				nickList.push_back("@" + client_found->getNickname());
+			else
+				nickList.push_back(client_found->getNickname());
+		}
 		it++;
 	}
 	return (nickList);
@@ -99,14 +109,11 @@ void Channel::addClient(Client &client, bool op)
 {
 	bool isOp = op;
 
-	std::cout << "adresse du client dans addClient():" << &client << std::endl;
+	std::pair<int, bool> p(client.getId(), isOp);
 
-	std::pair<Client &, bool> next_pair(client, isOp);
-	std::cout << "adresse du next_pair dans addClient():" << &next_pair.first << std::endl;
-	std::pair<int, std::pair<Client &, bool> > p(client.getId(), next_pair);
-
-	std::cout << "addClient key = |" << client.getUsername() << "|" << std::endl;
+	std::cout << "addClient key = |" << client.getId() << "|" << std::endl;
 	std::cout << "nickname = |" << client.getNickname() << "|" << std::endl;
+	std::cout << "Op ? = |" << isOp << "|" << std::endl;
 
 	_clients.insert(p);
 }
@@ -134,8 +141,8 @@ void Channel::setPassword(std::string password)
 
 void Channel::setOperator(int id)
 {
-	std::map<int, std::pair<Client &, bool> >::iterator it = _clients.find(id);
-	it->second.second = true;
+	std::map<int, bool>::iterator it = _clients.find(id);
+	it->second = true;
 }
 
 // bool Channel::isUserInChannel(Client &client)
@@ -153,14 +160,14 @@ void Channel::setOperator(int id)
 bool Channel::isUserInChannel(int id)
 {
 	std::cout << "IsUserInChannel() id: " << id << std::endl;
-	
-	std::map<int, std::pair<Client &, bool> >::iterator it = _clients.begin();
+
+	std::map<int, bool>::iterator it = _clients.begin();
 	while (it != _clients.end())
 	{
-		std::cout << "IsUserInChannel() nick de _clients: " << it->second.first.getNickname() << std::endl;
+		std::cout << "IsUserInChannel() id de _clients: " << it->first << std::endl;
 		it++;
 	}
-	
+
 	if (_clients.find(id) == _clients.end())
 		return false;
 	return true;
@@ -168,8 +175,8 @@ bool Channel::isUserInChannel(int id)
 
 bool Channel::isUserOperator(int id)
 {
-	std::map<int, std::pair<Client &, bool> >::iterator it = _clients.find(id);
-	if (it != _clients.end() && it->second.second == true)
+	std::map<int, bool>::iterator it = _clients.find(id);
+	if (it != _clients.end() && it->second == true)
 		return true;
 	return false;
 }
@@ -181,9 +188,9 @@ void Channel::removeLimit()
 
 void Channel::removeOperator(int id)
 {
-	std::map<int, std::pair<Client &, bool> >::iterator it = _clients.find(id);
+	std::map<int, bool>::iterator it = _clients.find(id);
 	if (it != _clients.end())
-		it->second.second = false;
+		it->second = false;
 }
 
 void Channel::changeInvitStatus(bool status)
@@ -196,16 +203,21 @@ void Channel::changeTopicStatus(bool status)
 	_topicStatus = status;
 }
 
-void Channel::sendMsgChannelMember(Client &client, std::string msg)
+void Channel::sendMsgChannelMember(Client &client, std::string msg, std::vector<Client> &server_clients)
 {
-	std::map<int, std::pair<Client &, bool> >::iterator it = _clients.begin();
+	std::map<int, bool>::iterator it = _clients.begin();
 	while (it != _clients.end())
 	{
-		it->second.first.addToOutput(":" + client.getNickname() +
-									 "!" + client.getUsername() +
-									 "@localhost PRIVMSG " + it->second.first.getNickname() +
-									 " :" + msg + "\r\n"
-									);
+		Client *dest = findClientById(server_clients, it->first);
+		if (dest != NULL)
+		{
+			dest->addToOutput(":" + client.getNickname() +
+										  "!" + client.getUsername() +
+										  "@localhost PRIVMSG " + dest->getNickname() +
+										  " :" + msg + "\r\n");
+										  
+		}
+
 		it++;
 	}
 }
@@ -215,7 +227,6 @@ bool Channel::isEmpty()
 		return true;
 	return false;
 }
-
 
 // faire un sendMsgChannel() qui enverra à tous ses membres le meme msg
 // si le dernier client quitte le channel, le channel se ferme

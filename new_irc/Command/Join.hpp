@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:25 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/09 19:11:54 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 17:28:07 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ public:
 		return new Join(channels, cli, serverPassword);
 	}
 
+	std::string getChannelMember(Channel *channel);
 	virtual void execute(Client &client, std::string &input);
 };
