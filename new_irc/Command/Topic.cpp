@@ -30,7 +30,7 @@ void Topic::execute(Client &client, std::string &input) {
         if (chan->getTopic().empty())
             client.addToOutput(":ircserv 331 " + client.getNickname() + " " + channelName + " :No topic is set\r\n");
         else
-            client.addToOutput(":ircserv 332 " + client.getNickname() + " " + channelName + " :" + chan->getTopic() + "\r\n");
+            client.addToOutput(":ircserv 332 " + client.getNickname() + " " + channelName + " : " + chan->getTopic() + "\r\n");
         return;
     }
 
@@ -49,5 +49,5 @@ void Topic::execute(Client &client, std::string &input) {
     // 3. BROADCAST
     // Format: :Nick!User@localhost TOPIC #channel :topic
     std::string topicMsg = ":" + client.getNickname() + "!" + client.getUsername() + "@localhost TOPIC " + channelName + " :" + newTopic + "\r\n";
-    chan->sendMsgChannelMember(client, topicMsg);
+    chan->sendMsgChannelMember(client, topicMsg, _cli);
 }

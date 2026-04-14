@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:05:12 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 21:54:39 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/14 19:38:17 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ CommandFactory::CommandFactory(std::map<std::string, Channel*> &cha, std::vector
     creators["MODE"] = &Mode::create;
     creators["PART"] = &Part::create;
     creators["QUIT"] = &Quit::create;
+    creators["TOPIC"] = &Topic::create;
+    creators["KICK"] = &Kick::create;
 }
 
 ACommand* CommandFactory::create(const std::string &name)
@@ -33,17 +35,3 @@ ACommand* CommandFactory::create(const std::string &name)
         return it->second(_channels, _cli, _serverPassword);
     return NULL;
 }
-
-//commande a implementer au minimum
-// PING 
-// PASS
-// NICK
-// USER
-// JOIN
-// PRIVMSG
-// KICK
-// INVITE
-// TOPIC
-// MODE
-// PART
-// QUIT

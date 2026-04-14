@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asritz <asritz@student.42.fr>              +#+  +:+       +#+         #
+#    By: doferet <doferet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 13:45:32 by tronguye          #+#    #+#              #
-#    Updated: 2026/04/13 18:30:56 by asritz           ###   ########.fr        #
+#    Updated: 2026/04/14 18:58:41 by doferet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRC = main.cpp \
 	Command/Privmsg.cpp \
 	Command/Part.cpp \
 	Command/Quit.cpp \
+	Command/Topic.cpp \
+	Command/Kick.cpp \
 
 BOT_SRC = Bot.cpp \
 

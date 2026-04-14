@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:47:47 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/12 21:32:54 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/14 19:22:28 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 #include "Mode.hpp"
 #include "Part.hpp"
 #include "Quit.hpp"
+#include "Kick.hpp"
+#include "Topic.hpp"
 
 class Channel;
 class Client;
