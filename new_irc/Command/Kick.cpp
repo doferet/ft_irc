@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:10:24 by tronguye          #+#    #+#             */
-/*   Updated: 2026/04/13 22:15:04 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 19:28:35 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void Kick::execute(Client &client, std::string &input)
     // Format: :Sender!User@Host KICK #channel Target :Reason
     std::string kickNotice = ":" + client.getNickname() + "!" + client.getUsername() + "@localhost KICK " 
                             + channelName + " " + targetNick + " :" + reason + "\r\n";
-    chan->sendMsgChannelMember(client, kickNotice);
+    chan->sendMsgChannelMember(client, kickNotice, _cli);
 
     chan->removeClient(getIdByNick(targetNick));
 }

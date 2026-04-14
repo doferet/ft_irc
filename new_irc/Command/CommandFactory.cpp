@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:05:12 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 18:20:27 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 19:10:07 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ CommandFactory::CommandFactory(std::map<std::string, Channel*> &cha, std::vector
     creators["PART"] = &Part::create;
     creators["QUIT"] = &Quit::create;
     creators["TOPIC"] = &Topic::create;
+    creators["KICK"] = &Kick::create;
+
 }
 
 ACommand* CommandFactory::create(const std::string &name)

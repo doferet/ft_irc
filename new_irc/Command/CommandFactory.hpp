@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:47:47 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 18:21:00 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 19:10:18 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 #include "Part.hpp"
 #include "Quit.hpp"
 #include "Topic.hpp"
+#include "Kick.hpp"
 
 class Channel;
 class Client;
