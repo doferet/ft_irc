@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 17:29:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/11 17:29:46 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/14 21:27:35 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ void User::execute(Client &client, std::string &input)
 
         client.addToOutput(":localhost 003 " + client.getNickname() + " :This server was created today\r\n");
 
-        client.addToOutput(":localhost 004 " + client.getNickname() + " localhost 1.0 o itkol\r\n");
+        client.addToOutput(":localhost 004 " + client.getNickname() + " :localhost 1.0 o itkol\r\n");
 
+        // "005 " + std::string(client) + " " + std::string(modes) + " " + ":are supported by this server\r\n"
         client.addToOutput(":localhost 422 " + client.getNickname() + " :MOTD File is missing\r\n");
+        // client.addToOutput(":localhost 422 " + client.getNickname() + " :MOTD File is missing\r\n");
+        // client.addToOutput(":localhost 005 " + client.getNickname() + ":itkol are supported by this server\r\n");
     }
 }

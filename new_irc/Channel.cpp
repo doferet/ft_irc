@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 18:17:01 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 22:09:08 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,11 @@ void Channel::removeOperator(int id)
 		it->second = false;
 }
 
+bool Channel::isInviteOnly()
+{
+	return _invitStatus;
+}
+
 void Channel::changeInvitStatus(bool status)
 {
 	_invitStatus = status;
@@ -228,6 +233,12 @@ bool Channel::isEmpty()
 	if (_clients.size() == 0)
 		return true;
 	return false;
+}
+
+void Channel::addInvit(int client_id)
+{
+	std::pair<int, bool> p(client_id, false);
+	_clients.insert(p);
 }
 
 // faire un sendMsgChannel() qui enverra à tous ses membres le meme msg

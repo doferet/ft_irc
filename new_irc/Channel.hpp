@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:22:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 17:14:16 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 22:48:42 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ public:
     void setTopic(std::string topic);
     void setPassword(std::string password);
     void setOperator(int id);
+
     bool isEmpty();
     bool isUserInChannel(int id);
     // bool isUserInChannel(Client &client);
-
+    bool isInviteOnly();
     bool isUserOperator(int id);
 
     void removeLimit();
@@ -59,7 +60,8 @@ public:
     void changeTopicStatus(bool status);
 
     void sendMsgChannelMember(Client &client, std::string msg, std::vector<Client> &server_clients);
-
+    void addInvit(int client_id);
+    
 private:
     std::string _name;
     std::string _topic;
