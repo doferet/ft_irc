@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 22:09:08 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/14 23:37:03 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Channel::Channel()
 	_isLimited = false;
 	_limitNbr = 0;
 	_invitStatus = false;
-    _topicStatus = false;
+	_topicStatus = false;
 }
 
 Channel::Channel(const std::string &name)
@@ -26,7 +26,7 @@ Channel::Channel(const std::string &name)
 	_isLimited = false;
 	_limitNbr = 0;
 	_invitStatus = false;
-    _topicStatus = false;
+	_topicStatus = false;
 }
 
 std::string Channel::getName()
@@ -147,26 +147,14 @@ void Channel::setOperator(int id)
 	it->second = true;
 }
 
-// bool Channel::isUserInChannel(Client &client)
-// {
-// 	std::map<std::string &, std::pair<Client &, bool>>::iterator it = _clients.begin();
-// 	while (it != _clients.end())
-// 	{
-// 		if (&(it->second.first) == &client)
-// 			return true;
-// 		it++;
-// 	}
-// 	return false;
-// }
-
 bool Channel::isUserInChannel(int id)
 {
-	std::cout << "IsUserInChannel() id: " << id << std::endl;
+	//std::cout << "IsUserInChannel() id: " << id << std::endl;
 
 	std::map<int, bool>::iterator it = _clients.begin();
 	while (it != _clients.end())
 	{
-		std::cout << "IsUserInChannel() id de _clients: " << it->first << std::endl;
+		//std::cout << "IsUserInChannel() id de _clients: " << it->first << std::endl;
 		it++;
 	}
 
@@ -210,7 +198,7 @@ void Channel::changeTopicStatus(bool status)
 	_topicStatus = status;
 }
 
-void Channel::sendMsgChannelMember(Client &client, std::string msg, std::vector<Client> &server_clients)
+void Channel::sendMsgChannelMember(Client &client, std::string msg, std::vector<Client> &server_clients, int msg_type)
 {
 	std::map<int, bool>::iterator it = _clients.begin();
 	while (it != _clients.end())
@@ -218,11 +206,16 @@ void Channel::sendMsgChannelMember(Client &client, std::string msg, std::vector<
 		Client *dest = findClientById(server_clients, it->first);
 		if (dest != NULL && dest != &client)
 		{
-			dest->addToOutput(":" + client.getNickname() +
-										  "!" + client.getUsername() +
-										  "@localhost PRIVMSG #" + _name +
-										  " :" + msg + "\r\n");
-										  
+			if (msg_type == 0) // si Privmsg
+				dest->addToOutput(":" + client.getNickname() +
+								  "!" + client.getUsername() +
+								  "@localhost PRIVMSG #" + _name +
+								  " :" + msg + "\r\n");
+			if (msg_type == 1) // si Quit
+				dest->addToOutput(":" + client.getNickname() +
+								  "!" + client.getUsername() +
+								  "@localhost QUIT :" +
+								  msg + "\r\n");
 		}
 
 		it++;

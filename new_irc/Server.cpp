@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 19:45:40 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/14 23:24:02 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,30 @@ void Server::initSets()
     }
 }
 
+void Server::removeClientInAllChannels(Client client)
+{
+    int id = client.getId();
+
+    std::map<std::string, Channel *>::iterator chanit = _channels.begin();
+    while (chanit != _channels.end())
+    {
+        std::map<std::string, Channel *>::iterator next = chanit;
+        next++;
+
+        if (chanit->second && chanit->second->isUserInChannel(id)) // si il y a un channel et que le client est dedans
+        {
+            chanit->second->sendMsgChannelMember(client, "Connection closed", _clients, 1);
+            chanit->second->removeClient(id);
+            if (chanit->second->isEmpty())
+            {
+                delete chanit->second;
+                _channels.erase(chanit);
+            }
+        }
+        chanit = next;
+    }
+}
+
 int Server::clientSocketOperation(int index)
 {
     int fd = _clients[index].getFd();
@@ -89,6 +113,9 @@ int Server::clientSocketOperation(int index)
             // 0 cient s'est deco
             //-1 erreur sur le socket
             // dans tout les cas quitter les channels et degager le client
+
+            removeClientInAllChannels(_clients[index]);
+
             _clients[index].setDisconnected(true);
             // std::cout << "Client is deconnected\n";
         }
@@ -155,14 +182,17 @@ void Server::run()
         {
             Client newClient(_id++);
             std::cout << "action sur read" << std::endl;
-            int clientFd = accept(_socket, &cli, &len);
-            _clients.push_back(newClient);
-            _clients.back().setFd(clientFd);
-            std::cout << "le fd du mouveau client est : " << clientFd << std::endl;
-            std::cout << "liste des fds clients" << std::endl;
-            for (size_t i = 0; i < _clients.size(); i++)
+            int clientFd = accept(_socket, &cli, &len); // mettre une protection si accept fail
+            if (clientFd != -1)
             {
-                std::cout << "fd[" << i << "]=" << _clients[i].getFd() << std::endl;
+                _clients.push_back(newClient);
+                _clients.back().setFd(clientFd);
+                std::cout << "le fd du mouveau client est : " << clientFd << std::endl;
+                std::cout << "liste des fds clients" << std::endl;
+                for (size_t i = 0; i < _clients.size(); i++)
+                {
+                    std::cout << "fd[" << i << "]=" << _clients[i].getFd() << std::endl;
+                }
             }
         }
         if (FD_ISSET(_socket, &_error))

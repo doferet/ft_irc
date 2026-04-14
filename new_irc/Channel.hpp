@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:22:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 22:48:42 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/14 23:39:02 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ public:
     bool isUserOperator(int id);
 
     void removeLimit();
-    void removeOperator(int id);
+    void removeOperator(int id);    
 
     void changeInvitStatus(bool status);
     void changeTopicStatus(bool status);
