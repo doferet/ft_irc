@@ -36,22 +36,22 @@ send fd :4
 send return : 86
 buf du send : :localhost 001 asritz :Welcome to the Internet Relay Network asritz!asritz@localhost
 
-send fd :4
-send return : 68
-buf du send : :localhost 002 asritz :Your host is localhost, running version 1.0
-
 recv size : 16
 Le client du fd : 4 a envoyé : MODE asritz +i
  (taille : 16)
 send fd :4
-send return : 54
-buf du send : :localhost 003 asritz :This server was created today
+send return : 68
+buf du send : :localhost 002 asritz :Your host is localhost, running version 1.0
 
 on avait un  dans l'entree
 ligne a traiter pour client 4 : asritz +i
 CommandName recu : MODE
 Avant Execution de la commande : MODE
 Apres Execution de la commande : MODE
+send fd :4
+send return : 54
+buf du send : :localhost 003 asritz :This server was created today
+
 send fd :4
 send return : 45
 buf du send : :localhost 004 asritz localhost 1.0 o itkol
@@ -63,6 +63,18 @@ buf du send : :localhost 422 asritz :MOTD File is missing
 send fd :4
 send return : 45
 buf du send : :ircserv 403 asritz asritz :No such channel
+
+recv size : 16
+Le client du fd : 4 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
 
 recv size : 10
 Le client du fd : 4 a envoyé : NICK Ash
@@ -76,18 +88,6 @@ Apres Execution de la commande : NICK
 send fd :4
 send return : 36
 buf du send : :asritz!asritz@localhost NICK :Ash
-
-recv size : 16
-Le client du fd : 4 a envoyé : PING localhost
- (taille : 16)
-on avait un  dans l'entree
-ligne a traiter pour client 4 : localhost
-CommandName recu : PING
-Avant Execution de la commande : PING
-Apres Execution de la commande : PING
-send fd :4
-send return : 16
-buf du send : PONG localhost
 
 recv size : 16
 Le client du fd : 4 a envoyé : JOIN #Channel1
@@ -115,23 +115,6 @@ send fd :4
 send return : 40
 buf du send : : 366 Ash #Channel1 :End of NAMES list
 
-recv size : 25
-Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :dsds
- (taille : 25)
-on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel1 :dsds
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :dsds|
-dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |dsds|
-IsUserInChannel() id: 0
-IsUserInChannel() id de _clients: 0
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 41
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :dsds
-
 recv size : 16
 Le client du fd : 4 a envoyé : MODE #Channel1
  (taille : 16)
@@ -146,6 +129,19 @@ send fd :4
 send return : 47
 buf du send : :ircserv 472 Ash  :is unknown mode char to me
 
+recv size : 25
+Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :tets
+ (taille : 25)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1 :tets
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel1 :tets|
+dans PRIVMSG, destinataire: |#Channel1|
+dans PRIVMSG, message à envoyer: |tets|
+IsUserInChannel() id: 0
+IsUserInChannel() id de _clients: 0
+Apres Execution de la commande : PRIVMSG
 action sur read
 le fd du mouveau client est : 5
 liste des fds clients
@@ -252,163 +248,27 @@ send fd :5
 send return : 43
 buf du send : : 366 asritz #Channel1 :End of NAMES list
 
-recv size : 26
-Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :sefsd
- (taille : 26)
+recv size : 23
+Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :ds
+ (taille : 23)
 on avait un  dans l'entree
-ligne a traiter pour client 5 : #Channel1 :sefsd
+ligne a traiter pour client 5 : #Channel1 :ds
 CommandName recu : PRIVMSG
 Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :sefsd|
+dans PRIVMSG, ligne a traiter: |#Channel1 :ds|
 dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |sefsd|
+dans PRIVMSG, message à envoyer: |ds|
 IsUserInChannel() id: 1
 IsUserInChannel() id de _clients: 0
 IsUserInChannel() id de _clients: 1
 Apres Execution de la commande : PRIVMSG
 send fd :4
-send return : 45
-buf du send : :asritz!asritz@localhost PRIVMSG Ash :sefsd
-
-send fd :5
 send return : 48
-buf du send : :asritz!asritz@localhost PRIVMSG asritz :sefsd
-
-recv size : 23
-Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :ed
- (taille : 23)
-on avait un  dans l'entree
-ligne a traiter pour client 5 : #Channel1 :ed
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :ed|
-dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |ed|
-IsUserInChannel() id: 1
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 42
-buf du send : :asritz!asritz@localhost PRIVMSG Ash :ed
-
-send fd :5
-send return : 45
-buf du send : :asritz!asritz@localhost PRIVMSG asritz :ed
-
-recv size : 23
-Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :dq
- (taille : 23)
-on avait un  dans l'entree
-ligne a traiter pour client 5 : #Channel1 :dq
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :dq|
-dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |dq|
-IsUserInChannel() id: 1
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 42
-buf du send : :asritz!asritz@localhost PRIVMSG Ash :dq
-
-send fd :5
-send return : 45
-buf du send : :asritz!asritz@localhost PRIVMSG asritz :dq
-
-recv size : 23
-Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :ze
- (taille : 23)
-on avait un  dans l'entree
-ligne a traiter pour client 5 : #Channel1 :ze
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :ze|
-dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |ze|
-IsUserInChannel() id: 1
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 42
-buf du send : :asritz!asritz@localhost PRIVMSG Ash :ze
-
-send fd :5
-send return : 45
-buf du send : :asritz!asritz@localhost PRIVMSG asritz :ze
-
-recv size : 24
-Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :sdf
- (taille : 24)
-on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel1 :sdf
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :sdf|
-dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |sdf|
-IsUserInChannel() id: 0
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 40
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :sdf
-
-send fd :5
-send return : 43
-buf du send : :Ash!asritz@localhost PRIVMSG asritz :sdf
-
-recv size : 25
-Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :sdfs
- (taille : 25)
-on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel1 :sdfs
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :sdfs|
-dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |sdfs|
-IsUserInChannel() id: 0
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 41
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :sdfs
-
-send fd :5
-send return : 44
-buf du send : :Ash!asritz@localhost PRIVMSG asritz :sdfs
-
-recv size : 25
-Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :sfse
- (taille : 25)
-on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel1 :sfse
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :sfse|
-dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |sfse|
-IsUserInChannel() id: 0
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 41
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :sfse
+buf du send : :asritz!asritz@localhost PRIVMSG #Channel1 :ds
 
 recv size : 16
 Le client du fd : 5 a envoyé : MODE #Channel1
  (taille : 16)
-send fd :5
-send return : 44
-buf du send : :Ash!asritz@localhost PRIVMSG asritz :sfse
-
 on avait un  dans l'entree
 ligne a traiter pour client 5 : #Channel1
 CommandName recu : MODE
@@ -422,70 +282,58 @@ send return : 59
 buf du send : :ircserv 482 asritz Channel1 :You're not channel operator
 
 recv size : 23
-Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :se
+Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :df
  (taille : 23)
 on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel1 :se
+ligne a traiter pour client 5 : #Channel1 :df
 CommandName recu : PRIVMSG
 Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :se|
+dans PRIVMSG, ligne a traiter: |#Channel1 :df|
 dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |se|
-IsUserInChannel() id: 0
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 39
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :se
-
-send fd :5
-send return : 42
-buf du send : :Ash!asritz@localhost PRIVMSG asritz :se
-
-recv size : 23
-Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :ed
- (taille : 23)
-on avait un  dans l'entree
-ligne a traiter pour client 5 : #Channel1 :ed
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :ed|
-dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |ed|
+dans PRIVMSG, message à envoyer: |df|
 IsUserInChannel() id: 1
 IsUserInChannel() id de _clients: 0
 IsUserInChannel() id de _clients: 1
 Apres Execution de la commande : PRIVMSG
 send fd :4
-send return : 42
-buf du send : :asritz!asritz@localhost PRIVMSG Ash :ed
+send return : 48
+buf du send : :asritz!asritz@localhost PRIVMSG #Channel1 :df
 
-send fd :5
-send return : 45
-buf du send : :asritz!asritz@localhost PRIVMSG asritz :ed
-
-recv size : 25
-Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :zefd
- (taille : 25)
+recv size : 24
+Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :ppp
+ (taille : 24)
 on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel1 :zefd
+ligne a traiter pour client 4 : #Channel1 :ppp
 CommandName recu : PRIVMSG
 Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel1 :zefd|
+dans PRIVMSG, ligne a traiter: |#Channel1 :ppp|
 dans PRIVMSG, destinataire: |#Channel1|
-dans PRIVMSG, message à envoyer: |zefd|
+dans PRIVMSG, message à envoyer: |ppp|
 IsUserInChannel() id: 0
 IsUserInChannel() id de _clients: 0
 IsUserInChannel() id de _clients: 1
 Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 41
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :zefd
-
 send fd :5
-send return : 44
-buf du send : :Ash!asritz@localhost PRIVMSG asritz :zefd
+send return : 46
+buf du send : :Ash!asritz@localhost PRIVMSG #Channel1 :ppp
+
+recv size : 32
+Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :ppppppppppp
+ (taille : 32)
+on avait un  dans l'entree
+ligne a traiter pour client 4 : #Channel1 :ppppppppppp
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel1 :ppppppppppp|
+dans PRIVMSG, destinataire: |#Channel1|
+dans PRIVMSG, message à envoyer: |ppppppppppp|
+IsUserInChannel() id: 0
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+Apres Execution de la commande : PRIVMSG
+send fd :5
+send return : 54
+buf du send : :Ash!asritz@localhost PRIVMSG #Channel1 :ppppppppppp
 
 recv size : 16
 Le client du fd : 4 a envoyé : PING localhost
@@ -498,6 +346,42 @@ Apres Execution de la commande : PING
 send fd :4
 send return : 16
 buf du send : PONG localhost
+
+recv size : 30
+Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :sssssssss
+ (taille : 30)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1 :sssssssss
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel1 :sssssssss|
+dans PRIVMSG, destinataire: |#Channel1|
+dans PRIVMSG, message à envoyer: |sssssssss|
+IsUserInChannel() id: 1
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+Apres Execution de la commande : PRIVMSG
+send fd :4
+send return : 55
+buf du send : :asritz!asritz@localhost PRIVMSG #Channel1 :sssssssss
+
+recv size : 31
+Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :ssssssssss
+ (taille : 31)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1 :ssssssssss
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel1 :ssssssssss|
+dans PRIVMSG, destinataire: |#Channel1|
+dans PRIVMSG, message à envoyer: |ssssssssss|
+IsUserInChannel() id: 1
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+Apres Execution de la commande : PRIVMSG
+send fd :4
+send return : 56
+buf du send : :asritz!asritz@localhost PRIVMSG #Channel1 :ssssssssss
 
 recv size : 16
 Le client du fd : 5 a envoyé : PING localhost
@@ -538,6 +422,36 @@ send fd :4
 send return : 47
 buf du send : :ircserv 472 Ash  :is unknown mode char to me
 
+action sur read
+le fd du mouveau client est : 6
+liste des fds clients
+fd[0]=4
+fd[1]=5
+fd[2]=6
+recv size : 61
+Le client du fd : 6 a envoyé : PASS mdp
+NICK asritz
+USER asritz asritz localhost :Ashley
+ (taille : 61)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : mdp
+CommandName recu : PASS
+Avant Execution de la commande : PASS
+dans pass ligne a traiter : |mdp|
+dans pass le password attendu est : |mdp|
+super dans pass le mdp est correct
+Apres Execution de la commande : PASS
+on avait un  dans l'entree
+ligne a traiter pour client 6 : asritz
+CommandName recu : NICK
+Avant Execution de la commande : NICK
+Apres Execution de la commande : NICK
+on avait un  dans l'entree
+ligne a traiter pour client 6 : asritz asritz localhost :Ashley
+CommandName recu : USER
+Avant Execution de la commande : USER
+Apres Execution de la commande : USER
+recv size : 0
 recv size : 16
 Le client du fd : 5 a envoyé : PING localhost
  (taille : 16)
@@ -565,6 +479,19 @@ send fd :5
 send return : 59
 buf du send : :ircserv 482 asritz Channel1 :You're not channel operator
 
+recv size : 12
+Le client du fd : 5 a envoyé : NICK Pilou
+ (taille : 12)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : Pilou
+CommandName recu : NICK
+Avant Execution de la commande : NICK
+Nickname set to: Pilou
+Apres Execution de la commande : NICK
+send fd :5
+send return : 38
+buf du send : :asritz!asritz@localhost NICK :Pilou
+
 recv size : 16
 Le client du fd : 4 a envoyé : PING localhost
  (taille : 16)
@@ -576,6 +503,151 @@ Apres Execution de la commande : PING
 send fd :4
 send return : 16
 buf du send : PONG localhost
+
+action sur read
+le fd du mouveau client est : 6
+liste des fds clients
+fd[0]=4
+fd[1]=5
+fd[2]=6
+recv size : 61
+Le client du fd : 6 a envoyé : PASS mdp
+NICK asritz
+USER asritz asritz localhost :Ashley
+ (taille : 61)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : mdp
+CommandName recu : PASS
+Avant Execution de la commande : PASS
+dans pass ligne a traiter : |mdp|
+dans pass le password attendu est : |mdp|
+super dans pass le mdp est correct
+Apres Execution de la commande : PASS
+on avait un  dans l'entree
+ligne a traiter pour client 6 : asritz
+CommandName recu : NICK
+Avant Execution de la commande : NICK
+Nickname set to: asritz
+Apres Execution de la commande : NICK
+send fd :6
+send return : 27
+buf du send : :!@localhost NICK :asritz
+
+on avait un  dans l'entree
+ligne a traiter pour client 6 : asritz asritz localhost :Ashley
+CommandName recu : USER
+Avant Execution de la commande : USER
+Registration complete!
+Apres Execution de la commande : USER
+send fd :6
+send return : 86
+buf du send : :localhost 001 asritz :Welcome to the Internet Relay Network asritz!asritz@localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : MODE asritz +i
+ (taille : 16)
+send fd :6
+send return : 68
+buf du send : :localhost 002 asritz :Your host is localhost, running version 1.0
+
+on avait un  dans l'entree
+ligne a traiter pour client 6 : asritz +i
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+Apres Execution de la commande : MODE
+send fd :6
+send return : 54
+buf du send : :localhost 003 asritz :This server was created today
+
+send fd :6
+send return : 45
+buf du send : :localhost 004 asritz localhost 1.0 o itkol
+
+send fd :6
+send return : 45
+buf du send : :localhost 422 asritz :MOTD File is missing
+
+send fd :6
+send return : 45
+buf du send : :ircserv 403 asritz asritz :No such channel
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 17
+Le client du fd : 6 a envoyé : JOIN #Channel 1
+ (taille : 17)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel 1
+CommandName recu : JOIN
+Avant Execution de la commande : JOIN
+JOIN ligne a traiter : |#Channel 1|
+JOIN Nom du Channel : |Channel|
+JOIN pwd : |1|
+addClient key = |3|
+nickname = |asritz|
+Op ? = |1|
+Apres Execution de la commande : JOIN
+send fd :6
+send return : 40
+buf du send : :asritz!asritz@localhost JOIN #Channel
+
+send fd :6
+send return : 34
+buf du send : : 353 asritz = #Channel :@asritz
+
+send fd :6
+send return : 42
+buf du send : : 366 asritz #Channel :End of NAMES list
+
+recv size : 22
+Le client du fd : 6 a envoyé : PRIVMSG #Channel :df
+ (taille : 22)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel :df
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel :df|
+dans PRIVMSG, destinataire: |#Channel|
+dans PRIVMSG, message à envoyer: |df|
+IsUserInChannel() id: 3
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : PRIVMSG
+recv size : 21
+Le client du fd : 6 a envoyé : PRIVMSG #Channel :d
+ (taille : 21)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel :d
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel :d|
+dans PRIVMSG, destinataire: |#Channel|
+dans PRIVMSG, message à envoyer: |d|
+IsUserInChannel() id: 3
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : PRIVMSG
+recv size : 15
+Le client du fd : 6 a envoyé : MODE #Channel
+ (taille : 15)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel
+CommandName recu : MODE
+Avant Execution de la commande : MODE
+IsUserInChannel() id: 3
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : MODE
+send fd :6
+send return : 50
+buf du send : :ircserv 472 asritz  :is unknown mode char to me
 
 recv size : 16
 Le client du fd : 5 a envoyé : PING localhost
@@ -589,6 +661,53 @@ send fd :5
 send return : 16
 buf du send : PONG localhost
 
+recv size : 26
+Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :pdpdp
+ (taille : 26)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1 :pdpdp
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel1 :pdpdp|
+dans PRIVMSG, destinataire: |#Channel1|
+dans PRIVMSG, message à envoyer: |pdpdp|
+IsUserInChannel() id: 1
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+Apres Execution de la commande : PRIVMSG
+send fd :4
+send return : 50
+buf du send : :Pilou!asritz@localhost PRIVMSG #Channel1 :pdpdp
+
+recv size : 16
+Le client du fd : 6 a envoyé : JOIN #Channel1
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel1
+CommandName recu : JOIN
+Avant Execution de la commande : JOIN
+JOIN ligne a traiter : |#Channel1|
+JOIN Nom du Channel : |Channel1|
+JOIN pwd : ||
+IsUserInChannel() id: 3
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+addClient key = |3|
+nickname = |asritz|
+Op ? = |0|
+Apres Execution de la commande : JOIN
+send fd :6
+send return : 41
+buf du send : :asritz!asritz@localhost JOIN #Channel1
+
+send fd :6
+send return : 46
+buf du send : : 353 asritz = #Channel1 :@Ash Pilou asritz 
+
+send fd :6
+send return : 43
+buf du send : : 366 asritz #Channel1 :End of NAMES list
+
 recv size : 16
 Le client du fd : 4 a envoyé : PING localhost
  (taille : 16)
@@ -600,6 +719,29 @@ Apres Execution de la commande : PING
 send fd :4
 send return : 16
 buf du send : PONG localhost
+
+recv size : 27
+Le client du fd : 6 a envoyé : PRIVMSG #Channel1 :dsfdsf
+ (taille : 27)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel1 :dsfdsf
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel1 :dsfdsf|
+dans PRIVMSG, destinataire: |#Channel1|
+dans PRIVMSG, message à envoyer: |dsfdsf|
+IsUserInChannel() id: 3
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : PRIVMSG
+send fd :4
+send return : 52
+buf du send : :asritz!asritz@localhost PRIVMSG #Channel1 :dsfdsf
+
+send fd :5
+send return : 52
+buf du send : :asritz!asritz@localhost PRIVMSG #Channel1 :dsfdsf
 
 recv size : 15
 Le client du fd : 4 a envoyé : WHO #Channel1
@@ -608,93 +750,63 @@ on avait un  dans l'entree
 ligne a traiter pour client 4 : #Channel1
 CommandName recu : WHO
 unknow command : WHO
-recv size : 16
-Le client du fd : 5 a envoyé : JOIN #Channel2
- (taille : 16)
+recv size : 31
+Le client du fd : 4 a envoyé : PRIVMSG #Channel1 :dfdsfsdfds
+ (taille : 31)
 on avait un  dans l'entree
-ligne a traiter pour client 5 : #Channel2
-CommandName recu : JOIN
-Avant Execution de la commande : JOIN
-JOIN ligne a traiter : |#Channel2|
-JOIN Nom du Channel : |Channel2|
-JOIN pwd : ||
-addClient key = |1|
-nickname = |asritz|
-Op ? = |1|
-Apres Execution de la commande : JOIN
-send fd :5
-send return : 41
-buf du send : :asritz!asritz@localhost JOIN #Channel2
-
-send fd :5
-send return : 35
-buf du send : : 353 asritz = #Channel2 :@asritz
-
-send fd :5
-send return : 43
-buf du send : : 366 asritz #Channel2 :End of NAMES list
-
-recv size : 24
-Le client du fd : 5 a envoyé : PRIVMSG #Channel2 :sdf
- (taille : 24)
-on avait un  dans l'entree
-ligne a traiter pour client 5 : #Channel2 :sdf
+ligne a traiter pour client 4 : #Channel1 :dfdsfsdfds
 CommandName recu : PRIVMSG
 Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel2 :sdf|
-dans PRIVMSG, destinataire: |#Channel2|
-dans PRIVMSG, message à envoyer: |sdf|
-IsUserInChannel() id: 1
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :5
-send return : 46
-buf du send : :asritz!asritz@localhost PRIVMSG asritz :sdf
-
-recv size : 24
-Le client du fd : 5 a envoyé : PRIVMSG #Channel2 :dfs
- (taille : 24)
-on avait un  dans l'entree
-ligne a traiter pour client 5 : #Channel2 :dfs
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel2 :dfs|
-dans PRIVMSG, destinataire: |#Channel2|
-dans PRIVMSG, message à envoyer: |dfs|
-IsUserInChannel() id: 1
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :5
-send return : 46
-buf du send : :asritz!asritz@localhost PRIVMSG asritz :dfs
-
-recv size : 16
-Le client du fd : 4 a envoyé : JOIN #Channel2
- (taille : 16)
-on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel2
-CommandName recu : JOIN
-Avant Execution de la commande : JOIN
-JOIN ligne a traiter : |#Channel2|
-JOIN Nom du Channel : |Channel2|
-JOIN pwd : ||
+dans PRIVMSG, ligne a traiter: |#Channel1 :dfdsfsdfds|
+dans PRIVMSG, destinataire: |#Channel1|
+dans PRIVMSG, message à envoyer: |dfdsfsdfds|
 IsUserInChannel() id: 0
+IsUserInChannel() id de _clients: 0
 IsUserInChannel() id de _clients: 1
-addClient key = |0|
-nickname = |Ash|
-Op ? = |0|
-Apres Execution de la commande : JOIN
-send fd :4
-send return : 38
-buf du send : :Ash!asritz@localhost JOIN #Channel2
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : PRIVMSG
+send fd :5
+send return : 53
+buf du send : :Ash!asritz@localhost PRIVMSG #Channel1 :dfdsfsdfds
 
-send fd :4
-send return : 37
-buf du send : : 353 Ash = #Channel2 :Ash @asritz 
+send fd :6
+send return : 53
+buf du send : :Ash!asritz@localhost PRIVMSG #Channel1 :dfdsfsdfds
 
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 33
+Le client du fd : 5 a envoyé : PRIVMSG #Channel1 :pppppppppppp
+ (taille : 33)
+on avait un  dans l'entree
+ligne a traiter pour client 5 : #Channel1 :pppppppppppp
+CommandName recu : PRIVMSG
+Avant Execution de la commande : PRIVMSG
+dans PRIVMSG, ligne a traiter: |#Channel1 :pppppppppppp|
+dans PRIVMSG, destinataire: |#Channel1|
+dans PRIVMSG, message à envoyer: |pppppppppppp|
+IsUserInChannel() id: 1
+IsUserInChannel() id de _clients: 0
+IsUserInChannel() id de _clients: 1
+IsUserInChannel() id de _clients: 3
+Apres Execution de la commande : PRIVMSG
 send fd :4
-send return : 40
-buf du send : : 366 Ash #Channel2 :End of NAMES list
+send return : 57
+buf du send : :Pilou!asritz@localhost PRIVMSG #Channel1 :pppppppppppp
+
+send fd :6
+send return : 57
+buf du send : :Pilou!asritz@localhost PRIVMSG #Channel1 :pppppppppppp
 
 recv size : 16
 Le client du fd : 5 a envoyé : PING localhost
@@ -708,106 +820,50 @@ send fd :5
 send return : 16
 buf du send : PONG localhost
 
-recv size : 27
-Le client du fd : 4 a envoyé : PRIVMSG #Channel2 :dsfsdf
- (taille : 27)
+recv size : 15
+Le client du fd : 5 a envoyé : WHO #Channel1
+ (taille : 15)
 on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel2 :dsfsdf
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel2 :dsfsdf|
-dans PRIVMSG, destinataire: |#Channel2|
-dans PRIVMSG, message à envoyer: |dsfsdf|
-IsUserInChannel() id: 0
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 43
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :dsfsdf
-
-send fd :5
-send return : 46
-buf du send : :Ash!asritz@localhost PRIVMSG asritz :dsfsdf
-
-recv size : 26
-Le client du fd : 4 a envoyé : PRIVMSG #Channel2 :sdfsd
- (taille : 26)
-on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel2 :sdfsd
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel2 :sdfsd|
-dans PRIVMSG, destinataire: |#Channel2|
-dans PRIVMSG, message à envoyer: |sdfsd|
-IsUserInChannel() id: 0
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 42
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :sdfsd
-
-send fd :5
-send return : 45
-buf du send : :Ash!asritz@localhost PRIVMSG asritz :sdfsd
-
-recv size : 24
-Le client du fd : 4 a envoyé : PRIVMSG #Channel2 :fsd
- (taille : 24)
-on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel2 :fsd
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel2 :fsd|
-dans PRIVMSG, destinataire: |#Channel2|
-dans PRIVMSG, message à envoyer: |fsd|
-IsUserInChannel() id: 0
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 40
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :fsd
-
-send fd :5
-send return : 43
-buf du send : :Ash!asritz@localhost PRIVMSG asritz :fsd
-
+ligne a traiter pour client 5 : #Channel1
+CommandName recu : WHO
+unknow command : WHO
 recv size : 16
-Le client du fd : 5 a envoyé : MODE #Channel2
+Le client du fd : 4 a envoyé : PING localhost
  (taille : 16)
 on avait un  dans l'entree
-ligne a traiter pour client 5 : #Channel2
+ligne a traiter pour client 4 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :4
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : PING localhost
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : localhost
+CommandName recu : PING
+Avant Execution de la commande : PING
+Apres Execution de la commande : PING
+send fd :6
+send return : 16
+buf du send : PONG localhost
+
+recv size : 16
+Le client du fd : 6 a envoyé : MODE #Channel1
+ (taille : 16)
+on avait un  dans l'entree
+ligne a traiter pour client 6 : #Channel1
 CommandName recu : MODE
 Avant Execution de la commande : MODE
-IsUserInChannel() id: 1
+IsUserInChannel() id: 3
 IsUserInChannel() id de _clients: 0
 IsUserInChannel() id de _clients: 1
+IsUserInChannel() id de _clients: 3
 Apres Execution de la commande : MODE
-send fd :5
-send return : 50
-buf du send : :ircserv 472 asritz  :is unknown mode char to me
-
-recv size : 23
-Le client du fd : 4 a envoyé : PRIVMSG #Channel2 :ef
- (taille : 23)
-on avait un  dans l'entree
-ligne a traiter pour client 4 : #Channel2 :ef
-CommandName recu : PRIVMSG
-Avant Execution de la commande : PRIVMSG
-dans PRIVMSG, ligne a traiter: |#Channel2 :ef|
-dans PRIVMSG, destinataire: |#Channel2|
-dans PRIVMSG, message à envoyer: |ef|
-IsUserInChannel() id: 0
-IsUserInChannel() id de _clients: 0
-IsUserInChannel() id de _clients: 1
-Apres Execution de la commande : PRIVMSG
-send fd :4
-send return : 39
-buf du send : :Ash!asritz@localhost PRIVMSG Ash :ef
-
-send fd :5
-send return : 42
-buf du send : :Ash!asritz@localhost PRIVMSG asritz :ef
+send fd :6
+send return : 59
+buf du send : :ircserv 482 asritz Channel1 :You're not channel operator
 

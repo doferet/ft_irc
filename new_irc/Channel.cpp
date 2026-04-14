@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 17:25:04 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/14 18:04:39 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,11 +209,11 @@ void Channel::sendMsgChannelMember(Client &client, std::string msg, std::vector<
 	while (it != _clients.end())
 	{
 		Client *dest = findClientById(server_clients, it->first);
-		if (dest != NULL)
+		if (dest != NULL && dest != &client)
 		{
 			dest->addToOutput(":" + client.getNickname() +
 										  "!" + client.getUsername() +
-										  "@localhost PRIVMSG " + dest->getNickname() +
+										  "@localhost PRIVMSG #" + _name +
 										  " :" + msg + "\r\n");
 										  
 		}
