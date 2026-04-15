@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 16:07:53 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/15 17:02:09 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,30 +214,37 @@ void Server::run()
         // loop client pour faires les actions
         for (std::vector<Client>::iterator cIt = _clients.begin(); cIt != _clients.end(); ++cIt)
         {
-            std::string str = cIt->getInputLine(), commandName = extractCommandName(str);
-            if (str.size() > 0)
+            std::string str = cIt->getInputLine();
+            while (!str.empty())
             {
-                if (commandName == "CAP")
+                std::string commandName = extractCommandName(str);
+                if (str.size() > 0)
                 {
-                    cIt->addToOutput(":ircserver CAP * LS :\r\n");
-                    continue;
-                }
+                    if (commandName == "CAP")
+                    {
+                        cIt->addToOutput(":ircserver CAP * LS :\r\n");
+                        str = cIt->getInputLine();
+                        continue;
+                    }
 
-                // std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
-                ACommand *command = _factory.create(commandName);
-                std::cout << "CommandName recu : " << commandName << std::endl;
-                if (command != NULL)
-                {
-                    // std::cout << "Avant Execution de la commande : " << commandName << std::endl;
-                    command->execute(*cIt, str);
-                    // std::cout << "Apres Execution de la commande : " << commandName << std::endl;
+                 // std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
+                    ACommand *command = _factory.create(commandName);
+                    std::cout << "CommandName recu : " << commandName << std::endl;
+                    if (command != NULL)
+                    {
+                       // std::cout << "Avant Execution de la commande : " << commandName << std::endl;
+                       command->execute(*cIt, str);
+                        // std::cout << "Apres Execution de la commande : " << commandName << std::endl;
 
-                    delete command;
+                        delete command;
+                    }
+                    else
+                    {
+                        cIt->addToOutput(": 421 " + cIt->getUsername() + " " + commandName + " Unknown command(custom)\r\n");
+                    }
+                    str = cIt->getInputLine();
                 }
-                else
-                {
-                    cIt->addToOutput(": 421 " + cIt->getUsername() + " " + commandName + " Unknown command(custom)\r\n");
-                }
+  
             }
         }
     }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Pass.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 17:29:31 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 15:59:51 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/15 16:45:05 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void Pass::execute(Client &client, std::string &input)
     }
     if (_serverPassword == input)
     {
-        client.addToOutput(":ircserv 464 " + client.getNickname() + " :Password incorrect\r\n");
         client.setHasValidPassword(true);
         return;
     }

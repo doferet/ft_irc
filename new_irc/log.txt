@@ -1,9 +1,10 @@
-successfully connected to port : 8089
-CommandName recu : JOIN
+successfully connected to port : 8088
 CommandName recu : PASS
 CommandName recu : NICK
 CommandName recu : USER
 Registration complete!
+CommandName recu : MODE
+CommandName recu : JOIN
 CommandName recu : MODE
 CommandName recu : PING
 CommandName recu : PASS
@@ -11,3 +12,16 @@ CommandName recu : NICK
 CommandName recu : USER
 Registration complete!
 CommandName recu : JOIN
+CommandName recu : PASS
+CommandName recu : NICK
+CommandName recu : PING
+CommandName recu : MODE
+CommandName recu : USER
+Registration complete!
+CommandName recu : JOIN
+CommandName recu : QUIT
+CommandName recu : QUIT
+CommandName recu : PING
+CommandName recu : PART
+CommandName recu : PING
+CommandName recu : WHO

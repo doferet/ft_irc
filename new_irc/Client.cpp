@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:58 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 15:46:09 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/15 16:42:55 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,21 @@ void Client::addToOutput(std::string buffer)
 std::string Client::getInputLine()
 {
     std::string line;
-    std::vector<char>::iterator it = std::find(_input.begin(), _input.end(), '\n');
-    if (it == _input.end())
+    std::vector<char>::iterator it_nl;
+    std::vector<char>::iterator end_line;
+
+    it_nl = std::find(_input.begin(), _input.end(), '\n');
+    if (it_nl == _input.end())
         return "";
-    if (it != _input.begin() && *(it - 1) == '\r') {
-        //std::cout<<"on avait un \r dans l'entree"<<std::endl;
-        --it;
-    }
-    line.insert(line.end(), _input.begin(), it);
-    _input.erase(_input.begin(), it + 1);
+
+    end_line = it_nl;
+    if (end_line != _input.begin() && *(end_line - 1) == '\r')
+        --end_line;
+
+    line.insert(line.end(), _input.begin(), end_line);
+
+    _input.erase(_input.begin(), it_nl + 1);
+
     return line;    
 }
 
