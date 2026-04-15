@@ -3,25 +3,41 @@ CommandName recu : PASS
 CommandName recu : NICK
 CommandName recu : USER
 Registration complete!
-CommandName recu : MODE
 CommandName recu : JOIN
+CommandName recu : PASS
+CommandName recu : NICK
+CommandName recu : USER
+Registration complete!
 CommandName recu : MODE
 CommandName recu : PING
+CommandName recu : NICK
 CommandName recu : PASS
 CommandName recu : NICK
 CommandName recu : USER
 Registration complete!
 CommandName recu : JOIN
-CommandName recu : PASS
-CommandName recu : NICK
-CommandName recu : PING
 CommandName recu : MODE
-CommandName recu : USER
-Registration complete!
 CommandName recu : JOIN
-CommandName recu : QUIT
-CommandName recu : QUIT
-CommandName recu : PING
 CommandName recu : PART
 CommandName recu : PING
-CommandName recu : WHO
+CommandName recu : QUIT
+CommandName recu : QUIT
+CommandName recu : QUIT
+CommandName recu : PING
+CommandName recu : MODE
+CommandName recu : QUIT
+Client is deconnected
+CommandName recu : QUIT
+CommandName recu : PART
+CommandName recu : PASS
+CommandName recu : NICK
+CommandName recu : USER
+Registration complete!
+CommandName recu : MODE
+CommandName recu : JOIN
+CommandName recu : MODE
+CommandName recu : PART
+CommandName recu : PING
+CommandName recu : QUIT
+Client is deconnected
+Client is deconnected

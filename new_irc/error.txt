@@ -1,16 +1,27 @@
-==45254== Memcheck, a memory error detector
-==45254== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==45254== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==45254== Command: ./ircserv 8088 mdp
-==45254== 
-==45254== 
-==45254== FILE DESCRIPTORS: 3 open (3 std) at exit.
-==45254== 
-==45254== HEAP SUMMARY:
-==45254==     in use at exit: 0 bytes in 0 blocks
-==45254==   total heap usage: 446 allocs, 446 frees, 103,332 bytes allocated
-==45254== 
-==45254== All heap blocks were freed -- no leaks are possible
-==45254== 
-==45254== For lists of detected and suppressed errors, rerun with: -s
-==45254== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==45979== Memcheck, a memory error detector
+==45979== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==45979== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==45979== Command: ./ircserv 8088 mdp
+==45979== 
+==45979== 
+==45979== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==45979== 
+==45979== HEAP SUMMARY:
+==45979==     in use at exit: 184 bytes in 1 blocks
+==45979==   total heap usage: 615 allocs, 614 frees, 112,618 bytes allocated
+==45979== 
+==45979== 184 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==45979==    at 0x4849013: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==45979==    by 0x414EF1: Join::execute(Client&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) (Join.cpp:71)
+==45979==    by 0x405C99: Server::run() (Server.cpp:234)
+==45979==    by 0x403EAF: main (main.cpp:46)
+==45979== 
+==45979== LEAK SUMMARY:
+==45979==    definitely lost: 184 bytes in 1 blocks
+==45979==    indirectly lost: 0 bytes in 0 blocks
+==45979==      possibly lost: 0 bytes in 0 blocks
+==45979==    still reachable: 0 bytes in 0 blocks
+==45979==         suppressed: 0 bytes in 0 blocks
+==45979== 
+==45979== For lists of detected and suppressed errors, rerun with: -s
+==45979== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

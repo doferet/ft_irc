@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 17:02:09 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 17:13:58 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,8 +218,6 @@ void Server::run()
             while (!str.empty())
             {
                 std::string commandName = extractCommandName(str);
-                if (str.size() > 0)
-                {
                     if (commandName == "CAP")
                     {
                         cIt->addToOutput(":ircserver CAP * LS :\r\n");
@@ -227,14 +225,14 @@ void Server::run()
                         continue;
                     }
 
-                 // std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
+                  std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
                     ACommand *command = _factory.create(commandName);
                     std::cout << "CommandName recu : " << commandName << std::endl;
                     if (command != NULL)
                     {
-                       // std::cout << "Avant Execution de la commande : " << commandName << std::endl;
+                        std::cout << "Avant Execution de la commande : " << commandName << std::endl;
                        command->execute(*cIt, str);
-                        // std::cout << "Apres Execution de la commande : " << commandName << std::endl;
+                         std::cout << "Apres Execution de la commande : " << commandName << std::endl;
 
                         delete command;
                     }
@@ -243,7 +241,6 @@ void Server::run()
                         cIt->addToOutput(": 421 " + cIt->getUsername() + " " + commandName + " Unknown command(custom)\r\n");
                     }
                     str = cIt->getInputLine();
-                }
   
             }
         }
