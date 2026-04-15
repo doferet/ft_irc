@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:35 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/15 11:41:02 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 15:47:31 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,14 @@ std::string Join::getChannelMember(Channel *channel)
 
 void Join::execute(Client &client, std::string &input)
 {
-	std::cout << "JOIN ligne a traiter : |" << input << "|" << std::endl;
+	//std::cout << "JOIN ligne a traiter : |" << input << "|" << std::endl;
 	std::string pwd = getPwd(input);
 	std::string channelName = getChannelName(input);
-	std::cout << "JOIN Nom du Channel : |" << channelName << "|" << std::endl;
-	std::cout << "JOIN pwd : |" << pwd << "|" << std::endl;
+	// std::cout << "JOIN Nom du Channel : |" << channelName << "|" << std::endl;
+	// std::cout << "JOIN pwd : |" << pwd << "|" << std::endl;
 
 	if (!client.isAuthenticated())
 	{
-		std::cout << "client non authentifie, output : 451\n";
 		client.addToOutput(":ircserver 451 * :You have not registered\r\n");
 		return;
 	}
@@ -93,7 +92,6 @@ void Join::execute(Client &client, std::string &input)
 			}
 			else
 			{
-				// error channel plein
 				client.addToOutput(":ircserver 471 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+l)\r\n");
 				return;
 			}
@@ -113,7 +111,6 @@ void Join::execute(Client &client, std::string &input)
 			}
 			if (!verif_invit)
 			{
-				// error client non invité
 				client.addToOutput(":ircserver 473 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+i)\r\n");
 				return;
 			}
@@ -131,7 +128,6 @@ void Join::execute(Client &client, std::string &input)
 				verif_pwd = true;
 			else
 			{
-				// error mdp mauvais
 				client.addToOutput(":ircserver 475 " + client.getNickname() + " #" + found_channel->getName() + " :Cannot join channel (+k)\r\n");
 				return;
 			}

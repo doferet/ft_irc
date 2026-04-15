@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:58 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/13 23:02:09 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/15 15:46:09 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ std::string Client::getInputLine()
     if (it == _input.end())
         return "";
     if (it != _input.begin() && *(it - 1) == '\r') {
-        std::cout<<"on avait un \r dans l'entree"<<std::endl;
+        //std::cout<<"on avait un \r dans l'entree"<<std::endl;
         --it;
     }
     line.insert(line.end(), _input.begin(), it);

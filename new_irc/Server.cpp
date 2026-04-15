@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 11:43:43 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 16:07:53 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
+
+volatile sig_atomic_t g_stop = 0;
 
 Server::Server(int port, std::string &password) : _port(port), _password(password), _factory(_channels, _clients, _password)
 {
@@ -39,11 +41,7 @@ Server::Server(int port, std::string &password) : _port(port), _password(passwor
 
 Server::~Server()
 {
-    for (std::map<std::string, Channel*>::iterator it = _channels.begin(); it != _channels.end(); ++it)
-    {
-        delete it->second;
-    }
-    _channels.clear();
+    cleanServer();
 }
 
 int Server::getnfds()
@@ -105,23 +103,18 @@ int Server::clientSocketOperation(int index)
     if (FD_ISSET(fd, &_read))
     {
         ssize_t recvSize = recv(fd, buffer, BUFFER_SIZE, 0);
-        std::cout << "recv size : " << recvSize << std::endl;
+        // std::cout << "recv size : " << recvSize << std::endl;
         if (recvSize <= 0)
         {
-            // 0 cient s'est deco
-            //-1 erreur sur le socket
-            // dans tout les cas quitter les channels et degager le client
-
             removeClientInAllChannels(_clients[index]);
-
             _clients[index].setDisconnected(true);
-            // std::cout << "Client is deconnected\n";
+            std::cout << "Client is deconnected\n";
         }
         else
         {
-            std::cout << "Le client du fd : " << fd << " a envoyé : ";
-            std::cout.write(buffer, recvSize);
-            std::cout << " (taille : " << recvSize << ")\n";
+            // std::cout << "Le client du fd : " << fd << " a envoyé : ";
+            // std::cout.write(buffer, recvSize);
+            // std::cout << " (taille : " << recvSize << ")\n";
             _clients[index].addToInput(buffer, recvSize);
         }
     }
@@ -131,10 +124,11 @@ int Server::clientSocketOperation(int index)
 
         if (!buf.empty())
         {
-            ssize_t n = send(fd, buf.c_str(), buf.size(), 0);
-            std::cout << "send fd :" << fd << std::endl;
-            std::cout << "send return : " << n << std::endl;
-            std::cout << "buf du send : " << buf << std::endl;
+            //ssize_t n = 
+            send(fd, buf.c_str(), buf.size(), 0);
+            // std::cout << "send fd :" << fd << std::endl;
+            // std::cout << "send return : " << n << std::endl;
+            // std::cout << "buf du send : " << buf << std::endl;
         }
 
         // si le res de cIt->getOutput n'est pas vide l'ecrire avec send();
@@ -142,12 +136,14 @@ int Server::clientSocketOperation(int index)
     }
     if (FD_ISSET(fd, &_error))
     {
-        // degager le client du vector le destructeur fermera le fd le virer de tout ses channels
+        removeClientInAllChannels(_clients[index]);
         _clients[index].setDisconnected(true);
+        std::cout << "Client is deconnected\n";
     }
     if (_clients[index].getDisconnected() == true)
     {
         // verifier si le client est dans un channel avant de close le fd (en gros le QUIT)
+        removeClientInAllChannels(_clients[index]);
         close(fd);
         _clients.erase(_clients.begin() + index);
         return index - 1;
@@ -155,21 +151,32 @@ int Server::clientSocketOperation(int index)
     return index;
 }
 
-extern bool g_stop;
-bool g_stop = false;
-
 void handleSignal(int)
 {
-    g_stop = true;
+    g_stop = 1;
+}
+
+static void setupSignals()
+{
+    struct sigaction sa;
+
+    std::memset(&sa, 0, sizeof(sa));
+    sa.sa_handler = handleSignal;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+
+    sigaction(SIGINT, &sa, NULL);
+    sigaction(SIGTERM, &sa, NULL);
+    sigaction(SIGHUP, &sa, NULL);
 }
 
 void Server::run()
 {
     unsigned int len = sizeof(cli);
+
+    setupSignals();
     while (!g_stop)
     {
-        signal(SIGINT, handleSignal);
-        signal(SIGTERM, handleSignal);
         initSets();
         int nfds = getnfds();
         _timeout.tv_sec = 0;
@@ -181,18 +188,18 @@ void Server::run()
         if (FD_ISSET(_socket, &_read))
         {
             Client newClient(_id++);
-            std::cout << "action sur read" << std::endl;
-            int clientFd = accept(_socket, &cli, &len); // mettre une protection si accept fail
+            // std::cout << "action sur read" << std::endl;
+            int clientFd = accept(_socket, &cli, &len);
             if (clientFd != -1)
             {
                 _clients.push_back(newClient);
                 _clients.back().setFd(clientFd);
-                std::cout << "le fd du mouveau client est : " << clientFd << std::endl;
-                std::cout << "liste des fds clients" << std::endl;
-                for (size_t i = 0; i < _clients.size(); i++)
-                {
-                    std::cout << "fd[" << i << "]=" << _clients[i].getFd() << std::endl;
-                }
+                // std::cout << "le fd du mouveau client est : " << clientFd << std::endl;
+                // std::cout << "liste des fds clients" << std::endl;
+                // for (size_t i = 0; i < _clients.size(); i++)
+                // {
+                //     std::cout << "fd[" << i << "]=" << _clients[i].getFd() << std::endl;
+                // }
             }
         }
         if (FD_ISSET(_socket, &_error))
@@ -212,31 +219,29 @@ void Server::run()
             {
                 if (commandName == "CAP")
                 {
-                    cIt->addToOutput(":server CAP * LS :\r\n");
+                    cIt->addToOutput(":ircserver CAP * LS :\r\n");
                     continue;
                 }
 
-                std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
-                // il faut identifier la commande new ACommand avc le bon type et appeller command->execute
+                // std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
                 ACommand *command = _factory.create(commandName);
                 std::cout << "CommandName recu : " << commandName << std::endl;
                 if (command != NULL)
                 {
-                    std::cout << "Avant Execution de la commande : " << commandName << std::endl;
+                    // std::cout << "Avant Execution de la commande : " << commandName << std::endl;
                     command->execute(*cIt, str);
-                    std::cout << "Apres Execution de la commande : " << commandName << std::endl;
+                    // std::cout << "Apres Execution de la commande : " << commandName << std::endl;
 
                     delete command;
-                    // attention si quit l'utilisateur est retire de la liste des clients et l'iterateur invalide
                 }
                 else
                 {
-                    std::cout << "unknow command : " << commandName << std::endl;
-                    // envoyer un message bien formate au client pour lu dire que la commande n'est pas trouvee
+                    cIt->addToOutput(": 421 " + cIt->getUsername() + " " + commandName + " Unknown command(custom)\r\n");
                 }
             }
         }
     }
+    cleanServer();
 }
 
 std::string Server::extractCommandName(std::string &str)
@@ -253,4 +258,28 @@ std::string Server::extractCommandName(std::string &str)
     while (!str.empty() && std::isspace(str[0]))
         str.erase(0, 1);
     return command;
+}
+
+void Server::cleanServer()
+{
+    for (size_t i = 0; i < _clients.size(); ++i)
+    {
+        int fd = _clients[i].getFd();
+        if (fd >= 0)
+        {
+            close(fd);
+            _clients[i].setFd(-1);
+        }
+    }
+    _clients.clear();
+
+    if (_socket >= 0)
+    {
+        close(_socket);
+        _socket = -1;
+    }
+
+    for (std::map<std::string, Channel *>::iterator it = _channels.begin(); it != _channels.end(); ++it)
+        delete it->second;
+    _channels.clear();
 }

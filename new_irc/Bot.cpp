@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bot.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tronguye <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 13:45:23 by tronguye          #+#    #+#             */
-/*   Updated: 2026/04/12 13:45:24 by tronguye         ###   ########.fr       */
+/*   Updated: 2026/04/15 16:13:36 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int main(int ac, char **av) {
             
             // Feature: Help Menu
             if (incoming.find(":!help") != std::string::npos) {
-                sendIRC(sock, "PRIVMSG #general :Commands: !roll, !joke, !info, !ping");
+                sendIRC(sock, "PRIVMSG #general :Commands: !roll, !joke, !info");
             }
             
             // Feature: Dice Roller (!roll)

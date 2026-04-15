@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 18:04:12 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/14 20:57:32 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/15 16:03:26 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ std::string get_msg(std::string input)
 
 void Privmsg::execute(Client &client, std::string &input)
 {
-	std::cout << "dans PRIVMSG, ligne a traiter: |" << input << "|" << std::endl;
+	// std::cout << "dans PRIVMSG, ligne a traiter: |" << input << "|" << std::endl;
 
 	std::string dest = get_dest(input);
 	std::string msg = get_msg(input);
-	std::cout << "dans PRIVMSG, destinataire: |" << dest << "|" << std::endl;
-	std::cout << "dans PRIVMSG, message à envoyer: |" << msg << "|" << std::endl;
+	// std::cout << "dans PRIVMSG, destinataire: |" << dest << "|" << std::endl;
+	// std::cout << "dans PRIVMSG, message à envoyer: |" << msg << "|" << std::endl;
 
 	if (dest[0] == '#') // pour envoyer sur un channel
 	{
@@ -86,7 +86,6 @@ void Privmsg::execute(Client &client, std::string &input)
 	}
 	else if (dest.empty())
 	{
-		std::cout << "rentre dans la condition pour envoyer a un channel\n";
 		client.addToOutput("401 " + client.getNickname() + " :No such nick\r\n");
 		return;
 	}
@@ -104,10 +103,8 @@ void Privmsg::execute(Client &client, std::string &input)
 		}
 		if (!found_dest)
 		{
-			std::cout << "Rentre dans condition pour envoyer a qqn\n";
 			client.addToOutput("401 " + client.getNickname() + " :No such nick\r\n");
 			return;
 		}
 	}
-	// client.addToOutput(":server NOTICE * :PRIVMSG not implemented yet\r\n");
 }

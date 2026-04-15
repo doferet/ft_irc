@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:11 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 21:16:13 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/15 15:19:45 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include <vector>
 #include <string>
 #include <cctype>
+#include <cstring>
 #include <cstdlib>
 #include <errno.h>
 #include "Client.hpp"
@@ -57,6 +58,8 @@ private:
     void initSets();
     int clientSocketOperation(int index);
     std::string extractCommandName(std::string &str);
+    void cleanServer();
+
 
 public:
     Server(int port, std::string &password);

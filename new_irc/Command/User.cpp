@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 17:29:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 21:27:35 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 16:04:57 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 void User::execute(Client &client, std::string &input)
 {
-    // if (client.isAuthenticated()) return;
-
     std::stringstream ss(input);
     std::string user, host, server, real;
     ss >> user >> host >> server;
@@ -25,7 +23,7 @@ void User::execute(Client &client, std::string &input)
     if (user.empty() || real.empty())
         return;
 
-    client.setUsername(user); // Needed add
+    client.setUsername(user);
     client.setHasValidUsername(true);
 
     if (client.isAuthenticated())
@@ -39,9 +37,6 @@ void User::execute(Client &client, std::string &input)
 
         client.addToOutput(":localhost 004 " + client.getNickname() + " :localhost 1.0 o itkol\r\n");
 
-        // "005 " + std::string(client) + " " + std::string(modes) + " " + ":are supported by this server\r\n"
         client.addToOutput(":localhost 422 " + client.getNickname() + " :MOTD File is missing\r\n");
-        // client.addToOutput(":localhost 422 " + client.getNickname() + " :MOTD File is missing\r\n");
-        // client.addToOutput(":localhost 005 " + client.getNickname() + ":itkol are supported by this server\r\n");
     }
 }

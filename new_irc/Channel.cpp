@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 11:34:56 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 16:07:04 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,6 @@ void Channel::addClient(Client &client, bool op)
 
 	std::pair<int, bool> p(client.getId(), isOp);
 
-	std::cout << "addClient key = |" << client.getId() << "|" << std::endl;
-	std::cout << "nickname = |" << client.getNickname() << "|" << std::endl;
-	std::cout << "Op ? = |" << isOp << "|" << std::endl;
-
 	_clients.insert(p);
 }
 
@@ -150,14 +146,12 @@ void Channel::setOperator(int id)
 
 bool Channel::isUserInChannel(int id)
 {
-	//std::cout << "IsUserInChannel() id: " << id << std::endl;
-
-	std::map<int, bool>::iterator it = _clients.begin();
-	while (it != _clients.end())
-	{
-		//std::cout << "IsUserInChannel() id de _clients: " << it->first << std::endl;
-		it++;
-	}
+	// std::map<int, bool>::iterator it = _clients.begin();
+	// while (it != _clients.end())
+	// {
+	// 	std::cout << "IsUserInChannel() id de _clients: " << it->first << std::endl;
+	// 	it++;
+	// }
 
 	if (_clients.find(id) == _clients.end())
 		return false;
@@ -218,7 +212,7 @@ void Channel::sendMsgChannelMember(Client &client, std::string msg, std::vector<
 								  "@localhost QUIT :" +
 								  msg + "\r\n");
 		}
-		if (msg_type == 2)
+		if (msg_type == 2) // si Part/Topic
 			dest->addToOutput(msg);
 
 		it++;
@@ -236,6 +230,3 @@ void Channel::addInvit(int client_id)
 	std::pair<int, bool> p(client_id, false);
 	invited.push_back(client_id);
 }
-
-// faire un sendMsgChannel() qui enverra à tous ses membres le meme msg
-// si le dernier client quitte le channel, le channel se ferme

@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 17:29:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/13 19:04:57 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/15 16:02:29 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void Nick::execute(Client &client, std::string &input)
     {
         if (_cli[i].getNickname() == input)
         {
-            // Error: Nickname already in use (ERR_NICKNAMEINUSE 433)
+            client.addToOutput(":ircserv 433 " + client.getNickname() + " :Nickname is already in use\r\n");
             return;
         }
     }
@@ -30,6 +30,5 @@ void Nick::execute(Client &client, std::string &input)
     std::string old_nick = client.getNickname();
     client.setNickname(input);
     client.setHasValidNickname(true);
-    std::cout << "Nickname set to: " << input << std::endl;
     client.addToOutput(":" + old_nick + "!" + client.getUsername() + "@localhost NICK :" + client.getNickname() + "\r\n");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Pass.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 17:29:31 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/11 17:29:32 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 15:59:51 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,19 @@
 
 void Pass::execute(Client &client, std::string &input)
 {
-    std::cout<<"dans pass ligne a traiter : |"<< input<<"|"<<std::endl;
-    std::cout<<"dans pass le password attendu est : |"<< _serverPassword<<"|"<<std::endl;
-    //verifier la validite de la ligne 
-    std::string password;//set le password envoye en arg de la commande
+    // std::cout<<"dans pass ligne a traiter : |"<< input<<"|"<<std::endl;
+    // std::cout<<"dans pass le password attendu est : |"<< _serverPassword<<"|"<<std::endl;
+    std::string password;
     if (client.isAuthenticated())
     {
-        //set dant loutput du client un message already registred
-        // client.addToOutput("le message");
-        //        462     ERR_ALREADYREGISTRED
-                        // ":You may not reregister"
-        // :<servername> 462 <nick> :You may not reregister\r\n 
-        return ;
+        client.addToOutput(":ircserv 462 " + client.getNickname() + " :You may not register\r\n");
+        return;
     }
-    if (_serverPassword == input) //a voir si le password est autorise a contenir des expaces par ex
+    if (_serverPassword == input)
     {
-        std::cout<<"super dans pass le mdp est correct"<<std::endl;
+        client.addToOutput(":ircserv 464 " + client.getNickname() + " :Password incorrect\r\n");
         client.setHasValidPassword(true);
-        return ;
+        return;
     }
-    std::cout<<"pas super du tout dans pass le mdp est incorrect"<<std::endl;
-    //set dans l'output du clietn message d'erreur invalide password
+    client.addToOutput(":ircserv 464 " + client.getNickname() + " :Password incorrect\r\n");
 }
