@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 17:19:58 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 18:14:53 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ Server::Server(int port, std::string &password) : _port(port), _password(passwor
     servaddr.sin_port = htons(_port);
     if (bind(_socket, (const struct sockaddr *)&servaddr, sizeof(servaddr)))
     {
+        close(_socket);
         throw IRCServException(std::string("unable to bind socket ") + strerror(errno));
     }
     if (listen(_socket, 10))
     {
+        close(_socket);
         throw IRCServException(std::string("listen failure ") + strerror(errno));
     }
     std::cout << "successfully connected to port : " << _port << std::endl;
