@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 23:24:02 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/15 11:43:43 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,15 @@ Server::Server(int port, std::string &password) : _port(port), _password(passwor
     _id = 0;
 }
 
-// Server::Server(const Server &copy)
-// {
-// }
-// Server &Server::operator=(const Server &copy)
-// {
-//     return *this;
-// }
-
 Server::~Server()
 {
+    for (std::map<std::string, Channel*>::iterator it = _channels.begin(); it != _channels.end(); ++it)
+    {
+        delete it->second;
+    }
+    _channels.clear();
 }
+
 int Server::getnfds()
 {
     int nfds = _socket;
@@ -103,7 +101,7 @@ int Server::clientSocketOperation(int index)
 {
     int fd = _clients[index].getFd();
     char buffer[BUFFER_SIZE];
-    // std::cout<<"loop socket client"<<std::endl;
+
     if (FD_ISSET(fd, &_read))
     {
         ssize_t recvSize = recv(fd, buffer, BUFFER_SIZE, 0);
@@ -159,10 +157,12 @@ int Server::clientSocketOperation(int index)
 
 extern bool g_stop;
 bool g_stop = false;
+
 void handleSignal(int)
 {
     g_stop = true;
 }
+
 void Server::run()
 {
     unsigned int len = sizeof(cli);
@@ -253,5 +253,4 @@ std::string Server::extractCommandName(std::string &str)
     while (!str.empty() && std::isspace(str[0]))
         str.erase(0, 1);
     return command;
-    // extraire le 1er mot trim les espaces enlever le nom de la cmd de la str puis return ce mot
 }

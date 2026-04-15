@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 23:37:03 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 11:34:56 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ Channel::Channel(const std::string &name)
 	_invitStatus = false;
 	_topicStatus = false;
 }
+
 
 std::string Channel::getName()
 {
@@ -217,6 +218,8 @@ void Channel::sendMsgChannelMember(Client &client, std::string msg, std::vector<
 								  "@localhost QUIT :" +
 								  msg + "\r\n");
 		}
+		if (msg_type == 2)
+			dest->addToOutput(msg);
 
 		it++;
 	}
@@ -231,7 +234,7 @@ bool Channel::isEmpty()
 void Channel::addInvit(int client_id)
 {
 	std::pair<int, bool> p(client_id, false);
-	_clients.insert(p);
+	invited.push_back(client_id);
 }
 
 // faire un sendMsgChannel() qui enverra à tous ses membres le meme msg

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:35 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/14 21:20:14 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/15 11:41:02 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void Join::execute(Client &client, std::string &input)
 		newChannel->addClient(client, true);
 		std::pair<std::string, Channel *> p(channelName, newChannel);
 		_channels.insert(p);
-		client.addToOutput(":ircserver " + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + channelName + "\r\n" + ":ircserver 353 " + client.getNickname() + " = #" + channelName + " :@" + client.getNickname() + "\r\n" + ":ircserver 366 " + client.getNickname() + " #" + channelName + " :End of NAMES list\r\n");
+		client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + channelName + "\r\n" + ":ircserver 353 " + client.getNickname() + " = #" + channelName + " :@" + client.getNickname() + "\r\n" + ":ircserver 366 " + client.getNickname() + " #" + channelName + " :End of NAMES list\r\n");
 	}
 	else // si il existe
 	{
@@ -144,6 +144,7 @@ void Join::execute(Client &client, std::string &input)
 			client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + found_channel->getName() + "\r\n" + ":ircserver 353 " + client.getNickname() + " = #" + found_channel->getName() + " :" + getChannelMember(found_channel) + "\r\n" + ":ircserver 366 " + client.getNickname() + " #" + found_channel->getName() + " :End of NAMES list\r\n");
 		}
 	}
+
 }
 
 /*

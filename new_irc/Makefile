@@ -6,7 +6,7 @@
 #    By: doferet <doferet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 13:45:32 by tronguye          #+#    #+#              #
-#    Updated: 2026/04/14 21:13:53 by doferet          ###   ########.fr        #
+#    Updated: 2026/04/15 10:15:02 by doferet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
 BOT_OBJ = $(BOT_SRC:%.cpp=$(OBJ_DIR)/%.o)
 
-all: $(NAME)
+all: $(NAME) $(BOT_NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)

@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:22:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 23:39:02 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/14 23:40:49 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ public:
     void changeInvitStatus(bool status);
     void changeTopicStatus(bool status);
 
-    void sendMsgChannelMember(Client &client, std::string msg, std::vector<Client> &server_clients);
+    void sendMsgChannelMember(Client &client, std::string msg, std::vector<Client> &server_clients, int type);
     void addInvit(int client_id);
     
 private:
