@@ -7,7 +7,7 @@ ligne a traiter pour client 4 : A
 CommandName recu : NICK
 Avant Execution de la commande : NICK
 Apres Execution de la commande : NICK
-ligne a traiter pour client 4 : A A A A 
+ligne a traiter pour client 4 : A A A A
 CommandName recu : USER
 Avant Execution de la commande : USER
 Registration complete!
@@ -19,3 +19,4 @@ Apres Execution de la commande : JOIN
 ligne a traiter pour client 4 : 
 CommandName recu : QUIT
 Avant Execution de la commande : QUIT
+Apres Execution de la commande : QUIT
