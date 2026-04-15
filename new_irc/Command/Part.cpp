@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 20:35:53 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 11:09:36 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 17:30:13 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ void Part::execute(Client &client, std::string &input)
     channel->second->sendMsgChannelMember(client, partMsg, _cli, 2);
     channel->second->removeClient(client.getId());
     if (channel->second->isEmpty())
+    {
+        delete channel->second;
         _channels.erase(channel);
+    }    
 }

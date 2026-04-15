@@ -1,43 +1,21 @@
-successfully connected to port : 8088
+successfully connected to port : 8080
+ligne a traiter pour client 4 : mdp
 CommandName recu : PASS
+Avant Execution de la commande : PASS
+Apres Execution de la commande : PASS
+ligne a traiter pour client 4 : A
 CommandName recu : NICK
+Avant Execution de la commande : NICK
+Apres Execution de la commande : NICK
+ligne a traiter pour client 4 : A A A A 
 CommandName recu : USER
+Avant Execution de la commande : USER
 Registration complete!
+Apres Execution de la commande : USER
+ligne a traiter pour client 4 : #Chan
 CommandName recu : JOIN
-CommandName recu : PASS
-CommandName recu : NICK
-CommandName recu : USER
-Registration complete!
-CommandName recu : MODE
-CommandName recu : PING
-CommandName recu : NICK
-CommandName recu : PASS
-CommandName recu : NICK
-CommandName recu : USER
-Registration complete!
-CommandName recu : JOIN
-CommandName recu : MODE
-CommandName recu : JOIN
-CommandName recu : PART
-CommandName recu : PING
+Avant Execution de la commande : JOIN
+Apres Execution de la commande : JOIN
+ligne a traiter pour client 4 : 
 CommandName recu : QUIT
-CommandName recu : QUIT
-CommandName recu : QUIT
-CommandName recu : PING
-CommandName recu : MODE
-CommandName recu : QUIT
-Client is deconnected
-CommandName recu : QUIT
-CommandName recu : PART
-CommandName recu : PASS
-CommandName recu : NICK
-CommandName recu : USER
-Registration complete!
-CommandName recu : MODE
-CommandName recu : JOIN
-CommandName recu : MODE
-CommandName recu : PART
-CommandName recu : PING
-CommandName recu : QUIT
-Client is deconnected
-Client is deconnected
+Avant Execution de la commande : QUIT

@@ -6,7 +6,7 @@
 /*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 17:13:58 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/15 17:19:58 by doferet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,8 +231,8 @@ void Server::run()
                     if (command != NULL)
                     {
                         std::cout << "Avant Execution de la commande : " << commandName << std::endl;
-                       command->execute(*cIt, str);
-                         std::cout << "Apres Execution de la commande : " << commandName << std::endl;
+                            command->execute(*cIt, str);
+                        std::cout << "Apres Execution de la commande : " << commandName << std::endl;
 
                         delete command;
                     }
