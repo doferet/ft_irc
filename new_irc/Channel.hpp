@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Channel.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:22:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 23:40:49 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/16 17:01:31 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,32 +49,29 @@ public:
 
     bool isEmpty();
     bool isUserInChannel(int id);
-    // bool isUserInChannel(Client &client);
     bool isInviteOnly();
     bool isUserOperator(int id);
 
     void removeLimit();
-    void removeOperator(int id);    
+    void removeOperator(int id);
 
     void changeInvitStatus(bool status);
     void changeTopicStatus(bool status);
 
     void sendMsgChannelMember(Client &client, std::string msg, std::vector<Client> &server_clients, int type);
     void addInvit(int client_id);
-    
+
 private:
     std::string _name;
     std::string _topic;
     std::string _pwdChannel; // -k
     bool _isLimited;         // -l
-    int _limitNbr;           // pour -l
-    bool _invitStatus;       // pour -i
-    bool _topicStatus;
+    int _limitNbr;           // -l
+    bool _invitStatus;       // -i
+    bool _topicStatus;       // -t
 
-    std::map<int, bool> _clients; // id du client en cle , le role de ce client dnas la pair
-    std::vector<int> invited;     // vers l'id des client invites pour conserve la bonne invit en cas de changeent de nickname
-
-    // fct pour envoyer message a tout les clients sauf l'emetteur privmsg (client.addToOutput)
+    std::map<int, bool> _clients; // id en cle , role (Op)
+    std::vector<int> invited;     // id des client invites
 };
 
 #endif

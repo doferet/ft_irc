@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 17:29:45 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 16:04:57 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/16 17:00:48 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void User::execute(Client &client, std::string &input)
     if (client.isAuthenticated())
     {
         std::cout << "Registration complete!" << std::endl;
-        client.addToOutput(":localhost 001 " + client.getNickname() + " :Welcome to the Internet Relay Network " + client.getNickname() + "!" + client.getUsername() + "@localhost\r\n");
+        client.addToOutput(":ircserv 001 " + client.getNickname() + " :Welcome to the Internet Relay Network " + client.getNickname() + "!" + client.getUsername() + "@localhost\r\n");
 
-        client.addToOutput(":localhost 002 " + client.getNickname() + " :Your host is localhost, running version 1.0\r\n");
+        client.addToOutput(":ircserv 002 " + client.getNickname() + " :Your host is ircserv, running version 1.0\r\n");
 
-        client.addToOutput(":localhost 003 " + client.getNickname() + " :This server was created today\r\n");
+        client.addToOutput(":ircserv 003 " + client.getNickname() + " :This server was created today\r\n");
 
-        client.addToOutput(":localhost 004 " + client.getNickname() + " :localhost 1.0 o itkol\r\n");
+        client.addToOutput(":ircserv 004 " + client.getNickname() + " :ircserv 1.0 o itkol\r\n");
 
-        client.addToOutput(":localhost 422 " + client.getNickname() + " :MOTD File is missing\r\n");
+        client.addToOutput(":ircserv 422 " + client.getNickname() + " :MOTD File is missing\r\n");
     }
 }

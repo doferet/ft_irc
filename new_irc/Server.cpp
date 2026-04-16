@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:23 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 18:14:53 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/16 16:45:30 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ Server::Server(int port, std::string &password) : _port(port), _password(passwor
 
 Server::~Server()
 {
+    std::cout << "Cleaning server..." << std::endl;
     cleanServer();
+    std::cout << "Server cleaned" << std::endl;
 }
 
 int Server::getnfds()
@@ -83,7 +85,7 @@ void Server::removeClientInAllChannels(Client client)
         std::map<std::string, Channel *>::iterator next = chanit;
         next++;
 
-        if (chanit->second && chanit->second->isUserInChannel(id)) // si il y a un channel et que le client est dedans
+        if (chanit->second && chanit->second->isUserInChannel(id))
         {
             chanit->second->sendMsgChannelMember(client, "Connection closed", _clients, 1);
             chanit->second->removeClient(id);
@@ -114,9 +116,9 @@ int Server::clientSocketOperation(int index)
         }
         else
         {
-            // std::cout << "Le client du fd : " << fd << " a envoyé : ";
+            // std::cout << "Le client fd[" << fd << "] a envoyé : ";
             // std::cout.write(buffer, recvSize);
-            // std::cout << " (taille : " << recvSize << ")\n";
+            // std::cout << "(taille : " << recvSize << ")\n";
             _clients[index].addToInput(buffer, recvSize);
         }
     }
@@ -126,25 +128,20 @@ int Server::clientSocketOperation(int index)
 
         if (!buf.empty())
         {
-            //ssize_t n = 
+            // ssize_t n =
             send(fd, buf.c_str(), buf.size(), 0);
-            // std::cout << "send fd :" << fd << std::endl;
+            // std::cout << "send fd [" << fd << "]" << std::endl;
             // std::cout << "send return : " << n << std::endl;
             // std::cout << "buf du send : " << buf << std::endl;
         }
-
-        // si le res de cIt->getOutput n'est pas vide l'ecrire avec send();
-        //  send(fd, "coucou le client ici le serveru", strlen("coucou le client ici le serveru"), 0);
     }
     if (FD_ISSET(fd, &_error))
     {
-        removeClientInAllChannels(_clients[index]);
         _clients[index].setDisconnected(true);
         std::cout << "Client is deconnected\n";
     }
     if (_clients[index].getDisconnected() == true)
     {
-        // verifier si le client est dans un channel avant de close le fd (en gros le QUIT)
         removeClientInAllChannels(_clients[index]);
         close(fd);
         _clients.erase(_clients.begin() + index);
@@ -190,14 +187,13 @@ void Server::run()
         if (FD_ISSET(_socket, &_read))
         {
             Client newClient(_id++);
-            // std::cout << "action sur read" << std::endl;
             int clientFd = accept(_socket, &cli, &len);
             if (clientFd != -1)
             {
                 _clients.push_back(newClient);
                 _clients.back().setFd(clientFd);
                 // std::cout << "le fd du mouveau client est : " << clientFd << std::endl;
-                // std::cout << "liste des fds clients" << std::endl;
+                // std::cout << "liste des fds clients :" << std::endl;
                 // for (size_t i = 0; i < _clients.size(); i++)
                 // {
                 //     std::cout << "fd[" << i << "]=" << _clients[i].getFd() << std::endl;
@@ -208,42 +204,35 @@ void Server::run()
         {
             throw IRCServException(std::string("unexpected error on socket fd : ") + strerror(errno));
         }
-        // loop sur les clients pour IO operation
-        for (size_t i = 0; i < _clients.size(); i++)
+        for (size_t i = 0; i < _clients.size(); i++) // loop sur les clients pour IO operation
         {
             i = clientSocketOperation(i);
         }
-        // loop client pour faires les actions
-        for (std::vector<Client>::iterator cIt = _clients.begin(); cIt != _clients.end(); ++cIt)
+        for (std::vector<Client>::iterator cIt = _clients.begin(); cIt != _clients.end(); ++cIt) // loop client pour faires les actions
         {
             std::string str = cIt->getInputLine();
             while (!str.empty())
             {
                 std::string commandName = extractCommandName(str);
-                    if (commandName == "CAP")
-                    {
-                        cIt->addToOutput(":ircserver CAP * LS :\r\n");
-                        str = cIt->getInputLine();
-                        continue;
-                    }
-
-                  std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
-                    ACommand *command = _factory.create(commandName);
-                    std::cout << "CommandName recu : " << commandName << std::endl;
-                    if (command != NULL)
-                    {
-                        std::cout << "Avant Execution de la commande : " << commandName << std::endl;
-                            command->execute(*cIt, str);
-                        std::cout << "Apres Execution de la commande : " << commandName << std::endl;
-
-                        delete command;
-                    }
-                    else
-                    {
-                        cIt->addToOutput(": 421 " + cIt->getUsername() + " " + commandName + " Unknown command(custom)\r\n");
-                    }
+                if (commandName == "CAP")
+                {
+                    cIt->addToOutput(":ircserver CAP * LS :\r\n");
                     str = cIt->getInputLine();
-  
+                    continue;
+                }
+                // std::cout << "ligne a traiter pour client " << cIt->getFd() << " : " << str << std::endl;
+                ACommand *command = _factory.create(commandName);
+                std::cout << "Command from Client : " << commandName << std::endl;
+                if (command != NULL)
+                {
+                    command->execute(*cIt, str);
+                    delete command;
+                }
+                else
+                {
+                    cIt->addToOutput(":ircserv 421 " + cIt->getUsername() + " " + commandName + " Unknown command\r\n");
+                }
+                str = cIt->getInputLine();
             }
         }
     }
@@ -279,13 +268,13 @@ void Server::cleanServer()
     }
     _clients.clear();
 
+    for (std::map<std::string, Channel *>::iterator it = _channels.begin(); it != _channels.end(); ++it)
+        delete it->second;
+    _channels.clear();
+
     if (_socket >= 0)
     {
         close(_socket);
         _socket = -1;
     }
-
-    for (std::map<std::string, Channel *>::iterator it = _channels.begin(); it != _channels.end(); ++it)
-        delete it->second;
-    _channels.clear();
 }

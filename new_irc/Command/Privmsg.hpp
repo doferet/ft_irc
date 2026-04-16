@@ -6,9 +6,12 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 18:04:27 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/11 19:05:35 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/16 16:56:13 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PRIVMSG_HPP
+#define PRIVMSG_HPP
 
 #include "ACommand.hpp"
 
@@ -28,3 +31,5 @@ public:
 
 	virtual void execute(Client &client, std::string &input);
 };
+
+#endif

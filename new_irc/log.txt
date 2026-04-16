@@ -1,22 +1,270 @@
-successfully connected to port : 8080
-ligne a traiter pour client 4 : mdp
-CommandName recu : PASS
-Avant Execution de la commande : PASS
-Apres Execution de la commande : PASS
-ligne a traiter pour client 4 : A
-CommandName recu : NICK
-Avant Execution de la commande : NICK
-Apres Execution de la commande : NICK
-ligne a traiter pour client 4 : A A A A
-CommandName recu : USER
-Avant Execution de la commande : USER
+successfully connected to port : 8089
+Command from Client : PASS
+Command from Client : PASS
+Command from Client : PASS
+Command from Client : PASS
+Command from Client : PASS
+Command from Client : PA
+Command from Client : PASSE
+Command from Client : PASS
+Command from Client : PASS
+Command from Client : PASS
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : NICK
+Command from Client : USER
+Command from Client : USER
+Command from Client : NICK
+Command from Client : USER
+Command from Client : USER
 Registration complete!
-Apres Execution de la commande : USER
-ligne a traiter pour client 4 : #Chan
-CommandName recu : JOIN
-Avant Execution de la commande : JOIN
-Apres Execution de la commande : JOIN
-ligne a traiter pour client 4 : 
-CommandName recu : QUIT
-Avant Execution de la commande : QUIT
-Apres Execution de la commande : QUIT
+Command from Client : NICK
+Command from Client : NICK
+Command from Client : USER
+Command from Client : USER
+Registration complete!
+Command from Client : PASS
+Command from Client : PASS
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Command from Client : USER
+Registration complete!
+Command from Client : NICK
+Command from Client : USER
+Registration complete!
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : JOIN
+Command from Client : JOIN
+Command from Client : PRIVMSG
+Command from Client : JOIN
+Command from Client : JOIN
+Command from Client : JOIN
+Command from Client : PART
+Command from Client : PART
+Command from Client : JOIN
+Command from Client : MODE
+Command from Client : MODE
+Command from Client : MODE
+Command from Client : MODE
+Command from Client : MODE
+Command from Client : JOIN
+Command from Client : WHOAMI
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Registration complete!
+Command from Client : MODE
+Command from Client : PING
+Command from Client : NICK
+Command from Client : JOIN
+Command from Client : MODE
+Command from Client : PING
+Command from Client : INVITE
+Command from Client : JOIN
+Command from Client : JOIN
+Command from Client : PING
+Command from Client : MODE
+Command from Client : INVITE
+Command from Client : INVITE
+Command from Client : JOIN
+Command from Client : PING
+Command from Client : MODE
+Command from Client : PING
+Command from Client : WHO
+Command from Client : MODE
+Command from Client : JOIN
+Command from Client : TOPIC
+Command from Client : JOIN
+Command from Client : PING
+Command from Client : TOPIC
+Command from Client : TOPIC
+Command from Client : PART
+Command from Client : PING
+Command from Client : MODE
+Command from Client : MODE
+Command from Client : JOIN
+Command from Client : JOIN
+Command from Client : QUIT
+Command from Client : PING
+Command from Client : PART
+Command from Client : PRIVMSG
+Command from Client : PART
+Command from Client : PING
+Command from Client : WHO
+Command from Client : MODE
+Command from Client : JOIN
+Command from Client : JOIN
+Command from Client : PRIVMSG
+Command from Client : MODE
+Command from Client : MODE
+Command from Client : PART
+Command from Client : JOIN
+Command from Client : PING
+Command from Client : MODE
+Command from Client : JOIN
+Command from Client : JOIN
+Command from Client : PING
+Command from Client : WHO
+Command from Client : KICK
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : JOIN
+Command from Client : JOIN
+Command from Client : PING
+Command from Client : MODE
+Command from Client : QUIT
+Command from Client : PING
+Command from Client : PING
+Command from Client : MODE
+Command from Client : PING
+Command from Client : PING
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : DCC
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Registration complete!
+Command from Client : MODE
+Command from Client : PING
+Command from Client : NICK
+Command from Client : PING
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : PING
+Client is deconnected
+Client is deconnected
+Command from Client : PING
+Command from Client : PING
+Command from Client : QUIT
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Registration complete!
+Command from Client : MODE
+Command from Client : PING
+Command from Client : NICK
+Command from Client : PING
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Command from Client : NICK
+Command from Client : QUIT
+Client is deconnected
+Client is deconnected
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Registration complete!
+Command from Client : MODE
+Command from Client : PING
+Command from Client : PING
+Command from Client : NICK
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : PING
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PING
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : PING
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Registration complete!
+Command from Client : JOIN
+Command from Client : JOIN
+Command from Client : MODE
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : JOIN
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : QUIT
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : MODE
+Command from Client : PART
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Registration complete!
+Command from Client : MODE
+Command from Client : NICK
+Command from Client : PING
+Command from Client : JOIN
+Command from Client : MODE
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Client is deconnected
+Command from Client : PING
+Command from Client : PASS
+Command from Client : NICK
+Client is deconnected
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : NICK
+Command from Client : PING
+Command from Client : MODE
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Registration complete!
+Command from Client : JOIN
+Command from Client : PASS
+Command from Client : NICK
+Command from Client : USER
+Registration complete!
+Command from Client : MODE
+Command from Client : PING
+Command from Client : NICK
+Command from Client : JOIN
+Command from Client : MODE
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PRIVMSG
+Command from Client : PING
+Command from Client : PING
+Command from Client : MODE
+Cleaning server...
+Server cleaned

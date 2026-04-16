@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: doferet <doferet@student.42.fr>            +#+  +:+       +#+         #
+#    By: asritz <asritz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/12 13:45:32 by tronguye          #+#    #+#              #
-#    Updated: 2026/04/15 10:15:02 by doferet          ###   ########.fr        #
+#    Updated: 2026/04/16 17:06:22 by asritz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ircserv
 BOT_NAME = ircbot
 
-CC = clang++
+CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
@@ -34,7 +34,7 @@ SRC = main.cpp \
 	Command/Quit.cpp \
 	Command/Topic.cpp \
 	Command/Kick.cpp \
-	Command/Invite.cpp \
+	Command/Invite.cpp 
 
 BOT_SRC = Bot.cpp \
 

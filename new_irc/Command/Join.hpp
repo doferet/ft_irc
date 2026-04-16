@@ -6,9 +6,12 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:25 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/14 17:28:07 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/16 16:54:57 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef JOIN_HPP
+#define JOIN_HPP
 
 #include "ACommand.hpp"
 
@@ -30,3 +33,5 @@ public:
 	std::string getChannelMember(Channel *channel);
 	virtual void execute(Client &client, std::string &input);
 };
+
+#endif

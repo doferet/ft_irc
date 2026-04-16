@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 14:14:35 by asritz            #+#    #+#             */
-/*   Updated: 2026/04/15 15:47:31 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/16 16:46:54 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ std::string Join::getChannelMember(Channel *channel)
 
 void Join::execute(Client &client, std::string &input)
 {
-	//std::cout << "JOIN ligne a traiter : |" << input << "|" << std::endl;
 	std::string pwd = getPwd(input);
 	std::string channelName = getChannelName(input);
-	// std::cout << "JOIN Nom du Channel : |" << channelName << "|" << std::endl;
-	// std::cout << "JOIN pwd : |" << pwd << "|" << std::endl;
+
 
 	if (!client.isAuthenticated())
 	{
@@ -66,7 +64,7 @@ void Join::execute(Client &client, std::string &input)
 	bool verif_invit = false;
 	bool verif_pwd = false;
 
-	if (it_found_channel == _channels.end()) // si le channel existe pas
+	if (it_found_channel == _channels.end())
 	{
 		Channel *newChannel = new Channel(channelName);
 		newChannel->addClient(client, true);
@@ -74,16 +72,16 @@ void Join::execute(Client &client, std::string &input)
 		_channels.insert(p);
 		client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + channelName + "\r\n" + ":ircserver 353 " + client.getNickname() + " = #" + channelName + " :@" + client.getNickname() + "\r\n" + ":ircserver 366 " + client.getNickname() + " #" + channelName + " :End of NAMES list\r\n");
 	}
-	else // si il existe
+	else
 	{
 		Channel *found_channel = it_found_channel->second;
-		if (found_channel->isUserInChannel(client.getId())) // si le client est déjà dans le channel
+		if (found_channel->isUserInChannel(client.getId()))
 		{
 			client.addToOutput(":ircserver 443 " + client.getNickname() + " #" + found_channel->getName() + " :is already on channel\r\n");
 			return;
 		}
 		
-		if (found_channel->isLimited()) // si le channel est limité en nombre (+l)
+		if (found_channel->isLimited())
 		{
 			size_t limit_nbr = found_channel->getLimitNbr();
 			if (limit_nbr > found_channel->getSizeClients())
@@ -99,12 +97,12 @@ void Join::execute(Client &client, std::string &input)
 		else
 			verif_limit = true;
 
-		if (found_channel->getInvitStatus()) // si le channel a configuré des invits (+i)
+		if (found_channel->getInvitStatus())
 		{
 			std::vector<int> invited_list = found_channel->getInvited();
 			for (size_t i = 0; i < invited_list.size(); i++)
 			{
-				if (invited_list[i] == client.getId()) // si le client fait parti des invités
+				if (invited_list[i] == client.getId())
 				{
 					verif_invit = true;
 				}
@@ -118,11 +116,11 @@ void Join::execute(Client &client, std::string &input)
 		else
 			verif_invit = true;
 
-		if (found_channel->getPwd() == "") // si le channel a PAS pwd
+		if (found_channel->getPwd() == "")
 		{
 			verif_pwd = true;
 		}
-		else // si channel a un pwd (+k)
+		else
 		{
 			if (found_channel->getPwd() == pwd)
 				verif_pwd = true;
@@ -133,26 +131,11 @@ void Join::execute(Client &client, std::string &input)
 			}
 		}
 		
-		if (verif_limit && verif_invit && verif_pwd) // check si toutes les verifs sont bonnes
+		if (verif_limit && verif_invit && verif_pwd)
 		{
 			found_channel->addClient(client, false);
-			// msg pour dire que le client a été add au channel (afficher nombre d'Op + list membre)
 			client.addToOutput(":" + client.getNickname() + "!" + client.getUsername() + "@localhost JOIN #" + found_channel->getName() + "\r\n" + ":ircserver 353 " + client.getNickname() + " = #" + found_channel->getName() + " :" + getChannelMember(found_channel) + "\r\n" + ":ircserver 366 " + client.getNickname() + " #" + found_channel->getName() + " :End of NAMES list\r\n");
 		}
 	}
 
 }
-
-/*
-	si le channel existe pas:
-		- créer le channel
-		- ajouter le client au channel + le mettre op
-	si le channel existe:
-		- check si limitNbr
-		- check si pwd
-		- check si client est invité
-		- check si déjà dedans
-			-> ajouter le client au channel
-
-
-*/

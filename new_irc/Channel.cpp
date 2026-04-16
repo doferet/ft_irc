@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:23:30 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 16:07:04 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/16 15:12:23 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,13 +146,6 @@ void Channel::setOperator(int id)
 
 bool Channel::isUserInChannel(int id)
 {
-	// std::map<int, bool>::iterator it = _clients.begin();
-	// while (it != _clients.end())
-	// {
-	// 	std::cout << "IsUserInChannel() id de _clients: " << it->first << std::endl;
-	// 	it++;
-	// }
-
 	if (_clients.find(id) == _clients.end())
 		return false;
 	return true;
@@ -201,18 +194,18 @@ void Channel::sendMsgChannelMember(Client &client, std::string msg, std::vector<
 		Client *dest = findClientById(server_clients, it->first);
 		if (dest != NULL && dest != &client)
 		{
-			if (msg_type == 0) // si Privmsg
+			if (msg_type == 0) // Privmsg
 				dest->addToOutput(":" + client.getNickname() +
 								  "!" + client.getUsername() +
 								  "@localhost PRIVMSG #" + _name +
 								  " :" + msg + "\r\n");
-			if (msg_type == 1) // si Quit
+			if (msg_type == 1) // Quit
 				dest->addToOutput(":" + client.getNickname() +
 								  "!" + client.getUsername() +
 								  "@localhost QUIT :" +
 								  msg + "\r\n");
 		}
-		if (msg_type == 2) // si Part/Topic
+		if (msg_type == 2) // Part/Topic
 			dest->addToOutput(msg);
 
 		it++;

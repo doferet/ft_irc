@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CommandFactory.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 21:47:47 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 20:40:36 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/16 15:26:57 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ private:
     std::map<std::string, Channel*> & _channels;
     std::vector<Client> & _cli;
     std::string &_serverPassword;
-   // std::map<std::string, CreateFn> creators;
    std::map<std::string, CreateFn> creators;
    
 public:

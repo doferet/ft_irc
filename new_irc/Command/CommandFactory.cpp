@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CommandFactory.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 22:05:12 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/14 21:13:44 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/16 15:26:41 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 CommandFactory::CommandFactory(std::map<std::string, Channel*> &cha, std::vector<Client> &cli, std::string &pass) : _channels(cha), _cli(cli), _serverPassword(pass)
 {
-    //ajouter les commandes ici au fur et a mesure
     creators["PASS"] = &Pass::create;
     creators["JOIN"] = &Join::create;
     creators["NICK"] = &Nick::create;
@@ -27,7 +26,6 @@ CommandFactory::CommandFactory(std::map<std::string, Channel*> &cha, std::vector
     creators["TOPIC"] = &Topic::create;
     creators["KICK"] = &Kick::create;
     creators["INVITE"] = &Invite::create;
-
 }
 
 ACommand* CommandFactory::create(const std::string &name)

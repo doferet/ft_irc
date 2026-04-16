@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: doferet <doferet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 15:53:58 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 16:42:55 by doferet          ###   ########.fr       */
+/*   Updated: 2026/04/16 15:14:57 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,4 @@ bool Client::isAuthenticated()
 {
     return (_hasValidPassword && _hasValidNickname && _hasValidUsername);
 }
-
 	

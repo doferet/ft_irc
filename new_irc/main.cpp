@@ -6,17 +6,16 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 17:47:01 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 16:07:42 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/16 15:16:16 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
 
-
 int checkPort(char *arg)
 {
     char *end;
-    
+
     if (strlen(arg) > 5)
         return -1;
     int port = strtol(arg, &end, 10);
@@ -34,7 +33,7 @@ int main(int ac, char **av)
     }
     int port = checkPort(av[1]);
     std::string password = av[2];
-    
+
     if (port == -1)
     {
         std::cerr << "Error: Bad port.\n Expected integer between 0-65535" << std::endl;
@@ -45,9 +44,8 @@ int main(int ac, char **av)
         Server serv(port, password);
         serv.run();
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         std::cerr << e.what() << '\n';
     }
-    
 }

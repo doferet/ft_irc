@@ -6,7 +6,7 @@
 /*   By: asritz <asritz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 15:50:42 by doferet           #+#    #+#             */
-/*   Updated: 2026/04/15 16:00:20 by asritz           ###   ########.fr       */
+/*   Updated: 2026/04/16 15:27:13 by asritz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void Invite::execute(Client &client, std::string &input)
     {
         channelName.erase(0, 1);
     }
-    //std::cout<<"chqn nqme :|"<<channelName<<"|"<<std::endl;
+    //std::cout<<"Channel Name :|"<<channelName<<"|"<<std::endl;
     // for (std::map<std::string, Channel*>::iterator i = _channels.begin(); i != _channels.end();i++)
     // {
-    //     std::cout<<"dqns lq mqp le chqn nqme :|"<<i->first<<"|"<<std::endl;
+    //     std::cout<<"Channel Name dans la map :|"<<i->first<<"|"<<std::endl;
     // }
     std::map<std::string, Channel*>::iterator chan = _channels.find(channelName);
     if (chan == _channels.end())
